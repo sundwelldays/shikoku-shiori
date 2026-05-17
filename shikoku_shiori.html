@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>四国 梅雨の女子旅しおり</title>
+<title>松山・道後温泉 梅雨の女子旅</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
@@ -788,6 +788,106 @@ body {
   color: var(--text-soft);
   background: var(--bg-soft);
 }
+
+/* ───── 行程図（ルートマップ） ───── */
+.routemap {
+  margin: 8px auto 28px;
+  max-width: 560px;
+  background: var(--card);
+  border-radius: 18px;
+  padding: 22px 20px 16px;
+  box-shadow: var(--shadow-sm);
+}
+.routemap-head {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--accent-deep);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.routemap-sub {
+  font-size: 11px;
+  color: var(--text-soft);
+  text-align: center;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+.route-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 16px;
+}
+.route-step:last-child { padding-bottom: 0; }
+.route-dot {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent-deep);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.route-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 12.5px;
+  top: 26px;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent-light);
+  z-index: 1;
+}
+.route-body { flex: 1; padding-top: 1px; }
+.route-time {
+  font-size: 11px;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+}
+.route-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1px 0 3px;
+}
+.route-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--accent-deep);
+  text-decoration: none;
+  background: var(--bg-soft);
+  border-radius: 20px;
+  padding: 3px 11px;
+  margin: 2px 4px 2px 0;
+  transition: background 0.18s ease;
+}
+.route-link:active { background: var(--accent-light); }
+.route-link::before { content: "📍"; font-size: 10px; }
+.route-note {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 3px;
+  line-height: 1.7;
+}
+.map-links {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--accent-light);
+}
+.map-links-label {
+  font-size: 11px;
+  color: var(--text-soft);
+  display: block;
+  margin-bottom: 5px;
+}
 </style>
 </head>
 <body>
@@ -800,9 +900,9 @@ body {
   <div class="float-deco d4"></div>
 
   <div class="hero-content">
-    <div class="hero-label">S H I K O K U &nbsp;&nbsp; T R I P</div>
+    <div class="hero-label">M A T S U Y A M A &nbsp;&nbsp; D O G O</div>
     <span class="hero-emoji">🌿</span>
-    <h1 class="hero-title">四国 梅雨の<br>女子旅しおり</h1>
+    <h1 class="hero-title">松山・道後温泉<br>梅雨の女子旅</h1>
     <p class="hero-subtitle">〜 rainy days, lovely trip 〜</p>
     <p class="hero-poem">
       雨に濡れた紫陽花は、晴れの日より美しい。<br>
@@ -911,6 +1011,76 @@ body {
 </div>
 
 <section class="container">
+
+  <div class="routemap">
+    <div class="routemap-head">Day 1 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">11:30</div>
+        <div class="route-name">今治タオル美術館</div>
+        <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%8A%E6%B2%BB%E3%82%BF%E3%82%AA%E3%83%AB%E7%BE%8E%E8%A1%93%E9%A4%A8" target="_blank" rel="noopener">地図</a>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">13:00</div>
+        <div class="route-name">鯛めしランチ</div>
+        <div class="map-links">
+          <span class="map-links-label">人気の3店（お好みで／訪問前に営業情報の確認を）</span>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E5%85%83%E7%A5%96%E5%AE%87%E5%92%8C%E5%B3%B6%E9%AF%9B%E3%82%81%E3%81%97%E4%B8%B8%E6%B0%B4%20%E6%9D%BE%E5%B1%B1%E5%A4%A7%E8%A1%97%E9%81%93%E5%BA%97" target="_blank" rel="noopener">丸水（宇和島風）</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%BE%E5%B1%B1%E9%AF%9B%E3%82%81%E3%81%97%E7%A7%8B%E5%98%89%20%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">秋嘉（松山風）</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%B5%B7%E3%81%AE%E5%B9%B8%20%E9%AF%9B%E3%82%84%20%E6%9D%BE%E5%B1%B1%E5%A4%A7%E8%A1%97%E9%81%93" target="_blank" rel="noopener">鯛や</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">14:30</div>
+        <div class="route-name">松山城 & ロープウェイ</div>
+        <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%BE%E5%B1%B1%E5%9F%8E%20%E6%84%9B%E5%AA%9B" target="_blank" rel="noopener">地図</a>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">16:30</div>
+        <div class="route-name">おしゃれカフェで休憩</div>
+        <div class="map-links">
+          <span class="map-links-label">道後で人気の3店（お好みで）</span>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E3%81%AE%E7%94%BA%E5%B1%8B" target="_blank" rel="noopener">道後の町屋</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E7%99%BD%E9%B7%BA%E7%8F%88%E7%90%B2%20%E9%81%93%E5%BE%8C" target="_blank" rel="noopener">白鷺珈琲</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E8%B6%B3%E6%B9%AF%E3%82%AB%E3%83%95%E3%82%A7%20%E3%81%B5%E3%81%A8%E3%81%BB%E3%81%A8%20%E9%81%93%E5%BE%8C" target="_blank" rel="noopener">足湯カフェ ふとほと</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">18:00</div>
+        <div class="route-name">ホテルにチェックイン</div>
+        <div class="route-note">道後温泉エリアの宿へ。</div>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">6</div>
+      <div class="route-body">
+        <div class="route-time">19:00</div>
+        <div class="route-name">道後温泉 & 蜷川アート</div>
+        <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">地図</a>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 11:30 タオル美術館 -->
   <div class="timeline-item">
@@ -1076,6 +1246,75 @@ body {
 </div>
 
 <section class="container">
+
+  <div class="routemap">
+    <div class="routemap-head">Day 2 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">08:30</div>
+        <div class="route-name">朝の道後さんぽ</div>
+        <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">地図</a>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">09:30</div>
+        <div class="route-name">朝ごはん & みかんジュース</div>
+        <div class="map-links">
+          <span class="map-links-label">外来で入れる3店（お好みで／営業情報の確認を）</span>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E3%81%AE%E7%94%BA%E5%B1%8B" target="_blank" rel="noopener">道後の町屋</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%BA%BB%E3%81%A8%E3%81%8D%20%E9%81%93%E5%BE%8C" target="_blank" rel="noopener">麻とき</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=10%20FACTORY%20%E9%81%93%E5%BE%8C%E5%BA%97" target="_blank" rel="noopener">10 FACTORY 道後店</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">11:00</div>
+        <div class="route-name">紫陽花スポット（西山興隆寺）</div>
+        <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E5%B1%B1%E8%88%88%E9%9A%86%E5%AF%BA%20%E6%84%9B%E5%AA%9B%20%E8%A5%BF%E6%9D%A1%E5%B8%82" target="_blank" rel="noopener">地図</a>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">13:00</div>
+        <div class="route-name">鍋焼きうどん（松山ソウルフード）</div>
+        <div class="map-links">
+          <span class="map-links-label">隣り合う2大名店 — アサヒ派？ことり派？</span>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%8D%8B%E7%84%BC%E3%81%86%E3%81%A9%E3%82%93%20%E3%82%A2%E3%82%B5%E3%83%92%20%E6%9D%BE%E5%B1%B1" target="_blank" rel="noopener">アサヒ（甘口）</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%8D%8B%E7%84%BC%E3%81%8D%E3%81%86%E3%81%A9%E3%82%93%20%E3%81%93%E3%81%A8%E3%82%8A%20%E6%9D%BE%E5%B1%B1" target="_blank" rel="noopener">ことり（あっさり）</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">14:30</div>
+        <div class="route-name">帰路 — 道の駅で休憩</div>
+        <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E3%81%AE%E9%A7%85%20%E4%BB%8A%E6%B2%BB%E6%B9%AF%E3%83%8E%E6%B5%A6%E6%B8%A9%E6%B3%89" target="_blank" rel="noopener">地図</a>
+      </div>
+    </div>
+
+    <div class="route-step">
+      <div class="route-dot">6</div>
+      <div class="route-body">
+        <div class="route-time">17:30</div>
+        <div class="route-name">下関 到着 — おつかれさま</div>
+        <div class="route-note">旅の写真を見返しながら、余韻の時間を。</div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 08:30 朝散歩 -->
   <div class="timeline-item">

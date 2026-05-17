@@ -750,6 +750,31 @@ body {
   color: var(--text-soft);
   background: var(--bg-warm);
 }
+
+/* ───── 行程図（ルートマップ） ───── */
+.routemap{margin:8px auto 28px;max-width:560px;background:var(--card);border-radius:18px;padding:22px 20px 16px;box-shadow:var(--shadow-sm);}
+.routemap-head{font-size:21px;font-weight:700;text-align:center;margin-bottom:4px;}
+.routemap-sub{font-size:11px;text-align:center;letter-spacing:0.08em;margin-bottom:18px;opacity:0.7;}
+.route-step{display:flex;align-items:flex-start;gap:12px;position:relative;padding-bottom:16px;}
+.route-step:last-child{padding-bottom:0;}
+.route-dot{flex-shrink:0;width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:2;}
+.route-step:not(:last-child)::before{content:"";position:absolute;left:12.5px;top:26px;bottom:0;width:2px;z-index:1;}
+.route-body{flex:1;padding-top:1px;}
+.route-time{font-size:11px;letter-spacing:0.04em;opacity:0.7;}
+.route-name{font-size:14px;font-weight:600;margin:1px 0 3px;}
+.route-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;text-decoration:none;border-radius:20px;padding:3px 11px;margin:2px 4px 2px 0;transition:opacity 0.18s ease;}
+.route-link:active{opacity:0.6;}
+.route-link::before{content:"📍";font-size:10px;}
+.route-note{font-size:11px;margin-top:3px;line-height:1.7;opacity:0.7;}
+.map-links{margin-top:8px;padding-top:10px;}
+.map-links-label{font-size:11px;display:block;margin-bottom:5px;opacity:0.7;}
+
+.routemap-head{color:var(--aqua-deep);}
+.route-dot{background:var(--aqua-light);color:var(--aqua-deep);}
+.route-step:not(:last-child)::before{background:var(--aqua-light);}
+.route-name{color:var(--text);}
+.route-link{color:var(--aqua-deep);background:var(--aqua-bg);}
+.map-links{border-top:1px dashed var(--aqua-light);}
 </style>
 </head>
 <body>
@@ -866,6 +891,61 @@ body {
 </div>
 
 <section class="container">
+  <div class="routemap">
+    <div class="routemap-head">Day 1 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">13:30</div>
+        <div class="route-name">到着即ランチ・ひろめ市場</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E3%81%B2%E3%82%8D%E3%82%81%E5%B8%82%E5%A0%B4%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">ひろめ市場</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">15:00</div>
+        <div class="route-name">にこ淵</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E3%81%AB%E3%81%93%E6%B7%B5%20%E9%AB%98%E7%9F%A5%20%E3%81%84%E3%81%AE%E7%94%BA" target="_blank" rel="noopener">にこ淵</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">17:00</div>
+        <div class="route-name">安居渓谷（水晶淵）</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E5%AE%89%E5%B1%85%E6%B8%93%E8%B0%B7%20%E9%AB%98%E7%9F%A5%20%E4%BB%81%E6%B7%80%E5%B7%9D%E7%94%BA" target="_blank" rel="noopener">安居渓谷</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">19:00</div>
+        <div class="route-name">ホテルにチェックイン</div>
+        <div class="route-note">高知市内の宿へ。</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">20:30</div>
+        <div class="route-name">夜の高知をディープに</div>
+        <div class="map-links">
+          <span class="map-links-label">夜も賑わう屋台村（お好みのお店で）</span>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E3%81%B2%E3%82%8D%E3%82%81%E5%B8%82%E5%A0%B4%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">ひろめ市場</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 13:30 ランチ -->
   <div class="timeline-item">
@@ -990,6 +1070,59 @@ body {
 </div>
 
 <section class="container">
+  <div class="routemap">
+    <div class="routemap-head">Day 2 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">08:00</div>
+        <div class="route-name">仁淀川でSUP / カヤック体験</div>
+        <div class="map-links">
+          <span class="map-links-label">アクティビティ集合場所は予約先で確認を</span>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%81%E6%B7%80%E5%B7%9D%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">仁淀川</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">11:00</div>
+        <div class="route-name">名越屋沈下橋</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E8%B6%8A%E5%B1%8B%E6%B2%88%E4%B8%8B%E6%A9%8B%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">名越屋沈下橋</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">12:30</div>
+        <div class="route-name">仁淀川を望むランチ</div>
+        <div class="route-note">川沿いの眺めのよいお店で。</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">14:30</div>
+        <div class="route-name">高知県立牧野植物園</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E7%9F%A5%E7%9C%8C%E7%AB%8B%E7%89%A7%E9%87%8E%E6%A4%8D%E7%89%A9%E5%9C%92" target="_blank" rel="noopener">牧野植物園</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">16:30</div>
+        <div class="route-name">下関へ帰路</div>
+        <div class="route-note">土佐の青を思い出に、おつかれさま。</div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 08:00 SUP -->
   <div class="timeline-item">
