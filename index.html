@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>四国・瀬戸内 旅のしおり</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #2A2620;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  }
+
+  /* しおり表示エリア（タブの高さ分だけ下を空ける） */
+  .viewport {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 64px;
+    background: #FAF6F0;
+  }
+  .viewport iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: none;
+  }
+  .viewport iframe.active { display: block; }
+
+  /* 下部固定タブ */
+  .tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 64px;
+    display: flex;
+    background: rgba(38, 34, 32, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25);
+    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 100;
+  }
+  .tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.45);
+    transition: color 0.2s ease;
+    position: relative;
+    padding: 0 4px;
+  }
+  .tab .icon {
+    font-size: 19px;
+    line-height: 1;
+  }
+  .tab .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .tab.active { color: #F4ECE3; }
+  .tab.active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: linear-gradient(90deg, #C19A8B, #D9A0AC);
+  }
+
+  /* ローディング表示 */
+  .loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FAF6F0;
+    color: #8A7A6E;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .loader.hidden { opacity: 0; }
+</style>
+</head>
+<body>
+
+<div class="viewport">
+  <div class="loader" id="loader">しおりを読み込んでいます…</div>
+  <iframe class="active" data-tab="0" src="shikoku_shiori.html" title="四国 梅雨の女子旅しおり"></iframe>
+  <iframe data-tab="1" src="shikoku_shiori_kochi.html" title="高知 仁淀ブルー & 食の旅" loading="lazy"></iframe>
+  <iframe data-tab="2" src="shikoku_shiori_shodoshima.html" title="瀬戸内 アート & オリーブ Trip" loading="lazy"></iframe>
+</div>
+
+<nav class="tabbar">
+  <button class="tab active" data-tab="0">
+    <span class="icon">☔</span>
+    <span class="label">四国</span>
+  </button>
+  <button class="tab" data-tab="1">
+    <span class="icon">💧</span>
+    <span class="label">高知</span>
+  </button>
+  <button class="tab" data-tab="2">
+    <span class="icon">🫒</span>
+    <span class="label">小豆島</span>
+  </button>
+</nav>
+
+<script>
+  var tabs = document.querySelectorAll('.tab');
+  var frames = document.querySelectorAll('.viewport iframe');
+  var loader = document.getElementById('loader');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var idx = tab.getAttribute('data-tab');
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      frames.forEach(function (f) { f.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelector('.viewport iframe[data-tab="' + idx + '"]').classList.add('active');
+      window.scrollTo(0, 0);
+    });
+  });
+
+  // 最初のしおりが表示されたらローダーを消す
+  var first = document.querySelector('.viewport iframe[data-tab="0"]');
+  if (first.contentDocument && first.contentDocument.readyState === 'complete') {
+    loader.classList.add('hidden');
+  } else {
+    first.addEventListener('load', function () { loader.classList.add('hidden'); });
+  }
+  // 保険：3秒経ったら強制的に消す
+  setTimeout(function () { loader.classList.add('hidden'); }, 3000);
+</script>
+
+</body>
+</html>

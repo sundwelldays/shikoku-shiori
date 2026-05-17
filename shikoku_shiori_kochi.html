@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高知 仁淀ブルー & 食の旅</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Shippori+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Caveat+Brush&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FBF8F3;
+  --bg-warm: #F5EFE5;
+  --card: #FFFFFF;
+  --text: #2A2620;
+  --text-soft: #807467;
+  --aqua: #4DA8B5;
+  --aqua-deep: #2B7886;
+  --aqua-light: #C3E2E8;
+  --aqua-bg: #E8F4F6;
+  --terracotta: #C4775A;
+  --terracotta-deep: #95573D;
+  --terracotta-light: #F0D6C8;
+  --sand: #E5C896;
+  --sand-light: #F5E6C8;
+  --forest: #5A8A6B;
+  --forest-light: #D5E5D9;
+  --sunset: #E8965A;
+  --sunset-light: #F8DBC0;
+  --shadow-sm: 0 2px 12px rgba(42,38,32,0.06);
+  --shadow-md: 0 6px 24px rgba(42,38,32,0.1);
+  --shadow-lg: 0 16px 50px rgba(42,38,32,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(20px, -15px); }
+  66% { transform: translate(-15px, 10px); }
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px;
+  background:
+    radial-gradient(ellipse at 20% 20%, var(--aqua-light) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, var(--sand-light) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, var(--terracotta-light) 0%, transparent 60%),
+    linear-gradient(180deg, #E8F4F6 0%, #FBF8F3 60%, #F5E6C8 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: var(--aqua);
+  opacity: 0.15;
+  top: 15%; right: -50px;
+  animation: drift 15s ease-in-out infinite;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  opacity: 0.1;
+  bottom: 20%; left: -40px;
+  animation: drift 18s ease-in-out infinite reverse;
+}
+
+.water-ripple {
+  position: absolute;
+  width: 60px; height: 60px;
+  border: 2px solid var(--aqua);
+  border-radius: 50%;
+  top: 40%; left: 15%;
+  animation: ripple 4s ease-out infinite;
+  opacity: 0;
+}
+.water-ripple.r2 { top: 60%; right: 18%; animation-delay: 1.5s; }
+.water-ripple.r3 { top: 25%; left: 70%; animation-delay: 3s; }
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-label {
+  font-family: 'DM Serif Display', serif;
+  font-size: 12px;
+  letter-spacing: 6px;
+  color: var(--aqua-deep);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.2s forwards;
+}
+
+.hero-emoji {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.3s forwards;
+}
+
+.hero-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(30px, 8vw, 44px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s forwards;
+}
+
+.hero-title .accent {
+  color: var(--aqua-deep);
+  position: relative;
+}
+
+.hero-subtitle {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: clamp(18px, 4.5vw, 22px);
+  color: var(--terracotta);
+  margin: 12px 0 32px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.7s forwards;
+}
+
+.hero-poem {
+  max-width: 320px;
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 2.4;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.9s forwards;
+}
+
+.hero-meta {
+  margin-top: 40px;
+  display: flex;
+  gap: 14px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--aqua-deep);
+  opacity: 0;
+  animation: fadeUp 0.9s 1.1s forwards;
+}
+
+.hero-meta .dot {
+  width: 4px; height: 4px;
+  background: var(--terracotta);
+  border-radius: 50%;
+  align-self: center;
+}
+
+/* ─── Container ─── */
+.container {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section { padding: 60px 0 24px; }
+
+.section-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 60px;
+  color: var(--terracotta-light);
+  line-height: 0.8;
+  margin-bottom: -10px;
+  letter-spacing: 0;
+}
+
+.section-label {
+  font-family: 'DM Serif Display', serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--aqua-deep);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.section-title .accent {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 22px;
+  color: var(--terracotta);
+  display: block;
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Overview ─── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.overview-item {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 18px 12px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  border-top: 3px solid var(--aqua);
+}
+
+.overview-item:nth-child(2) { border-top-color: var(--terracotta); }
+.overview-item:nth-child(3) { border-top-color: var(--forest); }
+.overview-item:nth-child(4) { border-top-color: var(--sunset); }
+
+.overview-item .icon { font-size: 22px; margin-bottom: 6px; }
+.overview-item .label { font-size: 10px; color: var(--text-soft); letter-spacing: 1.5px; margin-bottom: 2px; font-family: 'DM Serif Display', serif; }
+.overview-item .value { font-size: 13px; font-weight: 700; }
+
+/* ─── Budget ─── */
+.budget-card {
+  background: linear-gradient(135deg, var(--sand-light) 0%, var(--sunset-light) 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.budget-card::before {
+  content: '¥';
+  position: absolute;
+  font-family: 'DM Serif Display', serif;
+  font-size: 120px;
+  color: rgba(196, 119, 90, 0.1);
+  top: -20px; right: 0;
+  line-height: 1;
+}
+
+.budget-card h4 {
+  font-size: 13px;
+  color: var(--terracotta-deep);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+  position: relative;
+  font-weight: 700;
+}
+
+.budget-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 13px;
+  border-bottom: 1px dashed rgba(196,119,90,0.25);
+  position: relative;
+}
+
+.budget-row:last-child { border-bottom: none; }
+.budget-row .amt { color: var(--terracotta-deep); font-weight: 700; }
+
+/* ─── Route ─── */
+.route-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 16px;
+}
+
+.route-step { display: flex; gap: 14px; padding: 6px 0; }
+.route-line { display: flex; flex-direction: column; align-items: center; width: 16px; flex-shrink: 0; }
+.route-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--aqua); }
+.route-dot.start { background: var(--forest); }
+.route-dot.end { background: var(--terracotta); }
+.route-connector {
+  width: 2px; flex: 1;
+  background: repeating-linear-gradient(to bottom, var(--aqua-light) 0px, var(--aqua-light) 4px, transparent 4px, transparent 8px);
+  min-height: 22px;
+}
+.route-info h4 { font-size: 14px; font-weight: 700; }
+.route-info p { font-size: 12px; color: var(--text-soft); margin-top: 2px; }
+
+.route-tip {
+  background: var(--aqua-bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: var(--text);
+  border-left: 3px solid var(--aqua);
+}
+
+/* ─── Day Header ─── */
+.day-header { text-align: center; padding: 60px 0 36px; position: relative; }
+
+.day-header::before {
+  content: '';
+  position: absolute;
+  width: 60px; height: 60px;
+  background: var(--aqua-light);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.day-number {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 52px;
+  color: var(--aqua-deep);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.day-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.day-divider {
+  width: 32px;
+  height: 2px;
+  background: var(--terracotta);
+  margin: 16px auto 0;
+}
+
+/* ─── Timeline ─── */
+.timeline-item { padding: 0 0 28px 0; }
+
+.timeline-time {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 26px;
+  color: var(--terracotta);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.timeline-card {
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.timeline-card-header { padding: 20px 20px 4px; }
+
+.timeline-card-header h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.timeline-card-body { padding: 8px 20px 20px; }
+.timeline-card-body p { font-size: 13.5px; line-height: 1.95; }
+.timeline-card-body p + p { margin-top: 8px; }
+
+.tags { margin-bottom: 8px; }
+
+.tag {
+  display: inline-block;
+  font-size: 10.5px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  margin: 2px 4px 2px 0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.tag-water { background: var(--aqua-light); color: var(--aqua-deep); }
+.tag-food { background: var(--sunset-light); color: var(--terracotta-deep); }
+.tag-nature { background: var(--forest-light); color: var(--forest); }
+.tag-photo { background: var(--terracotta-light); color: var(--terracotta-deep); }
+.tag-active { background: var(--sand-light); color: var(--terracotta-deep); }
+
+.info-box {
+  font-size: 11.5px;
+  color: var(--text-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(42,38,32,0.06);
+}
+
+.tip-box {
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  font-size: 12.5px;
+  line-height: 1.9;
+}
+
+.tip-box.water { background: var(--aqua-bg); border-left: 3px solid var(--aqua); }
+.tip-box.food { background: var(--sunset-light); border-left: 3px solid var(--terracotta); }
+.tip-box.nature { background: var(--forest-light); border-left: 3px solid var(--forest); }
+
+.tip-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.tip-box.water .tip-label { color: var(--aqua-deep); }
+.tip-box.food .tip-label { color: var(--terracotta-deep); }
+.tip-box.nature .tip-label { color: var(--forest); }
+
+/* ─── Hero feature card (special highlights) ─── */
+.feature-hero {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(77,168,181,0.4) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(43,120,134,0.4) 0%, transparent 60%),
+    linear-gradient(135deg, #1A4753 0%, #2B7886 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 30px 24px;
+  margin: 16px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-hero::before {
+  content: '';
+  position: absolute;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  top: -30px; right: -30px;
+}
+
+.feature-hero > * { position: relative; z-index: 1; }
+
+.feature-hero .feature-tag {
+  display: inline-block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.feature-hero h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.feature-hero .feature-sub {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--aqua-light);
+  margin-bottom: 18px;
+}
+
+.feature-hero p { font-size: 13px; line-height: 2.1; color: rgba(255,255,255,0.9); }
+
+/* ─── Food Pairing ─── */
+.food-card {
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 14px;
+  display: flex;
+  border-left: 4px solid var(--terracotta);
+}
+
+.food-card .food-icon {
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background: var(--sunset-light);
+  flex-shrink: 0;
+}
+
+.food-card .food-content { padding: 14px 16px; flex: 1; }
+.food-card h4 { font-family: 'Shippori Mincho', serif; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.food-card .food-desc { font-size: 12.5px; color: var(--text); line-height: 1.7; }
+.food-card .food-where { font-size: 11px; color: var(--terracotta); font-weight: 600; margin-top: 4px; }
+
+/* ─── Hotel ─── */
+.hotel-options { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+
+.hotel-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.hotel-badge {
+  font-family: 'DM Serif Display', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.hotel-badge.resort { background: var(--aqua-bg); color: var(--aqua-deep); }
+.hotel-badge.urban { background: var(--sunset-light); color: var(--terracotta-deep); }
+
+.hotel-card h4 { font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.hotel-card p { font-size: 12.5px; color: var(--text); line-height: 1.85; }
+
+.hotel-price {
+  font-size: 12px;
+  color: var(--terracotta-deep);
+  font-weight: 700;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(42,38,32,0.06);
+}
+
+/* ─── Detour ─── */
+.detour-list { display: flex; flex-direction: column; gap: 14px; }
+
+.detour-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.detour-card::before {
+  content: '';
+  position: absolute;
+  width: 4px; height: 100%;
+  background: linear-gradient(to bottom, var(--aqua), var(--terracotta));
+  top: 0; left: 0;
+}
+
+.detour-card h4 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.detour-card .detour-num {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--aqua);
+  margin-right: 6px;
+}
+
+.detour-card p { font-size: 12.5px; line-height: 1.85; }
+
+.detour-card .detour-meta {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(42,38,32,0.08);
+}
+
+.stars { color: var(--sunset); letter-spacing: 1px; font-weight: 700; }
+
+/* ─── Checklist ─── */
+.checklist {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+}
+
+.checklist h4 {
+  font-size: 14px;
+  color: var(--terracotta-deep);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.check-list { list-style: none; }
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.check-box {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--aqua);
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.check-list li.checked .check-box { background: var(--aqua); border-color: var(--aqua); }
+.check-list li.checked .check-box::after {
+  content: '✓'; color: white; font-size: 12px;
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.check-list li.checked .check-text { color: var(--text-soft); text-decoration: line-through; }
+
+/* ─── Caution ─── */
+.caution-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 12px;
+}
+
+.caution-icon { font-size: 22px; flex-shrink: 0; }
+.caution-text h5 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.caution-text p { font-size: 12px; color: var(--text-soft); line-height: 1.75; }
+
+/* ─── BGM ─── */
+.bgm-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+
+.bgm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+  box-shadow: var(--shadow-sm);
+  border-left: 3px solid var(--aqua);
+}
+
+.bgm-scene { font-weight: 600; }
+.bgm-genre { color: var(--text-soft); font-size: 12px; font-family: 'DM Serif Display', serif; font-style: italic; }
+
+/* ─── Hashtags ─── */
+.hashtag-box {
+  background: linear-gradient(135deg, var(--aqua-bg), var(--terracotta-light));
+  border-radius: 16px;
+  padding: 26px 20px;
+  text-align: center;
+}
+
+.hashtag {
+  display: inline-block;
+  font-family: 'Caveat Brush', cursive;
+  font-size: 20px;
+  color: var(--aqua-deep);
+  margin: 4px 8px;
+}
+
+/* ─── Closing ─── */
+.closing {
+  text-align: center;
+  padding: 70px 24px;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--aqua-bg) 50%, var(--sand-light) 100%);
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing-text {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14.5px;
+  line-height: 2.5;
+  color: var(--text);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.closing-signature {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 28px;
+  color: var(--terracotta-deep);
+  position: relative;
+}
+
+.footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 10.5px;
+  color: var(--text-soft);
+  background: var(--bg-warm);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="water-ripple"></div>
+  <div class="water-ripple r2"></div>
+  <div class="water-ripple r3"></div>
+
+  <div class="hero-content">
+    <div class="hero-label">K O C H I &nbsp; J O U R N E Y</div>
+    <span class="hero-emoji">🌊</span>
+    <h1 class="hero-title">奇跡の青と、<br>土佐の食を巡る</h1>
+    <div class="hero-subtitle">— a taste of Niyodo Blue —</div>
+    <p class="hero-poem">
+      仁淀ブルーの清流に手を浸して。<br>
+      藁焼きカツオの香ばしい煙のなかで乾杯。<br>
+      高知は、五感がぜんぶ歓びにふるえる場所。
+    </p>
+    <div class="hero-meta">
+      <span>1N</span><span class="dot"></span>
+      <span>2D</span><span class="dot"></span>
+      <span>JUNE</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ OVERVIEW ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">01</div>
+    <div class="section-label">O V E R V I E W</div>
+    <h2 class="section-title">
+      旅の概要
+      <span class="accent">about this trip</span>
+    </h2>
+
+    <div class="overview-grid">
+      <div class="overview-item">
+        <div class="icon">📅</div>
+        <div class="label">PERIOD</div>
+        <div class="value">1泊2日 / 6月</div>
+      </div>
+      <div class="overview-item">
+        <div class="icon">🚗</div>
+        <div class="label">MOVE</div>
+        <div class="value">車 / ドライブ</div>
+      </div>
+      <div class="overview-item">
+        <div class="icon">📍</div>
+        <div class="label">AREA</div>
+        <div class="value">高知・仁淀川</div>
+      </div>
+      <div class="overview-item">
+        <div class="icon">🐟</div>
+        <div class="label">THEME</div>
+        <div class="value">自然 × 食</div>
+      </div>
+    </div>
+
+    <div class="budget-card">
+      <h4>💰 予算の目安 / 1人あたり</h4>
+      <div class="budget-row"><span>高速代・ガソリン代</span><span class="amt">¥7,000〜9,000</span></div>
+      <div class="budget-row"><span>宿泊</span><span class="amt">¥10,000〜18,000</span></div>
+      <div class="budget-row"><span>お食事（3〜4食）</span><span class="amt">¥6,000〜10,000</span></div>
+      <div class="budget-row"><span>体験（SUP・カヤック等）</span><span class="amt">¥5,000〜8,000</span></div>
+      <div class="budget-row"><span>カフェ・おみやげ</span><span class="amt">¥3,000〜5,000</span></div>
+      <div class="budget-row" style="margin-top:6px;border-top:1.5px solid rgba(196,119,90,0.4);padding-top:10px;"><span style="font-weight:700;">合計目安</span><span class="amt" style="font-size:14px;">¥31,000〜50,000</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ROUTE ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">02</div>
+    <div class="section-label">R O U T E</div>
+    <h2 class="section-title">
+      アクセス
+      <span class="accent">getting there</span>
+    </h2>
+
+    <div class="route-card">
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot start"></div><div class="route-connector"></div></div>
+        <div class="route-info"><h4>下関 出発</h4><p>朝7:30出発がベスト 🌅</p></div>
+      </div>
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot"></div><div class="route-connector"></div></div>
+        <div class="route-info"><h4>関門橋 → 山陽道 → 瀬戸大橋</h4><p>約3.5時間</p></div>
+      </div>
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot"></div><div class="route-connector"></div></div>
+        <div class="route-info"><h4>高松道 → 高知道</h4><p>約2時間 / 山と海の絶景ロード</p></div>
+      </div>
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot end"></div></div>
+        <div class="route-info"><h4>高知・仁淀川エリア</h4><p>お昼過ぎ到着 🎉</p></div>
+      </div>
+
+      <div class="route-tip">
+        🚗 <b>片道5〜5.5時間の少し長めドライブ。</b> 瀬戸大橋を渡る瞬間は車内のテンションMAX！与島PAで瀬戸内海をバックに写真を撮ったら、いざ高知へ。早めの出発で午後は仁淀ブルーを満喫できます。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DAY 1 ═══════ -->
+<div class="day-header">
+  <div class="day-number">Day 01</div>
+  <h2 class="day-title">青に染まる日</h2>
+  <div class="day-divider"></div>
+</div>
+
+<section class="container">
+
+  <!-- 13:30 ランチ -->
+  <div class="timeline-item">
+    <div class="timeline-time">13:30 — 14:30</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>到着即ランチ 🍣<br>ひろめ市場で土佐の洗礼</h3>
+        <div class="tags">
+          <span class="tag tag-food">🔥 ご当地</span>
+          <span class="tag tag-photo">📸 映え</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>高知に着いたらまずココ。屋台村スタイルの「ひろめ市場」で、<b>名物・藁焼き鰹のたたき</b>を一杯のビールと共に。香ばしい煙、活気あふれる空気、これが土佐の歓迎。</p>
+        <p>店舗は40軒以上。<b>明神丸</b>か<b>やいろ亭</b>が定番。塩タタキは衝撃の旨さ。</p>
+        <div class="info-box">
+          <span>📍 高知市帯屋町2-3</span>
+          <span>🅿 周辺有料P</span>
+          <span>⏱ 約60分</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15:00 にこ淵 (Feature) -->
+  <div class="timeline-item">
+    <div class="timeline-time">15:00 — 16:30</div>
+
+    <div class="feature-hero">
+      <span class="feature-tag">★ TODAY'S MAIN</span>
+      <h3>にこ淵</h3>
+      <div class="feature-sub">— a miracle of blue —</div>
+      <p>カメラマン高橋宣之氏が「奇跡の清流」と名づけた仁淀川。その中でも最も神秘的な青を見せる<b>にこ淵</b>は、滝壺の水がエメラルドからターコイズへと光で表情を変える。</p>
+      <p style="margin-top:14px;">晴れた日の正午前後、太陽光が差し込む瞬間が<b>仁淀ブルーのピーク</b>。20代女子のSNSで話題沸騰中、見た瞬間「言葉を失う青」。</p>
+    </div>
+
+    <div class="tip-box water">
+      <span class="tip-label">☞ ACCESS TIP</span>
+      高知市内から車で約1時間。<b>急な階段あり</b>なので、スニーカー必須。雨上がりは滑りやすいので注意。駐車場から徒歩約5分。
+    </div>
+  </div>
+
+  <!-- 17:00 安居渓谷 -->
+  <div class="timeline-item">
+    <div class="timeline-time">17:00 — 18:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>安居渓谷（やすいけいこく）<br>水晶淵の絶景</h3>
+        <div class="tags">
+          <span class="tag tag-water">💧 仁淀ブルー</span>
+          <span class="tag tag-nature">🌿 自然</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>にこ淵から車で約30分。仁淀ブルー3大スポットの一つ。<b>水晶淵</b>では、川底まで透き通った青が見られる。にこ淵が「神秘の青」なら、こちらは「透明感の青」。</p>
+        <p>遊歩道があるので散策も気持ちいい。6月は新緑×ブルーのコントラストが最高。</p>
+        <div class="tip-box nature">
+          <span class="tip-label">♡ 撮影のコツ</span>
+          スマホは<b>露出を少し下げる</b>と青がより深く写る。偏光フィルター付きケースがあれば、水中の岩まで鮮やかに撮れる。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 19:00 チェックイン -->
+  <div class="timeline-item">
+    <div class="timeline-time">19:00 —</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>ホテルにチェックイン 🛏</h3>
+      </div>
+      <div class="timeline-card-body">
+        <p>「自然派ステイ」か「街なかおしゃれステイ」。気分で選んで。</p>
+
+        <div class="hotel-options">
+          <div class="hotel-card">
+            <span class="hotel-badge resort">RIVERSIDE STAY</span>
+            <h4>水辺の宿 仁淀川</h4>
+            <p>仁淀川を望む静かな宿。朝起きたら目の前に清流。<b>川のせせらぎBGM</b>で眠れる贅沢。地元食材を使った夕食も評判。</p>
+            <div class="hotel-price">¥12,000〜18,000 / 1人</div>
+          </div>
+
+          <div class="hotel-card">
+            <span class="hotel-badge urban">URBAN STAY</span>
+            <h4>OMO7 高知 by 星野リゾート</h4>
+            <p>2024年オープン、高知の街と食を「遊びつくす」をテーマにした星野系ホテル。<b>ロビーの土佐酒バー</b>や、よさこい体験も。ひろめ市場が徒歩圏内。</p>
+            <div class="hotel-price">¥10,000〜15,000 / 1人</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20:30 夜の屋台 -->
+  <div class="timeline-item">
+    <div class="timeline-time">20:30 — 22:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>夜の高知をディープに 🍶</h3>
+        <div class="tags">
+          <span class="tag tag-food">🍶 土佐酒</span>
+          <span class="tag tag-active">🌃 ナイト</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p><b>「ひろめ市場」夜の部</b><br>昼とはまた違う、地元飲み感が満載。「<b>司牡丹</b>」「<b>南</b>」「<b>美丈夫</b>」など土佐酒を飲み比べるべし。</p>
+        <p><b>or「土佐の酒バー」（OMO7内）</b><br>40種以上の土佐酒が並ぶ。星野リゾートクオリティの大人空間で、しっぽり締めの一杯。</p>
+        <div class="tip-box food">
+          <span class="tip-label">🍻 土佐流のススメ</span>
+          高知は<b>「献杯（けんぱい）・返杯（へんぱい）」</b>の文化が根付く酒どころ。地元の方と仲良くなれたら、可杯（べくはい）という底のないお猪口で乾杯体験も◎
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DAY 2 ═══════ -->
+<div class="day-header">
+  <div class="day-number">Day 02</div>
+  <h2 class="day-title">青と食の続き</h2>
+  <div class="day-divider"></div>
+</div>
+
+<section class="container">
+
+  <!-- 08:00 SUP -->
+  <div class="timeline-item">
+    <div class="timeline-time">08:00 — 10:30</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>仁淀川でSUP or カヤック体験 🚣</h3>
+        <div class="tags">
+          <span class="tag tag-water">💧 仁淀ブルー</span>
+          <span class="tag tag-active">⚡ アクティブ</span>
+          <span class="tag tag-photo">📸 映え</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>朝の仁淀川は人もまばらで透明度MAX。<b>水面に浮かぶ感覚</b>はここでしか味わえない。初心者OK、女性ガイド付きツアーも豊富。</p>
+        <p><b>おすすめ：「仁淀川アウトドアセンター」</b><br>2人乗りカヤック / 撮影データ付き / 約2時間 / ¥6,000〜</p>
+        <div class="tip-box water">
+          <span class="tip-label">📷 撮影データ付きが◎</span>
+          ガイドさんが一眼レフで撮ってくれるツアーを選べば、SNS映えする写真が手に入る。<b>「動く仁淀ブルー」</b>の動画は、見せたい人に絶対送りたくなる一本に。
+        </div>
+        <div class="info-box">
+          <span>📍 仁淀川流域</span>
+          <span>💰 ¥5,000〜8,000</span>
+          <span>⏱ 約2.5時間</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11:00 沈下橋 -->
+  <div class="timeline-item">
+    <div class="timeline-time">11:00 — 11:45</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>名越屋沈下橋（なごやちんかばし）</h3>
+        <div class="tags">
+          <span class="tag tag-photo">📸 映え</span>
+          <span class="tag tag-nature">🌿 自然</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>仁淀川にかかる、欄干のない素朴な橋。<b>橋の真ん中で青空にぽつんと立つ</b>構図が大人気。SUP後の濡れた髪、なんてのもまた絵になる。</p>
+        <p>四万十川の沈下橋が有名だけど、こちらの方が近くて、人も少なくて、ゆっくり撮影できる穴場。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12:30 ランチ -->
+  <div class="timeline-item">
+    <div class="timeline-time">12:30 — 14:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>仁淀川を望むランチ 🍽</h3>
+        <div class="tags">
+          <span class="tag tag-food">🍽 ランチ</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>仁淀ブルー流域には、川を望むおしゃれカフェ・レストランが点在。</p>
+
+        <div class="food-card">
+          <div class="food-icon">🥗</div>
+          <div class="food-content">
+            <h4>茶農家の店 あすなろ</h4>
+            <div class="food-desc">土佐茶を使った郷土料理「茶がゆ」と地元野菜のセット。土佐茶ジェラートも絶品。</div>
+            <div class="food-where">→ 仁淀川町</div>
+          </div>
+        </div>
+
+        <div class="food-card">
+          <div class="food-icon">🍛</div>
+          <div class="food-content">
+            <h4>YORINISHI CAFE</h4>
+            <div class="food-desc">築100年の古民家リノベ。地元野菜カレー、自家製スイーツが評判。テラス席は川ビュー◎</div>
+            <div class="food-where">→ 仁淀川町</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14:30 牧野植物園 -->
+  <div class="timeline-item">
+    <div class="timeline-time">14:30 — 16:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>高知県立牧野植物園 🌿</h3>
+        <div class="tags">
+          <span class="tag tag-nature">🌿 自然</span>
+          <span class="tag tag-photo">📸 映え</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>NHK朝ドラ「らんまん」の主人公・牧野富太郎博士ゆかりの植物園。<b>3,000種以上の植物</b>が、五台山の斜面に広がる。6月は紫陽花も見頃。</p>
+        <p>温室、レストラン、ショップも充実。<b>カフェアルブル</b>では植物モチーフのスイーツが映える。</p>
+        <div class="tip-box nature">
+          <span class="tip-label">☞ 帰り際にも◎</span>
+          隣接する<b>「五台山展望テラス」</b>からは高知市街と浦戸湾を一望。2026年秋には新展望施設「ソラミアン」もオープン予定で、注目エリア。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16:30 出発 -->
+  <div class="timeline-item">
+    <div class="timeline-time">16:30 — 22:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>下関へ帰路 🌅</h3>
+      </div>
+      <div class="timeline-card-body">
+        <p>帰りの瀬戸大橋は夕日タイム。タイミングが合えば、海と空が燃えるオレンジに染まる絶景に出会えるかも。</p>
+        <p style="font-family:'Shippori Mincho',serif;font-size:14px;text-align:center;line-height:2.2;color:var(--terracotta-deep);margin-top:14px;">
+          おつかれさま。<br>
+          青の余韻、まだ消えない。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DETOUR ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">03</div>
+    <div class="section-label">D E T O U R</div>
+    <h2 class="section-title">
+      寄り道スポット
+      <span class="accent">if you have time</span>
+    </h2>
+    <p style="font-size:13px;color:var(--text-soft);margin-bottom:24px;line-height:1.9;">高知の懐の深さは半端ない。気になったらフラっと寄ってみて。</p>
+
+    <div class="detour-list">
+
+      <div class="detour-card">
+        <h4><span class="detour-num">01</span>中津渓谷</h4>
+        <p>仁淀ブルー3大スポットの最後の1つ。<b>「七福神巡り」</b>の遊歩道が整備されていて、散策しながら絶景＆パワースポット巡り。雨竜の滝は迫力満点。</p>
+        <div class="detour-meta">💧 仁淀ブルー <span class="stars">★★★★★</span> ／ 中津渓谷駐車場から徒歩</div>
+      </div>
+
+      <div class="detour-card">
+        <h4><span class="detour-num">02</span>北川村「モネの庭」マルモッタン</h4>
+        <p>フランスのモネ財団から世界で唯一「モネの庭」と名乗ることを許された庭園。<b>4月下旬から睡蓮が咲く、絵画の世界そのもの</b>。20代女子の聖地。</p>
+        <div class="detour-meta">🌸 アート系 <span class="stars">★★★★★</span> ／ 高知市から車で約1時間40分</div>
+      </div>
+
+      <div class="detour-card">
+        <h4><span class="detour-num">03</span>桂浜</h4>
+        <p>坂本龍馬が太平洋を眺めたあの場所。<b>月の名所</b>としても有名。砂浜と松、龍馬像、海原の構図は土佐の象徴。</p>
+        <div class="detour-meta">🌊 海絶景 <span class="stars">★★★★☆</span> ／ 高知市内から車で約30分</div>
+      </div>
+
+      <div class="detour-card">
+        <h4><span class="detour-num">04</span>伊尾木洞（いおきどう）</h4>
+        <p>国道から数十m入るだけで、苔むした神秘の洞窟世界。<b>ジブリ感満載のシダ植物群落</b>は、雨の日でも幻想的（むしろ雨の方がいい）。</p>
+        <div class="detour-meta">🍃 神秘系 <span class="stars">★★★★☆</span> ／ 安芸市・高知市から約1時間</div>
+      </div>
+
+      <div class="detour-card">
+        <h4><span class="detour-num">05</span>四万十川（沈下橋エリア）</h4>
+        <p>言わずもがな日本最後の清流。<b>岩間沈下橋</b>は観光ポスター定番の絵になる場所。屋形船クルーズも体験できる。</p>
+        <div class="detour-meta">🌊 自然 <span class="stars">★★★★★</span> ／ 高知市から車で約2時間（時間に余裕があれば！）</div>
+      </div>
+
+      <div class="detour-card">
+        <h4><span class="detour-num">06</span>道の駅 木の香（このか）</h4>
+        <p>仁淀川流域の隠れ家的道の駅。<b>地元食材のジビエカレー</b>や鮎の塩焼きが名物。露天風呂もあって、立ち寄り湯にも◎</p>
+        <div class="detour-meta">♨ 温泉あり <span class="stars">★★★☆☆</span> ／ 仁淀川流域</div>
+      </div>
+
+      <div class="detour-card">
+        <h4><span class="detour-num">07</span>佐川町・牧野公園</h4>
+        <p>朝ドラ「らんまん」のロケ地としても話題に。<b>レトロな町並み</b>とSAKAWAアートな町並みが融合。地酒「司牡丹」の酒蔵も。</p>
+        <div class="detour-meta">🎨 文化系 <span class="stars">★★★☆☆</span> ／ 高知市内から約40分</div>
+      </div>
+
+      <div class="detour-card">
+        <h4><span class="detour-num">08</span>日曜市（高知市・追手筋）</h4>
+        <p>300年以上続く高知名物の街路市。<b>日曜のみ・約1kmの市</b>に約300店舗が並ぶ。地元野菜、田舎寿司、いも天など食べ歩きの宝庫。</p>
+        <div class="detour-meta">🥬 ご当地 <span class="stars">★★★★★</span> ／ 日曜出発限定！</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHECKLIST ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">04</div>
+    <div class="section-label">P A C K I N G</div>
+    <h2 class="section-title">
+      持ち物リスト
+      <span class="accent">don't forget</span>
+    </h2>
+    <p style="font-size:12px;color:var(--text-soft);margin-bottom:20px;">タップでチェック ✓</p>
+
+    <div class="checklist">
+      <h4>💧 水辺アクティビティ装備</h4>
+      <ul class="check-list">
+        <li><div class="check-box"></div><div class="check-text">水着 or 濡れてもいい服（SUP用）</div></li>
+        <li><div class="check-box"></div><div class="check-text">タオル（3〜4枚）</div></li>
+        <li><div class="check-box"></div><div class="check-text">マリンシューズ or 濡れてOKなサンダル</div></li>
+        <li><div class="check-box"></div><div class="check-text">防水スマホケース（首かけタイプが◎）</div></li>
+        <li><div class="check-box"></div><div class="check-text">ラッシュガード（日焼け対策）</div></li>
+        <li><div class="check-box"></div><div class="check-text">日焼け止め（強力なやつ）</div></li>
+        <li><div class="check-box"></div><div class="check-text">サングラス（水面の反射対策）</div></li>
+        <li><div class="check-box"></div><div class="check-text">着替え一式（濡れた後用）</div></li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <h4>🚗 ドライブ基本セット</h4>
+      <ul class="check-list">
+        <li><div class="check-box"></div><div class="check-text">折りたたみ傘（梅雨対策）</div></li>
+        <li><div class="check-box"></div><div class="check-text">スニーカー（にこ淵の階段用）</div></li>
+        <li><div class="check-box"></div><div class="check-text">薄手の羽織もの（車内冷房対策）</div></li>
+        <li><div class="check-box"></div><div class="check-text">モバイルバッテリー</div></li>
+        <li><div class="check-box"></div><div class="check-text">車載スマホホルダー</div></li>
+        <li><div class="check-box"></div><div class="check-text">運転免許証 & 保険証</div></li>
+        <li><div class="check-box"></div><div class="check-text">エコバッグ（おみやげ用）</div></li>
+        <li><div class="check-box"></div><div class="check-text">虫除けスプレー（渓谷で必須！）</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CAUTION ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">05</div>
+    <div class="section-label">D R I V E &nbsp; T I P S</div>
+    <h2 class="section-title">
+      ドライブ注意点
+      <span class="accent">drive safely</span>
+    </h2>
+
+    <div class="caution-card">
+      <div class="caution-icon">🌀</div>
+      <div class="caution-text">
+        <h5>仁淀ブルーまでの山道</h5>
+        <p>にこ淵・安居渓谷へは細い山道が続く。<b>すれ違いポイントが少ない</b>ので、対向車に注意。梅雨時期は霧と路面の濡れにも要警戒。</p>
+      </div>
+    </div>
+
+    <div class="caution-card">
+      <div class="caution-icon">⛽</div>
+      <div class="caution-text">
+        <h5>ガソリン事情</h5>
+        <p>仁淀川流域の山間部は<b>ガソリンスタンドが少ない</b>。高知市内で満タンにしてから出発を。営業時間も早く閉まる傾向。</p>
+      </div>
+    </div>
+
+    <div class="caution-card">
+      <div class="caution-icon">📵</div>
+      <div class="caution-text">
+        <h5>電波・通信</h5>
+        <p>渓谷エリアは<b>圏外</b>になることも。ナビは事前にダウンロードしておくか、紙の地図も念のため。</p>
+      </div>
+    </div>
+
+    <div class="caution-card">
+      <div class="caution-icon">🦟</div>
+      <div class="caution-text">
+        <h5>虫対策</h5>
+        <p>6月の渓谷はブヨ・蚊が活発。<b>虫除けスプレー必須</b>。長袖長ズボンを1セット車に置いておくと安心。</p>
+      </div>
+    </div>
+
+    <div class="caution-card">
+      <div class="caution-icon">📱</div>
+      <div class="caution-text">
+        <h5>緊急連絡先</h5>
+        <p>JAF：#8139 ／ 高知医療センター：088-837-3000 ／ 道路情報（四国）：050-3369-6636</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ BGM ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">06</div>
+    <div class="section-label">B G M</div>
+    <h2 class="section-title">
+      ドライブBGM
+      <span class="accent">playlist mood</span>
+    </h2>
+
+    <div class="bgm-list">
+      <div class="bgm-row"><span class="bgm-scene">🌅 朝の出発</span><span class="bgm-genre">indie pop</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🌉 瀬戸大橋</span><span class="bgm-genre">surf rock</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🌿 山道</span><span class="bgm-genre">acoustic / folk</span></div>
+      <div class="bgm-row"><span class="bgm-scene">💧 仁淀川</span><span class="bgm-genre">lo-fi chill</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🌃 高知の夜</span><span class="bgm-genre">jazz / soul</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🏠 帰り道</span><span class="bgm-genre">city pop / 邦楽</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ HASHTAGS ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">07</div>
+    <div class="section-label">S N S</div>
+    <h2 class="section-title">
+      ハッシュタグ
+      <span class="accent">share your trip</span>
+    </h2>
+
+    <div class="hashtag-box">
+      <span class="hashtag">#仁淀ブルー</span>
+      <span class="hashtag">#高知女子旅</span>
+      <span class="hashtag">#にこ淵</span>
+      <span class="hashtag">#藁焼きカツオ</span>
+      <span class="hashtag">#奇跡の清流</span>
+      <span class="hashtag">#土佐の食</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CLOSING ═══════ -->
+<section class="closing">
+  <p class="closing-text">
+    青を見て、青を漕いで、青を飲んで。<br>
+    藁の煙の向こうで、誰かと笑って乾杯して。<br><br>
+    高知って、こんなに鮮やかな場所だっけ。<br>
+    五感で覚えた土佐の色が、<br>
+    きっと帰っても胸に残ってる。<br><br>
+    いってらっしゃい 🌊
+  </p>
+  <div class="closing-signature">stay blue, stay wild ♡</div>
+</section>
+
+<footer class="footer">
+  ※ 各施設の営業時間・料金は2026年5月時点の情報です。<br>お出かけ前に公式サイトで最新情報をご確認ください。
+</footer>
+
+<script>
+document.querySelectorAll('.check-list li').forEach(li => {
+  li.addEventListener('click', () => li.classList.toggle('checked'));
+});
+</script>
+
+</body>
+</html>
