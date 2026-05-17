@@ -870,6 +870,19 @@ body {
   transition: background 0.18s ease;
 }
 .route-link:active { background: var(--accent-light); }
+  .route-link-official {
+    display: inline-block;
+    font-size: 11px;
+    text-decoration: none;
+    color: #6E7A55;
+    border: 1px solid #AEBA95;
+    background: #fff;
+    border-radius: 20px;
+    padding: 3px 11px;
+    margin-top: 4px;
+  }
+  .route-link-official::before { content: "\1F517"; font-size: 10px; margin-right: 3px; }
+  .route-link-official:active { background: #EEF1E6; }
 .route-link::before { content: "📍"; font-size: 10px; }
 .route-note {
   font-size: 11px;
@@ -1022,6 +1035,7 @@ body {
         <div class="route-time">11:30</div>
         <div class="route-name">今治タオル美術館</div>
         <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%8A%E6%B2%BB%E3%82%BF%E3%82%AA%E3%83%AB%E7%BE%8E%E8%A1%93%E9%A4%A8" target="_blank" rel="noopener">地図</a>
+        <a class="route-link-official" href="https://www.towel-museum.com/" target="_blank" rel="noopener">公式サイト</a>
       </div>
     </div>
 
@@ -1045,6 +1059,7 @@ body {
         <div class="route-time">14:30</div>
         <div class="route-name">松山城 & ロープウェイ</div>
         <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%BE%E5%B1%B1%E5%9F%8E%20%E6%84%9B%E5%AA%9B" target="_blank" rel="noopener">地図</a>
+        <a class="route-link-official" href="https://www.matsuyamajo.jp/" target="_blank" rel="noopener">公式サイト</a>
       </div>
     </div>
 
@@ -1077,6 +1092,7 @@ body {
         <div class="route-time">19:00</div>
         <div class="route-name">道後温泉 & 蜷川アート</div>
         <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">地図</a>
+        <a class="route-link-official" href="https://dogoonsenart.com/" target="_blank" rel="noopener">道後アート 公式</a>
       </div>
     </div>
   </div>
