@@ -128,7 +128,27 @@
 
 <nav class="tabbar">
   <button class="tab active" data-tab="0">
-    <!-- 葉：四国・梅雨の新緑/紫陽花 -->
+    <!-- 周回の矢印：四国一周 2泊3日 -->
+    <svg viewBox="0 0 24 24">
+      <path d="M20 12 A8 8 0 1 1 17 6"/>
+      <path d="M20 4 L20 9 L15 9"/>
+    </svg>
+    <span class="label">四国一周</span>
+    <span class="sub">2泊3日</span>
+  </button>
+  <button class="tab" data-tab="1">
+    <!-- 湯けむり：四国一周 3泊4日 温泉&グルメ -->
+    <svg viewBox="0 0 24 24">
+      <path d="M5 13 H19 A7 7 0 0 1 5 13 Z"/>
+      <path d="M9 3 C8 4.5, 10 5.5, 9 7"/>
+      <path d="M12 2.5 C11 4, 13 5, 12 6.5"/>
+      <path d="M15 3 C14 4.5, 16 5.5, 15 7"/>
+    </svg>
+    <span class="label">四国一周</span>
+    <span class="sub">3泊4日</span>
+  </button>
+  <button class="tab" data-tab="2">
+    <!-- 葉：松山・道後・梅雨の新緑/紫陽花 -->
     <svg viewBox="0 0 24 24">
       <path d="M5 19 C5 11, 11 5, 19 5 C19 13, 13 19, 5 19 Z"/>
       <path d="M5 19 C9 15, 13 11, 17 7"/>
@@ -136,7 +156,7 @@
     <span class="label">松山・道後</span>
     <span class="sub">1泊2日</span>
   </button>
-  <button class="tab" data-tab="1">
+  <button class="tab" data-tab="3">
     <!-- 波：高知・仁淀ブルー -->
     <svg viewBox="0 0 24 24">
       <path d="M3 9 C5 6, 7 6, 9 9 C11 12, 13 12, 15 9 C17 6, 19 6, 21 9"/>
@@ -145,7 +165,7 @@
     <span class="label">高知</span>
     <span class="sub">1泊2日</span>
   </button>
-  <button class="tab" data-tab="2">
+  <button class="tab" data-tab="4">
     <!-- オリーブ：小豆島 -->
     <svg viewBox="0 0 24 24">
       <path d="M12 21 C12 14, 12 9, 12 5"/>
@@ -156,35 +176,15 @@
     <span class="label">小豆島</span>
     <span class="sub">1泊2日</span>
   </button>
-  <button class="tab" data-tab="3">
-    <!-- 湯けむり：四国一周 温泉&グルメ -->
-    <svg viewBox="0 0 24 24">
-      <path d="M5 13 H19 A7 7 0 0 1 5 13 Z"/>
-      <path d="M9 3 C8 4.5, 10 5.5, 9 7"/>
-      <path d="M12 2.5 C11 4, 13 5, 12 6.5"/>
-      <path d="M15 3 C14 4.5, 16 5.5, 15 7"/>
-    </svg>
-    <span class="label">四国一周</span>
-    <span class="sub">3泊4日</span>
-  </button>
-  <button class="tab" data-tab="4">
-    <!-- 周回の矢印：四国一周 2泊3日 -->
-    <svg viewBox="0 0 24 24">
-      <path d="M20 12 A8 8 0 1 1 17 6"/>
-      <path d="M20 4 L20 9 L15 9"/>
-    </svg>
-    <span class="label">四国一周</span>
-    <span class="sub">2泊3日</span>
-  </button>
 </nav>
 
 <div class="viewport">
   <div class="loader" id="loader">しおりを読み込んでいます…</div>
-  <iframe class="active" data-tab="0" src="shikoku_shiori.html" title="四国 梅雨の女子旅しおり"></iframe>
-  <iframe data-tab="1" src="shikoku_shiori_kochi.html" title="高知 仁淀ブルー & 食の旅" loading="lazy"></iframe>
-  <iframe data-tab="2" src="shikoku_shiori_shodoshima.html" title="瀬戸内 アート & オリーブ Trip" loading="lazy"></iframe>
-  <iframe data-tab="3" src="shikoku_shiori_isshu.html" title="四国一周 温泉 & グルメの旅" loading="lazy"></iframe>
-  <iframe data-tab="4" src="shikoku_shiori_isshu2.html" title="四国一周 2泊3日 ぐるり旅" loading="lazy"></iframe>
+  <iframe class="active" data-tab="0" src="shikoku_shiori_isshu2.html" title="四国一周 2泊3日 ぐるり旅"></iframe>
+  <iframe data-tab="1" src="shikoku_shiori_isshu.html" title="四国一周 温泉 & グルメの旅" loading="lazy"></iframe>
+  <iframe data-tab="2" src="shikoku_shiori.html" title="松山・道後 梅雨の女子旅" loading="lazy"></iframe>
+  <iframe data-tab="3" src="shikoku_shiori_kochi.html" title="高知 仁淀ブルー & 食の旅" loading="lazy"></iframe>
+  <iframe data-tab="4" src="shikoku_shiori_shodoshima.html" title="瀬戸内 アート & オリーブ Trip" loading="lazy"></iframe>
 </div>
 
 <script>
