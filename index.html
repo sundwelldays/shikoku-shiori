@@ -122,6 +122,29 @@
     pointer-events: none;
   }
   .loader.hidden { opacity: 0; }
+
+  /* QR名刺カードへの入口 */
+  .cardlink {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 200;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #8B6552;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 9px 14px;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(61, 48, 39, 0.28);
+  }
+  .cardlink svg { width: 15px; height: 15px; }
+  .cardlink svg rect, .cardlink svg path { stroke: #fff; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .cardlink:active { opacity: 0.7; }
 </style>
 </head>
 <body>
@@ -186,6 +209,16 @@
   <iframe data-tab="3" src="shikoku_shiori_kochi.html" title="高知 仁淀ブルー & 食の旅" loading="lazy"></iframe>
   <iframe data-tab="4" src="shikoku_shiori_shodoshima.html" title="瀬戸内 アート & オリーブ Trip" loading="lazy"></iframe>
 </div>
+
+<a class="cardlink" href="card.html" target="_blank" rel="noopener" title="QR名刺カード">
+  <svg viewBox="0 0 24 24">
+    <rect x="3" y="3" width="7" height="7" rx="1"/>
+    <rect x="14" y="3" width="7" height="7" rx="1"/>
+    <rect x="3" y="14" width="7" height="7" rx="1"/>
+    <path d="M14 14 H17 V17 M20 14 V14 M17 20 H21 M20 17 V21"/>
+  </svg>
+  カード
+</a>
 
 <script>
   var tabs = document.querySelectorAll('.tab');
