@@ -814,6 +814,10 @@ body {
 .jm-map{margin:4px 0 22px;border-radius:16px;overflow:hidden;border:1px solid var(--jm-light);box-shadow:var(--shadow-sm);background:#E7EFF2;}
 .jm-map svg{display:block;width:100%;height:auto;}
 .jm-land{fill:var(--jm-light);stroke:var(--jm-a);stroke-width:1.4;stroke-opacity:.45;opacity:.75;}
+.jm-land-ctx{fill:#D9D3C6;stroke:#BCB3A2;stroke-width:1;stroke-opacity:.5;opacity:.5;}
+.jm-gmap{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;padding:12px 18px;border-radius:14px;background:var(--jm-a);color:#fff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:var(--shadow-sm);letter-spacing:.02em;}
+.jm-gmap:active{opacity:.7;}
+.jm-gmap .sub{font-size:10.5px;font-weight:500;opacity:.9;letter-spacing:0;}
 .jm-route{fill:none;stroke:var(--jm-a);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.5 8;}
 .jm-route-back{fill:none;stroke:var(--jm-a);stroke-width:2;stroke-linecap:round;stroke-dasharray:0.5 8;opacity:.4;}
 .jm-pin{fill:var(--jm-a);}
@@ -863,30 +867,23 @@ body {
     </div>
 
     <div class="jm-map">
-      <svg viewBox="0 0 340 200" role="img" aria-label="高知ルート地図">
-        <text class="jm-sealabel" x="120" y="188">P A C I F I C　O C E A N</text>
-        <!-- 高知（東西に長い南海岸） -->
-        <path class="jm-land" d="M40,72 C110,52 190,50 260,60 C300,66 314,84 302,104 C288,126 250,138 210,140 C160,143 110,150 70,138 C44,130 28,108 32,90 C34,80 37,76 40,72 Z"/>
-        <!-- 進入（松山道経由）→ 高知市 → にこ淵 → 安居 → 牧野 -->
-        <path class="jm-route" d="M30,66 C100,80 152,90 180,98"/>
-        <path class="jm-route" d="M180,98 C150,94 116,92 100,94"/>
-        <path class="jm-route" d="M100,94 C86,100 76,106 70,110"/>
-        <path class="jm-route" d="M70,110 C120,120 170,118 212,108"/>
-        <!-- 帰路（点線・淡） -->
-        <path class="jm-route-back" d="M222,104 C160,120 80,100 30,72"/>
-        <!-- 進入元 -->
-        <text class="jm-mlabel" x="6" y="58">← 下関方面</text>
-        <!-- ピン -->
-        <g><circle class="jm-pin" cx="184" cy="98" r="11"/><text class="jm-pinnum" x="184" y="102">1</text></g>
-        <text class="jm-mlabel" x="158" y="86">ひろめ市場</text>
-        <g><circle class="jm-pin" cx="98" cy="94" r="11"/><text class="jm-pinnum" x="98" y="98">2</text></g>
-        <text class="jm-mlabel" x="78" y="80">にこ淵</text>
-        <g><circle class="jm-pin" cx="68" cy="110" r="11"/><text class="jm-pinnum" x="68" y="114">3</text></g>
-        <text class="jm-mlabel" x="38" y="128">安居渓谷</text>
-        <g><circle class="jm-pin" cx="216" cy="106" r="11"/><text class="jm-pinnum" x="216" y="110">4</text></g>
-        <text class="jm-mlabel" x="208" y="128">牧野植物園</text>
+      <svg viewBox="0 0 340 261.1" role="img" aria-label="ルート地図">
+        <text class="jm-sealabel" x="170.9" y="168.2">P A C I F I C   O C E A N</text>
+        <path class="jm-land" d="M214.3,23.4L255.0,42.2L273.8,36.1L276.9,61.0L298.7,64.1L292.3,76.5L298.7,89.2L317.5,92.3L295.7,151.5L258.0,101.7L226.8,89.2L195.5,95.3L195.5,89.2L198.8,98.4L161.2,111.1L180.0,111.1L161.2,114.1L155.1,123.6L151.8,114.1L142.7,126.6L145.7,142.1L139.3,160.9L129.9,160.9L117.5,185.8L102.0,189.1L102.0,214.0L92.6,223.4L102.0,242.2L89.6,229.8L67.7,235.9L51.9,226.5L39.5,232.8L42.5,214.0L54.9,211.0L51.9,201.6L42.5,201.6L48.9,192.2L39.5,151.5L51.9,160.9L70.7,136.0L86.2,126.6L73.8,98.4L108.1,95.3L117.5,64.1L139.3,36.1L214.3,23.4ZM27.0,238.9L24.0,242.2L24.0,232.8L27.0,238.9Z"/>
+        <path class="jm-route" d="M192.3,78.6 L134.8,59.1 L116.7,66.9"/>
+        <path class="jm-route" d="M116.7,66.9 L192.3,78.6 L202.1,78.6"/>
+        <text class="jm-mlabel" x="97.0" y="51.3">← 下関方面</text>
+        <g><circle class="jm-pin" cx="192.3" cy="78.6" r="11"/><text class="jm-pinnum" x="192.3" y="82.6">1</text></g>
+        <text class="jm-mlabel" x="205.3" y="68.6">ひろめ市場</text>
+        <g><circle class="jm-pin" cx="134.8" cy="59.1" r="11"/><text class="jm-pinnum" x="134.8" y="63.1">2</text></g>
+        <text class="jm-mlabel" x="121.8" y="49.1" text-anchor="end">にこ淵</text>
+        <g><circle class="jm-pin" cx="116.7" cy="66.9" r="11"/><text class="jm-pinnum" x="116.7" y="70.9">3</text></g>
+        <text class="jm-mlabel" x="103.7" y="86.9" text-anchor="end">安居渓谷</text>
+        <g><circle class="jm-pin" cx="202.1" cy="78.6" r="11"/><text class="jm-pinnum" x="202.1" y="82.6">4</text></g>
+        <text class="jm-mlabel" x="216.1" y="98.6">牧野植物園</text>
       </svg>
     </div>
+    <a class="jm-gmap" href="https://www.google.com/maps/dir/?api=1&origin=%E4%B8%8B%E9%96%A2%E9%A7%85&destination=%E4%B8%8B%E9%96%A2%E9%A7%85&travelmode=driving&waypoints=%E3%81%B2%E3%82%8D%E3%82%81%E5%B8%82%E5%A0%B4%7C%E3%81%AB%E3%81%93%E6%B7%B5%20%E9%AB%98%E7%9F%A5%7C%E5%AE%89%E5%B1%85%E6%B8%93%E8%B0%B7%7C%E5%90%8D%E8%B6%8A%E5%B1%8B%E6%B2%88%E4%B8%8B%E6%A9%8B%7C%E9%AB%98%E7%9F%A5%E7%9C%8C%E7%AB%8B%E7%89%A7%E9%87%8E%E6%A4%8D%E7%89%A9%E5%9C%92" target="_blank" rel="noopener">🗺 Googleマップでルートを開く<span class="sub">立ち寄り5スポットをピン留め</span></a>
 
     <div class="jm-day">
       <div class="jm-node">1</div>

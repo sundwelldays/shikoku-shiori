@@ -980,6 +980,10 @@ body {
 .jm-map{margin:4px 0 22px;border-radius:16px;overflow:hidden;border:1px solid var(--jm-light);box-shadow:var(--shadow-sm);background:#E7EFF2;}
 .jm-map svg{display:block;width:100%;height:auto;}
 .jm-land{fill:var(--jm-light);stroke:var(--jm-a);stroke-width:1.4;stroke-opacity:.45;opacity:.75;}
+.jm-land-ctx{fill:#D9D3C6;stroke:#BCB3A2;stroke-width:1;stroke-opacity:.5;opacity:.5;}
+.jm-gmap{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;padding:12px 18px;border-radius:14px;background:var(--jm-a);color:#fff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:var(--shadow-sm);letter-spacing:.02em;}
+.jm-gmap:active{opacity:.7;}
+.jm-gmap .sub{font-size:10.5px;font-weight:500;opacity:.9;letter-spacing:0;}
 .jm-route{fill:none;stroke:var(--jm-a);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.5 8;}
 .jm-route-back{fill:none;stroke:var(--jm-a);stroke-width:2;stroke-linecap:round;stroke-dasharray:0.5 8;opacity:.4;}
 .jm-pin{fill:var(--jm-a);}
@@ -1029,33 +1033,21 @@ body {
     </div>
 
     <div class="jm-map">
-      <svg viewBox="0 0 340 220" role="img" aria-label="瀬戸内の島々ルート地図">
-        <text class="jm-sealabel" x="118" y="106">S E T O　I N L A N D　S E A</text>
-        <!-- 本州（上） -->
-        <path class="jm-land" d="M0,0 L340,0 L340,48 C280,60 200,52 150,60 C100,68 40,58 0,66 Z"/>
-        <text class="jm-mlabel" x="250" y="30">本州（岡山方面）</text>
-        <!-- 四国（下） -->
-        <path class="jm-land" d="M0,220 L340,220 L340,170 C280,158 200,166 150,160 C90,152 40,164 0,158 Z"/>
-        <text class="jm-mlabel" x="250" y="200">四国（高松方面）</text>
-        <!-- 小豆島 -->
-        <path class="jm-land" d="M232,96 C260,88 288,100 290,118 C292,136 268,146 244,142 C224,139 212,124 218,110 C222,102 226,98 232,96 Z"/>
-        <!-- 直島 -->
-        <path class="jm-land" d="M104,116 C122,110 140,120 140,132 C140,146 120,150 108,144 C96,138 94,124 104,116 Z"/>
-        <!-- ルート：下関/本州 → 小豆島 → 直島 -->
-        <path class="jm-route" d="M40,52 C140,72 210,92 244,112"/>
-        <path class="jm-route" d="M244,112 C200,122 158,128 130,130"/>
-        <!-- 帰路（点線・淡） -->
-        <path class="jm-route-back" d="M122,130 C88,112 50,80 34,54"/>
-        <!-- 出発元 -->
-        <circle class="jm-start" cx="34" cy="50" r="5"/>
-        <text class="jm-mlabel" x="10" y="44">← 下関 発</text>
-        <!-- ピン -->
-        <g><circle class="jm-pin" cx="252" cy="116" r="11"/><text class="jm-pinnum" x="252" y="120">1</text></g>
-        <text class="jm-mlabel" x="246" y="138">小豆島</text>
-        <g><circle class="jm-pin" cx="122" cy="130" r="11"/><text class="jm-pinnum" x="122" y="134">2</text></g>
-        <text class="jm-mlabel" x="112" y="116">直島</text>
+      <svg viewBox="0 0 340 318.1" role="img" aria-label="ルート地図">
+        <text class="jm-sealabel" x="141.3" y="159.0">S E T O   S E A</text>
+        <path class="jm-land-ctx" d="M273.1,-119.0L278.6,-85.0L233.6,-40.0L239.1,-0.5L228.1,16.5L250.6,50.5L245.1,67.5L205.6,55.9L222.1,72.9L188.6,112.4L137.6,106.9L166.2,112.4L149.2,134.9L137.6,129.4L132.2,157.4L98.2,146.4L86.6,163.4L75.7,129.4L75.7,146.4L53.2,123.9L30.7,146.4L2.2,129.4L13.7,151.9L-8.8,140.9L-31.8,50.5L-25.8,21.9L-48.3,-6.0L-37.3,-45.5L-54.3,-62.5L-48.3,-79.5L-8.8,-85.0L-14.8,-107.5L24.7,-107.5L19.2,-124.5L30.7,-130.0L47.2,-164.0L86.6,-152.5L109.7,-124.5L166.2,-158.5L160.1,-147.0L199.6,-130.0L205.6,-96.5Z"/>
+        <path class="jm-land" d="M53.2,309.8L24.7,298.9L41.7,242.4L19.2,219.9L53.2,236.4L126.1,180.4L166.2,196.9L188.6,174.4L194.1,202.9L211.1,185.9L228.1,202.9L222.1,219.9L273.1,247.9L267.6,264.9L194.1,253.4L143.1,292.8L103.6,275.8L53.2,309.8ZM245.1,123.9L256.1,123.9L245.1,168.9L233.6,163.4L233.6,151.9L216.6,174.4L216.6,151.9L194.1,140.9L245.1,123.9ZM171.6,151.9L160.1,146.4L182.6,146.4L171.6,151.9Z"/>
+        <path class="jm-route" d="M126.4,127.3 L215.4,127.3 L138.3,137.9"/>
+        <text class="jm-mlabel" x="7.8" y="81.6">↙ 下関方面</text>
+        <text class="jm-mlabel" x="52.3" y="106.2">本州・岡山</text>
+        <text class="jm-mlabel" x="111.6" y="229.4">四国・香川</text>
+        <g><circle class="jm-pin" cx="215.4" cy="127.3" r="11"/><text class="jm-pinnum" x="215.4" y="131.3">1</text></g>
+        <text class="jm-mlabel" x="229.4" y="118.3">小豆島</text>
+        <g><circle class="jm-pin" cx="138.3" cy="137.9" r="11"/><text class="jm-pinnum" x="138.3" y="141.9">2</text></g>
+        <text class="jm-mlabel" x="125.3" y="155.9" text-anchor="end">直島</text>
       </svg>
     </div>
+    <a class="jm-gmap" href="https://www.google.com/maps/dir/?api=1&origin=%E4%B8%8B%E9%96%A2%E9%A7%85&destination=%E4%B8%8B%E9%96%A2%E9%A7%85&travelmode=driving&waypoints=%E5%B0%8F%E8%B1%86%E5%B3%B6%E3%82%AA%E3%83%AA%E3%83%BC%E3%83%96%E5%85%AC%E5%9C%92%7C%E3%82%A8%E3%83%B3%E3%82%B8%E3%82%A7%E3%83%AB%E3%83%AD%E3%83%BC%E3%83%89%20%E5%B0%8F%E8%B1%86%E5%B3%B6%7C%E5%9C%B0%E4%B8%AD%E7%BE%8E%E8%A1%93%E9%A4%A8%20%E7%9B%B4%E5%B3%B6" target="_blank" rel="noopener">🗺 Googleマップでルートを開く<span class="sub">立ち寄り3スポットをピン留め</span></a>
 
     <div class="jm-day">
       <div class="jm-node">I</div>

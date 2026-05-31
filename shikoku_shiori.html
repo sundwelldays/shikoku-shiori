@@ -927,6 +927,10 @@ body {
 .jm-map{margin:4px 0 22px;border-radius:16px;overflow:hidden;border:1px solid var(--jm-light);box-shadow:var(--shadow-sm);background:#E7EFF2;}
 .jm-map svg{display:block;width:100%;height:auto;}
 .jm-land{fill:var(--jm-light);stroke:var(--jm-a);stroke-width:1.4;stroke-opacity:.45;opacity:.75;}
+.jm-land-ctx{fill:#D9D3C6;stroke:#BCB3A2;stroke-width:1;stroke-opacity:.5;opacity:.5;}
+.jm-gmap{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;padding:12px 18px;border-radius:14px;background:var(--jm-a);color:#fff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:var(--shadow-sm);letter-spacing:.02em;}
+.jm-gmap:active{opacity:.7;}
+.jm-gmap .sub{font-size:10.5px;font-weight:500;opacity:.9;letter-spacing:0;}
 .jm-route{fill:none;stroke:var(--jm-a);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.5 8;}
 .jm-route-back{fill:none;stroke:var(--jm-a);stroke-width:2;stroke-linecap:round;stroke-dasharray:0.5 8;opacity:.4;}
 .jm-pin{fill:var(--jm-a);}
@@ -985,29 +989,20 @@ body {
     </div>
 
     <div class="jm-map">
-      <svg viewBox="0 0 340 210" role="img" aria-label="松山・道後ルート地図">
-        <text class="jm-sealabel" x="150" y="22">S E T O　I N L A N D</text>
-        <text class="jm-sealabel" x="110" y="198">U W A　S E A</text>
-        <!-- 愛媛（北西部・しまなみ〜松山〜東予） -->
-        <path class="jm-land" d="M150,46 C210,42 268,56 298,86 C318,108 310,142 284,158 C250,178 200,176 168,160 C140,146 120,150 104,134 C90,120 96,98 110,80 C122,62 134,50 150,46 Z"/>
-        <!-- ルート：下関→今治→道後→西山興隆寺 -->
-        <path class="jm-route" d="M34,98 C120,72 188,68 236,78"/>
-        <path class="jm-route" d="M236,78 C208,94 176,108 160,118"/>
-        <path class="jm-route" d="M160,118 C192,126 226,128 250,130"/>
-        <!-- 帰路（点線・淡） -->
-        <path class="jm-route-back" d="M250,130 C180,154 92,132 34,102"/>
-        <!-- 下関 -->
-        <circle class="jm-start" cx="30" cy="98" r="5"/>
-        <text class="jm-mlabel" x="8" y="90">下関 発着</text>
-        <!-- ピン -->
-        <g><circle class="jm-pin" cx="240" cy="78" r="11"/><text class="jm-pinnum" x="240" y="82">1</text></g>
-        <text class="jm-mlabel" x="206" y="66">今治</text>
-        <g><circle class="jm-pin" cx="158" cy="120" r="11"/><text class="jm-pinnum" x="158" y="124">2</text></g>
-        <text class="jm-mlabel" x="120" y="138">松山・道後</text>
-        <g><circle class="jm-pin" cx="252" cy="130" r="11"/><text class="jm-pinnum" x="252" y="134">3</text></g>
-        <text class="jm-mlabel" x="246" y="152">西山興隆寺</text>
+      <svg viewBox="0 0 340 321.5" role="img" aria-label="ルート地図">
+        <text class="jm-sealabel" x="115.4" y="181.6">U W A   S E A</text>
+        <path class="jm-land" d="M126.7,294.9L104.5,288.4L104.5,298.0L98.3,298.0L101.4,282.2L111.0,285.3L91.8,266.1L101.4,266.1L94.9,253.5L104.5,253.5L94.9,250.4L98.3,243.9L88.7,237.7L101.4,247.3L114.1,234.3L114.1,225.0L101.4,225.0L111.0,215.4L85.6,215.4L91.8,205.9L85.6,202.8L94.9,186.7L76.0,183.6L50.4,202.8L25.0,205.9L136.3,142.2L155.5,81.9L184.2,72.3L177.7,59.7L187.3,56.3L212.7,100.8L247.6,88.1L279.4,94.6L292.1,81.9L308.2,88.1L301.7,113.4L225.3,126.4L203.1,154.9L193.5,186.7L158.6,189.8L171.2,218.5L155.5,228.1L136.3,253.5L123.6,243.9L133.2,285.3L126.7,294.9ZM200.0,43.6L187.3,43.6L200.0,24.4L206.5,34.0L200.0,43.6ZM215.7,40.5L219.1,40.5L215.7,46.7L206.5,43.6L215.7,40.5ZM209.6,56.3L196.9,62.7L200.0,46.7L215.7,50.1L209.6,56.3ZM133.2,91.2L123.6,88.1L136.3,78.5L133.2,91.2Z"/>
+        <path class="jm-route" d="M190.6,68.5 L152.2,114.1 L202.3,96.3"/>
+        <text class="jm-mlabel" x="40.1" y="110.2">← 下関方面</text>
+        <g><circle class="jm-pin" cx="190.6" cy="68.5" r="11"/><text class="jm-pinnum" x="190.6" y="72.5">1</text></g>
+        <text class="jm-mlabel" x="177.6" y="56.5" text-anchor="end">今治</text>
+        <g><circle class="jm-pin" cx="152.2" cy="114.1" r="11"/><text class="jm-pinnum" x="152.2" y="118.1">2</text></g>
+        <text class="jm-mlabel" x="139.2" y="130.1" text-anchor="end">松山・道後</text>
+        <g><circle class="jm-pin" cx="202.3" cy="96.3" r="11"/><text class="jm-pinnum" x="202.3" y="100.3">3</text></g>
+        <text class="jm-mlabel" x="216.3" y="88.3">西山興隆寺</text>
       </svg>
     </div>
+    <a class="jm-gmap" href="https://www.google.com/maps/dir/?api=1&origin=%E4%B8%8B%E9%96%A2%E9%A7%85&destination=%E4%B8%8B%E9%96%A2%E9%A7%85&travelmode=driving&waypoints=%E4%BB%8A%E6%B2%BB%E3%82%BF%E3%82%AA%E3%83%AB%E7%BE%8E%E8%A1%93%E9%A4%A8%7C%E6%9D%BE%E5%B1%B1%E5%9F%8E%7C%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8%7C%E8%A5%BF%E5%B1%B1%E8%88%88%E9%9A%86%E5%AF%BA" target="_blank" rel="noopener">🗺 Googleマップでルートを開く<span class="sub">立ち寄り4スポットをピン留め</span></a>
 
     <div class="jm-day">
       <div class="jm-node">1</div>
