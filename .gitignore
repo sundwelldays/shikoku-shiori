@@ -1,0 +1,13 @@
+# Claude Code（ローカル限定：スキル・設定などはプッシュしない）
+.claude/
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# 一時ファイル
+*.log
+*.tmp
