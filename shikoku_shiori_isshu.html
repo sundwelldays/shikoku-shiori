@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四国一周 温泉 & グルメの旅</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Shippori+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Caveat+Brush&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FBF7F1;
+  --bg-warm: #F4ECE0;
+  --card: #FFFFFF;
+  --text: #2A2620;
+  --text-soft: #7E7264;
+  --aqua: #7BA098;          /* 湯の緑青：プライマリ */
+  --aqua-deep: #4A776D;
+  --aqua-light: #CFE2DC;
+  --aqua-bg: #EAF2EF;
+  --terracotta: #C4775A;    /* 食のアクセント */
+  --terracotta-deep: #95573D;
+  --terracotta-light: #F0D6C8;
+  --sand: #E5C896;
+  --sand-light: #F5E6C8;
+  --forest: #5A8A6B;
+  --forest-light: #D5E5D9;
+  --sunset: #E8965A;
+  --sunset-light: #F8DBC0;
+  --plum: #B16E84;
+  --plum-light: #F0DCE3;
+  --shadow-sm: 0 2px 12px rgba(42,38,32,0.06);
+  --shadow-md: 0 6px 24px rgba(42,38,32,0.1);
+  --shadow-lg: 0 16px 50px rgba(42,38,32,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes steam {
+  0% { transform: translateY(0) scaleX(1); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-50px) scaleX(1.4); opacity: 0; }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(20px, -15px); }
+  66% { transform: translate(-15px, 10px); }
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px;
+  background:
+    radial-gradient(ellipse at 20% 20%, var(--sand-light) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, var(--terracotta-light) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, var(--aqua-light) 0%, transparent 60%),
+    linear-gradient(180deg, #F5E6C8 0%, #FBF7F1 55%, #EAF2EF 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: var(--sunset);
+  opacity: 0.13;
+  top: 15%; right: -50px;
+  animation: drift 15s ease-in-out infinite;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  background: var(--aqua);
+  opacity: 0.12;
+  bottom: 20%; left: -40px;
+  animation: drift 18s ease-in-out infinite reverse;
+}
+
+.steam {
+  position: absolute;
+  bottom: 30%;
+  width: 8px; height: 50px;
+  background: linear-gradient(to top, rgba(255,255,255,0.7), transparent);
+  border-radius: 50%;
+  filter: blur(4px);
+  animation: steam 5s ease-out infinite;
+  opacity: 0;
+}
+.steam.s1 { left: 30%; animation-delay: 0s; }
+.steam.s2 { left: 48%; animation-delay: 1.6s; }
+.steam.s3 { left: 66%; animation-delay: 3.2s; }
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-label {
+  font-family: 'DM Serif Display', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: var(--terracotta-deep);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.2s forwards;
+}
+
+.hero-emoji {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.3s forwards;
+}
+
+.hero-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(28px, 7.5vw, 42px);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s forwards;
+}
+
+.hero-title .accent { color: var(--terracotta); }
+
+.hero-subtitle {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: clamp(17px, 4.2vw, 21px);
+  color: var(--aqua-deep);
+  margin: 12px 0 32px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.7s forwards;
+}
+
+.hero-poem {
+  max-width: 330px;
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 2.4;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.9s forwards;
+}
+
+.hero-meta {
+  margin-top: 40px;
+  display: flex;
+  gap: 14px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--terracotta-deep);
+  opacity: 0;
+  animation: fadeUp 0.9s 1.1s forwards;
+}
+
+.hero-meta .dot { width: 4px; height: 4px; background: var(--aqua); border-radius: 50%; align-self: center; }
+
+/* ─── Container ─── */
+.container { max-width: 460px; margin: 0 auto; padding: 0 20px; }
+.section { padding: 60px 0 24px; }
+
+.section-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 60px;
+  color: var(--sand-light);
+  line-height: 0.8;
+  margin-bottom: -10px;
+}
+
+.section-label {
+  font-family: 'DM Serif Display', serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--terracotta-deep);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.section-title .accent {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 22px;
+  color: var(--aqua-deep);
+  display: block;
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Overview ─── */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+
+.overview-item {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 18px 12px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  border-top: 3px solid var(--terracotta);
+}
+.overview-item:nth-child(2) { border-top-color: var(--aqua); }
+.overview-item:nth-child(3) { border-top-color: var(--sunset); }
+.overview-item:nth-child(4) { border-top-color: var(--plum); }
+.overview-item .icon { font-size: 22px; margin-bottom: 6px; }
+.overview-item .label { font-size: 10px; color: var(--text-soft); letter-spacing: 1.5px; margin-bottom: 2px; font-family: 'DM Serif Display', serif; }
+.overview-item .value { font-size: 13px; font-weight: 700; }
+
+/* ─── Budget ─── */
+.budget-card {
+  background: linear-gradient(135deg, var(--sand-light) 0%, var(--terracotta-light) 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.budget-card::before {
+  content: '¥';
+  position: absolute;
+  font-family: 'DM Serif Display', serif;
+  font-size: 120px;
+  color: rgba(149, 87, 61, 0.1);
+  top: -20px; right: 0;
+  line-height: 1;
+}
+.budget-card h4 { font-size: 13px; color: var(--terracotta-deep); margin-bottom: 14px; letter-spacing: 1px; position: relative; font-weight: 700; }
+.budget-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 13px; border-bottom: 1px dashed rgba(149,87,61,0.25); position: relative; }
+.budget-row:last-child { border-bottom: none; }
+.budget-row .amt { color: var(--terracotta-deep); font-weight: 700; }
+
+/* ─── Route ─── */
+.route-card { background: var(--card); border-radius: 16px; padding: 24px 20px; box-shadow: var(--shadow-md); margin-bottom: 16px; }
+.route-card .route-step { display: flex; gap: 14px; padding: 6px 0; align-items: stretch; }
+.route-line { display: flex; flex-direction: column; align-items: center; width: 16px; flex-shrink: 0; }
+.route-line .route-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--aqua); }
+.route-line .route-dot.start { background: var(--forest); }
+.route-line .route-dot.end { background: var(--terracotta); }
+.route-connector {
+  width: 2px; flex: 1;
+  background: repeating-linear-gradient(to bottom, var(--aqua-light) 0px, var(--aqua-light) 4px, transparent 4px, transparent 8px);
+  min-height: 22px;
+}
+.route-info h4 { font-size: 14px; font-weight: 700; }
+.route-info p { font-size: 12px; color: var(--text-soft); margin-top: 2px; }
+
+.route-tip {
+  background: var(--aqua-bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: var(--text);
+  border-left: 3px solid var(--aqua);
+}
+
+/* ─── Day Header ─── */
+.day-header { text-align: center; padding: 60px 0 36px; position: relative; }
+.day-header::before {
+  content: '';
+  position: absolute;
+  width: 60px; height: 60px;
+  background: var(--sand-light);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  z-index: 0;
+}
+.day-number { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 52px; color: var(--terracotta); line-height: 1; position: relative; z-index: 1; }
+.day-pref { font-family: 'DM Serif Display', serif; font-size: 11px; letter-spacing: 4px; color: var(--aqua-deep); margin-top: 6px; position: relative; }
+.day-title { font-family: 'Shippori Mincho', serif; font-size: 19px; font-weight: 600; margin-top: 4px; letter-spacing: 0.05em; position: relative; }
+.day-divider { width: 32px; height: 2px; background: var(--terracotta); margin: 16px auto 0; }
+
+/* ─── Timeline ─── */
+.timeline-item { padding: 0 0 28px 0; }
+.timeline-time { font-family: 'Caveat Brush', cursive; font-size: 26px; color: var(--terracotta); margin-bottom: 10px; letter-spacing: 0.02em; }
+.timeline-card { background: var(--card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); }
+.timeline-card-header { padding: 20px 20px 4px; }
+.timeline-card-header h3 { font-family: 'Shippori Mincho', serif; font-size: 17px; font-weight: 600; margin-bottom: 6px; line-height: 1.5; }
+.timeline-card-body { padding: 8px 20px 20px; }
+.timeline-card-body p { font-size: 13.5px; line-height: 1.95; }
+.timeline-card-body p + p { margin-top: 8px; }
+
+.tags { margin-bottom: 8px; }
+.tag { display: inline-block; font-size: 10.5px; padding: 3px 11px; border-radius: 20px; margin: 2px 4px 2px 0; font-weight: 600; letter-spacing: 0.5px; }
+.tag-onsen { background: var(--terracotta-light); color: var(--terracotta-deep); }
+.tag-food { background: var(--sunset-light); color: var(--terracotta-deep); }
+.tag-nature { background: var(--forest-light); color: var(--forest); }
+.tag-photo { background: var(--plum-light); color: var(--plum); }
+.tag-active { background: var(--sand-light); color: var(--terracotta-deep); }
+.tag-water { background: var(--aqua-light); color: var(--aqua-deep); }
+
+.info-box { font-size: 11.5px; color: var(--text-soft); display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(42,38,32,0.06); }
+
+.tip-box { border-radius: 12px; padding: 14px 16px; margin-top: 12px; font-size: 12.5px; line-height: 1.9; }
+.tip-box.onsen { background: var(--terracotta-light); border-left: 3px solid var(--terracotta); }
+.tip-box.food { background: var(--sunset-light); border-left: 3px solid var(--sunset); }
+.tip-box.nature { background: var(--forest-light); border-left: 3px solid var(--forest); }
+.tip-box.water { background: var(--aqua-bg); border-left: 3px solid var(--aqua); }
+.tip-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 4px; display: block; }
+.tip-box.onsen .tip-label { color: var(--terracotta-deep); }
+.tip-box.food .tip-label { color: var(--terracotta-deep); }
+.tip-box.nature .tip-label { color: var(--forest); }
+.tip-box.water .tip-label { color: var(--aqua-deep); }
+
+/* ─── Hero feature card ─── */
+.feature-hero {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(232,150,90,0.4) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(149,87,61,0.5) 0%, transparent 60%),
+    linear-gradient(135deg, #5C3221 0%, #95573D 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 30px 24px;
+  margin: 16px 0;
+  position: relative;
+  overflow: hidden;
+}
+.feature-hero::before { content: ''; position: absolute; width: 120px; height: 120px; background: rgba(255,255,255,0.06); border-radius: 50%; top: -30px; right: -30px; }
+.feature-hero > * { position: relative; z-index: 1; }
+.feature-hero .feature-tag { display: inline-block; font-family: 'DM Serif Display', serif; font-size: 10px; letter-spacing: 3px; padding: 4px 12px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; margin-bottom: 14px; }
+.feature-hero h3 { font-family: 'Shippori Mincho', serif; font-size: 22px; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.04em; }
+.feature-hero .feature-sub { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: var(--sand-light); margin-bottom: 18px; }
+.feature-hero p { font-size: 13px; line-height: 2.1; color: rgba(255,255,255,0.92); }
+
+/* ─── Food cards ─── */
+.food-card { background: var(--card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 14px; display: flex; border-left: 4px solid var(--terracotta); }
+.food-card .food-icon { width: 70px; display: flex; align-items: center; justify-content: center; font-size: 32px; background: var(--sunset-light); flex-shrink: 0; }
+.food-card .food-content { padding: 14px 16px; flex: 1; }
+.food-card h4 { font-family: 'Shippori Mincho', serif; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.food-card .food-desc { font-size: 12.5px; color: var(--text); line-height: 1.7; }
+.food-card .food-where { font-size: 11px; color: var(--terracotta); font-weight: 600; margin-top: 4px; }
+
+/* ─── Hotel ─── */
+.hotel-options { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+.hotel-card { background: var(--card); border-radius: 16px; padding: 22px; box-shadow: var(--shadow-sm); }
+.hotel-badge { font-family: 'DM Serif Display', serif; font-size: 10px; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+.hotel-badge.onsen { background: var(--terracotta-light); color: var(--terracotta-deep); }
+.hotel-badge.urban { background: var(--aqua-bg); color: var(--aqua-deep); }
+.hotel-card h4 { font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.hotel-card p { font-size: 12.5px; color: var(--text); line-height: 1.85; }
+.hotel-price { font-size: 12px; color: var(--terracotta-deep); font-weight: 700; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(42,38,32,0.06); }
+
+/* ─── Detour ─── */
+.detour-list { display: flex; flex-direction: column; gap: 14px; }
+.detour-card { background: var(--card); border-radius: 14px; padding: 18px 18px 16px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden; }
+.detour-card::before { content: ''; position: absolute; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--terracotta), var(--aqua)); top: 0; left: 0; }
+.detour-card h4 { font-family: 'Shippori Mincho', serif; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.detour-card .detour-num { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: var(--terracotta); margin-right: 6px; }
+.detour-card p { font-size: 12.5px; line-height: 1.85; }
+.detour-card .detour-meta { font-size: 11px; color: var(--text-soft); margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(42,38,32,0.08); }
+.stars { color: var(--sunset); letter-spacing: 1px; font-weight: 700; }
+
+/* ─── Checklist ─── */
+.checklist { background: var(--card); border-radius: 16px; padding: 22px 20px; box-shadow: var(--shadow-sm); margin-bottom: 16px; }
+.checklist h4 { font-size: 14px; color: var(--terracotta-deep); margin-bottom: 14px; letter-spacing: 1px; font-weight: 700; }
+.check-list { list-style: none; }
+.check-list li { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 13px; cursor: pointer; -webkit-user-select: none; user-select: none; }
+.check-box { width: 18px; height: 18px; border: 1.5px solid var(--terracotta); border-radius: 5px; flex-shrink: 0; margin-top: 3px; position: relative; transition: all 0.2s; }
+.check-list li.checked .check-box { background: var(--terracotta); border-color: var(--terracotta); }
+.check-list li.checked .check-box::after { content: '✓'; color: white; font-size: 12px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.check-list li.checked .check-text { color: var(--text-soft); text-decoration: line-through; }
+
+/* ─── Caution ─── */
+.caution-card { background: var(--card); border-radius: 14px; padding: 16px 18px; margin-bottom: 10px; box-shadow: var(--shadow-sm); display: flex; gap: 12px; }
+.caution-icon { font-size: 22px; flex-shrink: 0; }
+.caution-text h5 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.caution-text p { font-size: 12px; color: var(--text-soft); line-height: 1.75; }
+
+/* ─── BGM ─── */
+.bgm-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.bgm-row { display: flex; justify-content: space-between; align-items: center; background: var(--card); border-radius: 10px; padding: 12px 16px; font-size: 13px; box-shadow: var(--shadow-sm); border-left: 3px solid var(--terracotta); }
+.bgm-scene { font-weight: 600; }
+.bgm-genre { color: var(--text-soft); font-size: 12px; font-family: 'DM Serif Display', serif; font-style: italic; }
+
+/* ─── Hashtags ─── */
+.hashtag-box { background: linear-gradient(135deg, var(--terracotta-light), var(--aqua-bg)); border-radius: 16px; padding: 26px 20px; text-align: center; }
+.hashtag { display: inline-block; font-family: 'Caveat Brush', cursive; font-size: 20px; color: var(--terracotta-deep); margin: 4px 8px; }
+
+/* ─── Closing ─── */
+.closing { text-align: center; padding: 70px 24px; background: linear-gradient(180deg, var(--bg) 0%, var(--terracotta-light) 50%, var(--sand-light) 100%); margin-top: 40px; position: relative; overflow: hidden; }
+.closing-text { font-family: 'Shippori Mincho', serif; font-size: 14.5px; line-height: 2.5; color: var(--text); margin-bottom: 24px; position: relative; }
+.closing-signature { font-family: 'Caveat Brush', cursive; font-size: 28px; color: var(--terracotta-deep); position: relative; }
+.footer { text-align: center; padding: 24px; font-size: 10.5px; color: var(--text-soft); background: var(--bg-warm); }
+
+/* ───── 行程図 ───── */
+.routemap{margin:8px auto 28px;max-width:560px;background:var(--card);border-radius:18px;padding:22px 20px 16px;box-shadow:var(--shadow-sm);}
+.routemap-head{font-size:21px;font-weight:700;text-align:center;margin-bottom:4px;color:var(--terracotta-deep);}
+.routemap-sub{font-size:11px;text-align:center;letter-spacing:0.08em;margin-bottom:18px;opacity:0.7;}
+.routemap .route-step{display:flex;align-items:flex-start;gap:12px;position:relative;padding-bottom:16px;}
+.routemap .route-step:last-child{padding-bottom:0;}
+.routemap .route-dot{flex-shrink:0;width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:2;background:var(--terracotta-light);color:var(--terracotta-deep);}
+.routemap .route-step:not(:last-child)::before{content:"";position:absolute;left:12.5px;top:26px;bottom:0;width:2px;z-index:1;background:var(--terracotta-light);}
+.route-body{flex:1;padding-top:1px;}
+.route-time{font-size:11px;letter-spacing:0.04em;opacity:0.7;}
+.route-name{font-size:14px;font-weight:600;margin:1px 0 3px;color:var(--text);}
+.route-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;text-decoration:none;border-radius:20px;padding:3px 11px;margin:2px 4px 2px 0;transition:opacity 0.18s ease;color:var(--terracotta-deep);background:var(--terracotta-light);}
+.route-link:active{opacity:0.6;}
+.route-link::before{content:"📍";font-size:10px;}
+.route-note{font-size:11px;margin-top:3px;line-height:1.7;opacity:0.7;}
+.map-links{margin-top:8px;padding-top:10px;}
+.map-links-label{font-size:11px;display:block;margin-bottom:5px;opacity:0.7;}
+
+/* もっと探す */
+.explore-section{padding:38px 24px 32px;background:var(--card);border-top:1px solid var(--aqua-light);border-bottom:1px solid var(--aqua-light);}
+.explore-title{font-family:"Shippori Mincho",serif;font-weight:600;font-size:18px;letter-spacing:.06em;text-align:center;margin-bottom:6px;color:var(--text);}
+.explore-lead{font-family:"Caveat Brush",cursive;font-size:16px;color:var(--aqua-deep);letter-spacing:.04em;text-align:center;margin-bottom:22px;}
+.explore-card{border:1px solid var(--aqua-light);border-radius:10px;padding:14px 16px;margin-bottom:10px;background:var(--bg);max-width:460px;margin-left:auto;margin-right:auto;}
+.explore-card:last-child{margin-bottom:0;}
+.explore-name{font-family:"Shippori Mincho",serif;font-weight:500;font-size:14px;color:var(--text);letter-spacing:.04em;margin-bottom:8px;}
+.explore-links{display:flex;flex-wrap:wrap;gap:7px;}
+.explore-link{display:inline-block;font-size:11px;text-decoration:none;border-radius:20px;padding:3px 11px;border:1px solid var(--aqua-light);background:#fff;}
+.explore-link::before{font-size:10px;margin-right:3px;}
+.explore-link.insta{color:#B85478;border-color:#E5B5C5;}
+.explore-link.insta::before{content:"📷";}
+.explore-link.pin{color:#C5443D;border-color:#E5B5B0;}
+.explore-link.pin::before{content:"📌";}
+.explore-link.gmap-photo{color:var(--aqua-deep);border-color:var(--aqua);}
+.explore-link.gmap-photo::before{content:"🖼";}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="steam s1"></div>
+  <div class="steam s2"></div>
+  <div class="steam s3"></div>
+
+  <div class="hero-content">
+    <div class="hero-label">S H I K O K U &nbsp; G R A N D &nbsp; T O U R</div>
+    <span class="hero-emoji">♨️🍶</span>
+    <h1 class="hero-title">四国ぐるり、<br><span class="accent">湯けむりと美味</span>を巡る</h1>
+    <div class="hero-subtitle">— onsen &amp; gourmet, all around Shikoku —</div>
+    <p class="hero-poem">
+      下関から海を渡って、四つの国へ。<br>
+      鯛めし、カツオ、祖谷そば、讃岐うどん。<br>
+      渓谷の露天で、女ふたり、ほっとひと息。
+    </p>
+    <div class="hero-meta">
+      <span>3N</span><span class="dot"></span>
+      <span>4D</span><span class="dot"></span>
+      <span>BY CAR</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ OVERVIEW ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">01</div>
+    <div class="section-label">O V E R V I E W</div>
+    <h2 class="section-title">
+      旅の概要
+      <span class="accent">about this trip</span>
+    </h2>
+
+    <div class="overview-grid">
+      <div class="overview-item">
+        <div class="icon">📅</div>
+        <div class="label">PERIOD</div>
+        <div class="value">3泊4日</div>
+      </div>
+      <div class="overview-item">
+        <div class="icon">🚗</div>
+        <div class="label">MOVE</div>
+        <div class="value">車・四国一周</div>
+      </div>
+      <div class="overview-item">
+        <div class="icon">🗺</div>
+        <div class="label">AREA</div>
+        <div class="value">愛媛・高知・徳島・香川</div>
+      </div>
+      <div class="overview-item">
+        <div class="icon">♨️</div>
+        <div class="label">THEME</div>
+        <div class="value">温泉 × グルメ</div>
+      </div>
+    </div>
+
+    <div class="route-tip" style="margin-bottom:8px;">
+      🚙 <b>女ふたり、車で巡る四国一周。</b> 下関を出て、しまなみ海道から愛媛へ上陸。愛媛 → 高知 → 徳島 → 香川と<b>時計回り</b>に四県を制覇して、瀬戸大橋から帰路へ。総走行距離はおよそ <b>900km</b>。運転は2人で交代しながら、無理のないペースで。
+    </div>
+
+    <div class="budget-card">
+      <h4>💰 予算の目安 / 1人あたり</h4>
+      <div class="budget-row"><span>高速代・ガソリン（下関往復＋島内）</span><span class="amt">¥18,000〜24,000</span></div>
+      <div class="budget-row"><span>宿泊（3泊・温泉宿中心）</span><span class="amt">¥36,000〜60,000</span></div>
+      <div class="budget-row"><span>お食事（朝昼晩×日数）</span><span class="amt">¥18,000〜28,000</span></div>
+      <div class="budget-row"><span>入浴・遊覧船など体験</span><span class="amt">¥4,000〜7,000</span></div>
+      <div class="budget-row"><span>カフェ・おみやげ</span><span class="amt">¥6,000〜10,000</span></div>
+      <div class="budget-row" style="margin-top:6px;border-top:1.5px solid rgba(149,87,61,0.4);padding-top:10px;"><span style="font-weight:700;">合計目安</span><span class="amt" style="font-size:14px;">¥82,000〜129,000</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ROUTE ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">02</div>
+    <div class="section-label">G E T T I N G &nbsp; T H E R E</div>
+    <h2 class="section-title">
+      四国への道
+      <span class="accent">over the sea</span>
+    </h2>
+
+    <div class="route-card">
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot start"></div><div class="route-connector"></div></div>
+        <div class="route-info"><h4>下関 出発</h4><p>朝7:00出発がベスト 🌅</p></div>
+      </div>
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot"></div><div class="route-connector"></div></div>
+        <div class="route-info"><h4>関門橋 → 山陽道</h4><p>広島方面へ 約2.5時間</p></div>
+      </div>
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot"></div><div class="route-connector"></div></div>
+        <div class="route-info"><h4>尾道JCT → しまなみ海道</h4><p>瀬戸内の島々を渡る 約1時間</p></div>
+      </div>
+      <div class="route-step">
+        <div class="route-line"><div class="route-dot end"></div></div>
+        <div class="route-info"><h4>今治（愛媛）上陸</h4><p>お昼前後に到着 🎉</p></div>
+      </div>
+
+      <div class="route-tip">
+        🌊 <b>下関〜今治は片道およそ4〜4.5時間。</b> しまなみ海道は走るだけでごほうびのような絶景ロード。来島海峡大橋を渡れば、もう四国。帰りは <b>香川から瀬戸大橋 → 山陽道</b> で下関へ戻る、ぐるり一周コースです。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DAY 1 ═══════ -->
+<div class="day-header">
+  <div class="day-number">Day 01</div>
+  <div class="day-pref">E H I M E</div>
+  <h2 class="day-title">しまなみと、道後の湯</h2>
+  <div class="day-divider"></div>
+</div>
+
+<section class="container">
+  <div class="routemap">
+    <div class="routemap-head">Day 1 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">10:00</div>
+        <div class="route-name">亀老山展望公園（来島海峡）</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%80%E8%80%81%E5%B1%B1%E5%B1%95%E6%9C%9B%E5%85%AC%E5%9C%92" target="_blank" rel="noopener">亀老山展望公園</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">12:00</div>
+        <div class="route-name">今治・焼豚玉子飯ランチ</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%8A%E6%B2%BB%20%E7%84%BC%E8%B1%9A%E7%8E%89%E5%AD%90%E9%A3%AF" target="_blank" rel="noopener">今治グルメ</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">14:30</div>
+        <div class="route-name">松山城</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%BE%E5%B1%B1%E5%9F%8E" target="_blank" rel="noopener">松山城</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">16:30</div>
+        <div class="route-name">道後温泉 チェックイン &amp; 本館</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">道後温泉本館</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">19:00</div>
+        <div class="route-name">鯛めし・じゃこ天ディナー</div>
+        <div class="route-note">道後・大街道エリアで。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10:00 亀老山 -->
+  <div class="timeline-item">
+    <div class="timeline-time">10:00 — 11:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>亀老山展望公園 🌉<br>来島海峡を見下ろす</h3>
+        <div class="tags">
+          <span class="tag tag-photo">📸 映え</span>
+          <span class="tag tag-nature">🌿 絶景</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>しまなみ海道・大島にある展望台。建築家・隈研吾氏が手がけた<b>「山に埋もれる」展望台</b>から、来島海峡大橋と渦巻く潮流のパノラマが一望。晴れた日は瀬戸内ブルーが眩しい。</p>
+        <div class="tip-box water">
+          <span class="tip-label">☞ DRIVE TIP</span>
+          展望台までは細い山道。対向車に注意してゆっくり。サンライズ糸山では橋を真下から見上げられ、こちらも◎。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12:00 今治グルメ -->
+  <div class="timeline-item">
+    <div class="timeline-time">12:00 — 13:30</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>今治ご当地ランチ 🍳</h3>
+        <div class="tags">
+          <span class="tag tag-food">🔥 ご当地</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>今治といえば<b>焼豚玉子飯</b>。甘辛い焼豚とトロトロ半熟卵を白飯にのせた、B級グルメの王様。鉄板焼きの名店「白楽天」「重慶飯店」が有名。</p>
+        <div class="food-card">
+          <div class="food-icon">🍳</div>
+          <div class="food-content">
+            <h4>焼豚玉子飯</h4>
+            <div class="food-desc">甘辛ダレ × 半熟卵の禁断の丼。今治のソウルフード。</div>
+            <div class="food-where">→ 今治市内</div>
+          </div>
+        </div>
+        <div class="food-card">
+          <div class="food-icon">🍊</div>
+          <div class="food-content">
+            <h4>みかんスイーツ</h4>
+            <div class="food-desc">愛媛はみかん王国。生搾りジュースやみかんソフトで小休憩。</div>
+            <div class="food-where">→ 道中の直売所・カフェ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14:30 松山城 -->
+  <div class="timeline-item">
+    <div class="timeline-time">14:30 — 16:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>松山城 🏯</h3>
+        <div class="tags">
+          <span class="tag tag-photo">📸 映え</span>
+          <span class="tag tag-active">🚡 ロープウェイ</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>市の中心、勝山の上に建つ現存十二天守のひとつ。<b>ロープウェイ or リフト</b>で気軽に登れる。天守からは松山市街と瀬戸内海を一望。城好きでなくても気持ちいい高台散歩。</p>
+        <div class="tip-box nature">
+          <span class="tip-label">☞ 時間がなければ</span>
+          松山城をスキップして<b>タオル美術館ICHIHIRO</b>（今治）でゆったりするプランも。ふわふわタオルのおみやげ天国。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16:30 道後温泉 (Feature) -->
+  <div class="timeline-item">
+    <div class="timeline-time">16:30 — 18:30</div>
+    <div class="feature-hero">
+      <span class="feature-tag">♨ TODAY'S ONSEN</span>
+      <h3>道後温泉</h3>
+      <div class="feature-sub">— Japan's oldest hot spring —</div>
+      <p>日本最古といわれる名湯。シンボル<b>「道後温泉本館」</b>は、千と千尋の世界を思わせるレトロな佇まい。やわらかな美肌の湯に浸かれば、運転の疲れもとろりとほどける。</p>
+      <p style="margin-top:14px;">湯上がりは<b>道後ハイカラ通り</b>を浴衣でそぞろ歩き。坊っちゃん団子、みかんジュースの蛇口、足湯めぐり。レトロかわいい温泉街は写真も止まらない。</p>
+    </div>
+    <div class="tip-box onsen">
+      <span class="tip-label">☞ STAY TIP</span>
+      宿は<b>道後温泉エリアに連泊感覚で1泊</b>。本館は混むので、新しい<b>「飛鳥乃湯泉」</b>や宿の内湯も併用すると待ち時間なく楽しめる。本館は事前にWEBで入浴プランを確認しておくとスムーズ。
+    </div>
+  </div>
+
+  <!-- 19:00 ディナー -->
+  <div class="timeline-item">
+    <div class="timeline-time">19:00 —</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>愛媛の海の幸ディナー 🐟</h3>
+        <div class="tags">
+          <span class="tag tag-food">🐟 ご当地</span>
+          <span class="tag tag-onsen">🏮 温泉街</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>愛媛グルメの真打ち、<b>鯛めし</b>。松山風（炊き込み）と宇和島風（生の鯛を卵醤油でTKG風）の2種類があるので、ぜひ食べ比べを。<b>じゃこ天</b>もはずせない。</p>
+        <div class="tip-box food">
+          <span class="tip-label">🍶 地酒メモ</span>
+          愛媛は隠れた日本酒どころ。「石鎚」「梅錦」など、すっきり系の地酒が魚介に合う。明日は運転なので、飲むのは1人ずつ交代で◎。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DAY 2 ═══════ -->
+<div class="day-header">
+  <div class="day-number">Day 02</div>
+  <div class="day-pref">K O C H I</div>
+  <h2 class="day-title">太平洋と、藁焼きの煙</h2>
+  <div class="day-divider"></div>
+</div>
+
+<section class="container">
+  <div class="routemap">
+    <div class="routemap-head">Day 2 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">08:30</div>
+        <div class="route-name">道後出発 → 高知へ（約2.5h）</div>
+        <div class="route-note">松山道 → 高知道。山あいの快走路。</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">11:30</div>
+        <div class="route-name">ひろめ市場・藁焼きカツオ</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E3%81%B2%E3%82%8D%E3%82%81%E5%B8%82%E5%A0%B4%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">ひろめ市場</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">13:30</div>
+        <div class="route-name">桂浜</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%A1%82%E6%B5%9C%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">桂浜</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">15:30</div>
+        <div class="route-name">にこ淵（仁淀ブルー）</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E3%81%AB%E3%81%93%E6%B7%B5%20%E9%AB%98%E7%9F%A5%20%E3%81%84%E3%81%AE%E7%94%BA" target="_blank" rel="noopener">にこ淵</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">18:30</div>
+        <div class="route-name">高知の温泉宿へ</div>
+        <div class="route-note">三翠園など温泉付きの宿でゆっくり。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11:30 ひろめ市場 (Feature) -->
+  <div class="timeline-item">
+    <div class="timeline-time">11:30 — 13:00</div>
+    <div class="feature-hero">
+      <span class="feature-tag">★ TODAY'S GOURMET</span>
+      <h3>藁焼き鰹のたたき</h3>
+      <div class="feature-sub">— soul of Tosa —</div>
+      <p>高知に来たら避けて通れない、土佐の魂。藁を豪快に燃やして一気に炙る<b>「藁焼きタタキ」</b>は、香ばしい煙の香りごとごちそう。屋台村「ひろめ市場」なら、いろんな店の味を少しずつ楽しめる。</p>
+      <p style="margin-top:14px;"><b>塩タタキ</b>は衝撃の旨さ。名店「明神丸」「やいろ亭」が定番。活気あふれる空気の中で、昼から乾杯しちゃう背徳感もごちそう。</p>
+    </div>
+    <div class="tip-box food">
+      <span class="tip-label">🍴 食べ方メモ</span>
+      ひろめ市場は<b>好きな店で買って共有スペースで食べる</b>スタイル。混むので<b>11時台</b>の早め着がおすすめ。カツオ以外に、うつぼ唐揚げ・川海老・芋天もぜひ。
+    </div>
+  </div>
+
+  <!-- 13:30 桂浜 -->
+  <div class="timeline-item">
+    <div class="timeline-time">13:30 — 15:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>桂浜 🌊<br>龍馬が見た太平洋</h3>
+        <div class="tags">
+          <span class="tag tag-photo">📸 映え</span>
+          <span class="tag tag-nature">🌿 海絶景</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>坂本龍馬像が太平洋を見つめる、土佐の象徴的な浜。砂浜・松・荒々しい波のコントラストが雄大。<b>桂浜公園</b>はリニューアルされ、カフェやショップも充実。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15:30 にこ淵 -->
+  <div class="timeline-item">
+    <div class="timeline-time">15:30 — 16:30</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>にこ淵 💧<br>奇跡の仁淀ブルー</h3>
+        <div class="tags">
+          <span class="tag tag-water">💧 仁淀ブルー</span>
+          <span class="tag tag-photo">📸 映え</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>「奇跡の清流」仁淀川の中でも、最も神秘的な青を見せる滝壺。光の角度で<b>エメラルドからターコイズへ表情を変える</b>水面は、見た瞬間に言葉を失う美しさ。</p>
+        <div class="tip-box water">
+          <span class="tip-label">☞ ACCESS TIP</span>
+          2025年に滝壺までの<b>新しい遊歩道</b>が整備され、以前より下りやすくなった（後半は段差の小さい階段）。それでもスニーカー必須で、雨上がりは滑りやすいので注意。晴れた日の正午前後が青のピーク。<b>入水・飲食はせず、静かに見守る</b>のがマナー。駐車場は無料だが台数が少ないので混雑時は譲り合いを。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 18:30 宿 -->
+  <div class="timeline-item">
+    <div class="timeline-time">18:30 —</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>高知の宿でひと休み 🛏♨</h3>
+      </div>
+      <div class="timeline-card-body">
+        <p>市内には温泉付きの宿も。湯に浸かって、夜はもう一軒、土佐酒の夜へ。</p>
+        <div class="hotel-options">
+          <div class="hotel-card">
+            <span class="hotel-badge onsen">CITY ONSEN</span>
+            <h4>三翠園（さんすいえん）</h4>
+            <p>高知市内で<b>天然温泉</b>に入れる老舗宿。鏡川沿いの庭園と露天が自慢。市街中心で、夜のひろめ市場へも歩ける立地が便利。</p>
+            <div class="hotel-price">¥12,000〜20,000 / 1人</div>
+          </div>
+          <div class="hotel-card">
+            <span class="hotel-badge urban">URBAN STAY</span>
+            <h4>OMO7 高知 by 星野リゾート</h4>
+            <p>高知の街と食を「遊びつくす」星野系ホテル。<b>ロビーの土佐酒バー</b>で40種以上の地酒を飲み比べ。ひろめ市場も徒歩圏。</p>
+            <div class="hotel-price">¥10,000〜15,000 / 1人</div>
+          </div>
+        </div>
+        <div class="tip-box food">
+          <span class="tip-label">🍶 夜の土佐</span>
+          余力があれば<b>ひろめ市場の夜の部</b>へ。司牡丹・南・美丈夫など土佐酒の飲み比べを。明日も運転があるので、ドライバーはほどほどに。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DAY 3 ═══════ -->
+<div class="day-header">
+  <div class="day-number">Day 03</div>
+  <div class="day-pref">T O K U S H I M A</div>
+  <h2 class="day-title">秘境・祖谷の渓谷湯</h2>
+  <div class="day-divider"></div>
+</div>
+
+<section class="container">
+  <div class="routemap">
+    <div class="routemap-head">Day 3 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">09:00</div>
+        <div class="route-name">高知出発 → 大歩危へ（約2h）</div>
+        <div class="route-note">高知道 → 国道32号。吉野川沿いの渓谷ロード。</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">11:00</div>
+        <div class="route-name">大歩危峡 遊覧船</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%AD%A9%E5%8D%B1%E5%B3%A1%20%E9%81%8A%E8%A6%A7%E8%88%B9" target="_blank" rel="noopener">大歩危峡</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">12:30</div>
+        <div class="route-name">祖谷そばランチ</div>
+        <div class="route-note">そば処や古民家カフェで。</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">14:00</div>
+        <div class="route-name">祖谷のかずら橋</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E7%A5%96%E8%B0%B7%E3%81%AE%E3%81%8B%E3%81%9A%E3%82%89%E6%A9%8B" target="_blank" rel="noopener">かずら橋</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">16:00</div>
+        <div class="route-name">祖谷温泉 チェックイン</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E3%83%9B%E3%83%86%E3%83%AB%E7%A5%96%E8%B0%B7%E6%B8%A9%E6%B3%89" target="_blank" rel="noopener">祖谷温泉</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11:00 大歩危 -->
+  <div class="timeline-item">
+    <div class="timeline-time">11:00 — 12:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>大歩危峡（おおぼけきょう）遊覧船 ⛵</h3>
+        <div class="tags">
+          <span class="tag tag-nature">🌿 渓谷</span>
+          <span class="tag tag-photo">📸 映え</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>吉野川が2億年かけて削り出した、結晶片岩の大渓谷。<b>遊覧船</b>で川面から見上げる奇岩と新緑のコントラストは圧巻。約30分の船旅でマイナスイオンをチャージ。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12:30 祖谷そば -->
+  <div class="timeline-item">
+    <div class="timeline-time">12:30 — 13:45</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>祖谷そばランチ 🥢</h3>
+        <div class="tags">
+          <span class="tag tag-food">🍜 郷土食</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>平家の落人が伝えたという素朴な太打ちそば。<b>つなぎを使わない短く切れやすい麺</b>が特徴で、出汁のきいたつゆが体に染みる。<b>でこまわし</b>（じゃがいも・こんにゃく・豆腐の味噌田楽）も山里の名物。</p>
+        <div class="food-card">
+          <div class="food-icon">🥔</div>
+          <div class="food-content">
+            <h4>でこまわし</h4>
+            <div class="food-desc">串に刺した具を囲炉裏でくるくる。素朴で温かい山の味。</div>
+            <div class="food-where">→ 祖谷・かずら橋周辺</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14:00 かずら橋 -->
+  <div class="timeline-item">
+    <div class="timeline-time">14:00 — 15:00</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>祖谷のかずら橋 🌉<br>日本三大秘境のスリル</h3>
+        <div class="tags">
+          <span class="tag tag-active">⚡ スリル</span>
+          <span class="tag tag-photo">📸 映え</span>
+          <span class="tag tag-nature">🌿 秘境</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>シラクチカズラで編まれた、揺れる吊り橋。足元の隙間から<b>14m下の清流が丸見え</b>で、一歩ごとにキャーッと声が出る。スリルと絶景、女子旅の盛り上がりポイント。</p>
+        <div class="tip-box nature">
+          <span class="tip-label">☞ 足元注意</span>
+          隙間が広くヒールは厳禁、<b>スニーカー必須</b>。橋は一方通行。すぐそばの<b>琵琶の滝</b>もあわせて散策を。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16:00 祖谷温泉 (Feature) -->
+  <div class="timeline-item">
+    <div class="timeline-time">16:00 —</div>
+    <div class="feature-hero">
+      <span class="feature-tag">♨ TODAY'S ONSEN</span>
+      <h3>祖谷温泉</h3>
+      <div class="feature-sub">— a secret valley bath —</div>
+      <p>今日の主役は、秘境の湯。<b>「ホテル祖谷温泉」</b>では、なんと<b>専用ケーブルカーで谷底まで5分</b>下りて、渓流のすぐ脇の露天風呂へ。さらさらの源泉かけ流しに浸かりながら、目の前は祖谷渓の絶壁と清流だけ。</p>
+      <p style="margin-top:14px;">空と緑と水の音に包まれる、ここでしか味わえない湯浴み。女ふたり、しみじみ「来てよかったね」と言いたくなる、旅のハイライト。</p>
+    </div>
+    <div class="tip-box onsen">
+      <span class="tip-label">☞ STAY TIP</span>
+      谷底露天は宿泊者なら<b>7:00〜21:00</b>利用OK（PH9.1のアルカリ性単純硫黄泉・とろみのある美肌の湯）。日帰り入浴は7:30〜17:00（受付16時まで／大人2,000円）。せっかくなら<b>ここで1泊</b>して、夜と朝の渓谷の表情を味わって。男女入替・利用時間はチェックイン時に確認を。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DAY 4 ═══════ -->
+<div class="day-header">
+  <div class="day-number">Day 04</div>
+  <div class="day-pref">K A G A W A</div>
+  <h2 class="day-title">渦潮とうどんで、締め</h2>
+  <div class="day-divider"></div>
+</div>
+
+<section class="container">
+  <div class="routemap">
+    <div class="routemap-head">Day 4 route</div>
+    <div class="routemap-sub">タップで地図が開きます</div>
+
+    <div class="route-step">
+      <div class="route-dot">1</div>
+      <div class="route-body">
+        <div class="route-time">08:30</div>
+        <div class="route-name">祖谷出発 → 鳴門へ（約1.5h）</div>
+        <div class="route-note">徳島道経由。山を下りて海へ。</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">2</div>
+      <div class="route-body">
+        <div class="route-time">10:30</div>
+        <div class="route-name">鳴門の渦潮（観潮船）</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%B3%B4%E9%96%80%E3%81%AE%E6%B8%A6%E6%BD%AE%20%E8%A6%B3%E6%BD%AE%E8%88%B9" target="_blank" rel="noopener">鳴門の渦潮</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">3</div>
+      <div class="route-body">
+        <div class="route-time">12:30</div>
+        <div class="route-name">讃岐うどん巡り（香川）</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E8%AE%83%E5%B2%90%E3%81%86%E3%81%A9%E3%82%93%20%E5%90%8D%E5%BA%97" target="_blank" rel="noopener">讃岐うどん</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">4</div>
+      <div class="route-body">
+        <div class="route-time">14:00</div>
+        <div class="route-name">金刀比羅宮 or 栗林公園</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E5%88%80%E6%AF%94%E7%BE%85%E5%AE%AE" target="_blank" rel="noopener">こんぴらさん</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%A0%97%E6%9E%97%E5%85%AC%E5%9C%92" target="_blank" rel="noopener">栗林公園</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">5</div>
+      <div class="route-body">
+        <div class="route-time">16:00</div>
+        <div class="route-name">瀬戸大橋 → 下関へ帰路</div>
+        <div class="route-note">瀬戸内の夕景を背に、四国一周フィナーレ。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10:30 渦潮 -->
+  <div class="timeline-item">
+    <div class="timeline-time">10:30 — 11:45</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>鳴門の渦潮 🌀<br>世界三大潮流の迫力</h3>
+        <div class="tags">
+          <span class="tag tag-nature">🌊 自然</span>
+          <span class="tag tag-active">⛴ 観潮船</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>潮の干満が生む、直径最大20mにもなる大渦。<b>観潮船</b>で渦のすぐそばまで近づくと、その轟音と渦巻く力に圧倒される。橋の遊歩道<b>「渦の道」</b>から見下ろすのも◎。</p>
+        <div class="tip-box water">
+          <span class="tip-label">☞ TIMING TIP</span>
+          渦は<b>満潮・干潮の前後1.5時間がピーク</b>。事前に「渦潮カレンダー」で見頃時刻をチェックして船の便を選ぶと、大迫力の渦に出会える確率がぐっと上がる。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12:30 うどん (Feature) -->
+  <div class="timeline-item">
+    <div class="timeline-time">12:30 — 14:00</div>
+    <div class="feature-hero">
+      <span class="feature-tag">★ FINAL GOURMET</span>
+      <h3>讃岐うどん</h3>
+      <div class="feature-sub">— the grand finale —</div>
+      <p>旅の締めは、うどん県・香川で本場の一杯。コシの強い麺を、製麺所スタイルの<b>セルフ店</b>でずるずると。釜揚げ、ぶっかけ、しょうゆ…一玉ずつ頼んで<b>はしごうどん</b>も香川流。</p>
+      <p style="margin-top:14px;">一杯<b>200〜400円ほど</b>という安さも魅力。香川にはもうひとつの名物<b>「骨付鳥」</b>も。スパイシーでジューシーな丸亀・坂出の味も忘れずに。</p>
+    </div>
+    <div class="tip-box food">
+      <span class="tip-label">🍜 はしごのコツ</span>
+      有名店は昼に行列＆<b>麺切れ閉店</b>も多い。1軒で満腹にせず<b>少なめに頼んで2〜3軒</b>回るのが通。製麺所系は店ごとに作法が違うので、入口の案内をチェック。
+    </div>
+  </div>
+
+  <!-- 14:00 こんぴら/栗林 -->
+  <div class="timeline-item">
+    <div class="timeline-time">14:00 — 15:30</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>最後のお参り or お庭さんぽ ⛩</h3>
+        <div class="tags">
+          <span class="tag tag-photo">📸 映え</span>
+          <span class="tag tag-active">🚶 散策</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p><b>金刀比羅宮（こんぴらさん）</b>：御本宮まで785段の石段。参道のおみやげ屋やカフェも楽しい。体力に余裕があれば。</p>
+        <p><b>or 栗林公園</b>：特別名勝の大名庭園。歩きやすく、抹茶をいただきながら和の景色でゆったり締めるのに最適。帰路の時間に合わせて選んで。</p>
+        <div class="tip-box onsen">
+          <span class="tip-label">♨ もうひと湯</span>
+          時間と元気があれば、こんぴら温泉郷で<b>立ち寄り湯</b>を。長旅の最後にもう一度、四国の湯で体を温めてから帰路へ。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16:00 帰路 -->
+  <div class="timeline-item">
+    <div class="timeline-time">16:00 — 21:00頃</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>瀬戸大橋 → 下関へ帰路 🌅</h3>
+      </div>
+      <div class="timeline-card-body">
+        <p>四国を後にして瀬戸大橋を渡る瞬間が、旅のフィナーレ。タイミングが合えば、瀬戸内海に沈む夕日が海と空をオレンジに染める。<b>与島PA</b>で最後の景色を目に焼き付けて。</p>
+        <p style="font-family:'Shippori Mincho',serif;font-size:14px;text-align:center;line-height:2.2;color:var(--terracotta-deep);margin-top:14px;">
+          四つの国を巡って、おつかれさま。<br>
+          湯の温もりと、美味の余韻とともに。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ GOURMET 一覧 ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">03</div>
+    <div class="section-label">G O U R M E T</div>
+    <h2 class="section-title">
+      四県の味、総まとめ
+      <span class="accent">taste of four lands</span>
+    </h2>
+    <p style="font-size:13px;color:var(--text-soft);margin-bottom:20px;line-height:1.9;">県境を越えるたびに、味が変わる。食いしん坊の四国一周、外せない味の一覧。</p>
+
+    <div class="food-card">
+      <div class="food-icon">🐟</div>
+      <div class="food-content">
+        <h4>愛媛｜鯛めし・じゃこ天</h4>
+        <div class="food-desc">松山風（炊き込み）と宇和島風（卵醤油のTKG風）の2種。みかんスイーツも。</div>
+        <div class="food-where">→ 松山・宇和島・今治</div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🔥</div>
+      <div class="food-content">
+        <h4>高知｜藁焼き鰹のたたき</h4>
+        <div class="food-desc">藁の香り高い塩タタキは衝撃の旨さ。うつぼ唐揚げ・芋天・川海老も。</div>
+        <div class="food-where">→ ひろめ市場・高知市</div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🥢</div>
+      <div class="food-content">
+        <h4>徳島｜祖谷そば・徳島ラーメン</h4>
+        <div class="food-desc">山里の素朴な太打ちそば。市内なら濃い豚骨醤油＋生卵の徳島ラーメンも。</div>
+        <div class="food-where">→ 祖谷・徳島市</div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-icon">🍜</div>
+      <div class="food-content">
+        <h4>香川｜讃岐うどん・骨付鳥</h4>
+        <div class="food-desc">コシ最強のうどんをはしごで。スパイシーな骨付鳥は丸亀・坂出の名物。</div>
+        <div class="food-where">→ 高松・丸亀・琴平</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ONSEN 一覧 ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">04</div>
+    <div class="section-label">O N S E N</div>
+    <h2 class="section-title">
+      湯めぐりハイライト
+      <span class="accent">soak it all in</span>
+    </h2>
+
+    <div class="detour-list">
+      <div class="detour-card">
+        <h4><span class="detour-num">♨</span>道後温泉（愛媛）</h4>
+        <p>日本最古の名湯。レトロな本館と浴衣そぞろ歩きの温泉街。やわらかな美肌の湯。</p>
+        <div class="detour-meta">🏮 温泉街さんぽ <span class="stars">★★★★★</span> ／ Day1 泊</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">♨</span>祖谷温泉（徳島）</h4>
+        <p>ケーブルカーで谷底へ下りる秘境の渓流露天。源泉かけ流し。旅いちばんの湯浴み体験。</p>
+        <div class="detour-meta">🚡 渓谷露天 <span class="stars">★★★★★</span> ／ Day3 泊</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">♨</span>高知の街なか温泉</h4>
+        <p>三翠園など市内で天然温泉に入れる宿。観光と食のあと、街中で湯に浸かれる便利さ。</p>
+        <div class="detour-meta">🌃 街なか湯 <span class="stars">★★★★☆</span> ／ Day2 泊</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">♨</span>こんぴら温泉郷（香川）</h4>
+        <p>こんぴらさん参道の温泉郷。帰路前の立ち寄り湯に。旅の締めにもうひと温まり。</p>
+        <div class="detour-meta">⛩ 参道の湯 <span class="stars">★★★★☆</span> ／ Day4 立ち寄り</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DETOUR ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">05</div>
+    <div class="section-label">D E T O U R</div>
+    <h2 class="section-title">
+      寄り道スポット
+      <span class="accent">if you have time</span>
+    </h2>
+    <p style="font-size:13px;color:var(--text-soft);margin-bottom:24px;line-height:1.9;">日程に余裕があれば。気になったらフラっと寄り道を。</p>
+
+    <div class="detour-list">
+      <div class="detour-card">
+        <h4><span class="detour-num">01</span>内子の町並み（愛媛）</h4>
+        <p>白壁と格子戸が残るレトロな町。<b>木蝋で栄えた商家</b>や芝居小屋「内子座」が見どころ。古民家カフェさんぽが楽しい。</p>
+        <div class="detour-meta">🏘 文化系 <span class="stars">★★★★☆</span> ／ 松山〜大洲方面</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">02</span>四国カルスト（愛媛・高知県境）</h4>
+        <p>標高1,400mの天空の高原。<b>放牧の牛と雲海</b>、どこまでも続く草原のドライブ。雄大すぎる景色は寄る価値大。</p>
+        <div class="detour-meta">☁ 天空ロード <span class="stars">★★★★★</span> ／ 山道走行・時間に余裕を</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">03</span>安居渓谷・中津渓谷（高知）</h4>
+        <p>仁淀ブルーの名所。にこ淵とあわせて<b>透明感の青</b>を堪能。遊歩道散策も気持ちいい。</p>
+        <div class="detour-meta">💧 仁淀ブルー <span class="stars">★★★★★</span> ／ 仁淀川流域</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">04</span>大塚国際美術館（徳島・鳴門）</h4>
+        <p>世界の名画を陶板で原寸再現した巨大美術館。<b>システィーナ礼拝堂やゴッホのひまわり</b>を館内で。鳴門とセットで。</p>
+        <div class="detour-meta">🎨 アート系 <span class="stars">★★★★★</span> ／ 半日かかる規模・要時間</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">05</span>父母ヶ浜（香川）</h4>
+        <p>「日本のウユニ塩湖」と話題の浜。<b>干潮×夕暮れ</b>の水鏡リフレクションは奇跡の一枚。SNS映えの聖地。</p>
+        <div class="detour-meta">📸 絶景 <span class="stars">★★★★★</span> ／ 三豊市・干潮夕方ねらい</div>
+      </div>
+      <div class="detour-card">
+        <h4><span class="detour-num">06</span>エンジェルロード（香川・小豆島）</h4>
+        <p>干潮時だけ現れる砂の道。<b>恋人の聖地</b>として有名。フェリーで足を延ばすなら小豆島タブもチェック。</p>
+        <div class="detour-meta">🌊 映え <span class="stars">★★★★☆</span> ／ 小豆島（要フェリー）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHECKLIST ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">06</div>
+    <div class="section-label">P A C K I N G</div>
+    <h2 class="section-title">
+      持ち物リスト
+      <span class="accent">don't forget</span>
+    </h2>
+    <p style="font-size:12px;color:var(--text-soft);margin-bottom:20px;">タップでチェック ✓</p>
+
+    <div class="checklist">
+      <h4>♨ 温泉・宿まわり</h4>
+      <ul class="check-list">
+        <li><div class="check-box"></div><div class="check-text">フェイスタオル＆ヘアゴム</div></li>
+        <li><div class="check-box"></div><div class="check-text">スキンケア・基礎化粧品（湯上がり用）</div></li>
+        <li><div class="check-box"></div><div class="check-text">道後の浴衣さんぽ用にサンダル</div></li>
+        <li><div class="check-box"></div><div class="check-text">湯あたり防止に水分・飲み物</div></li>
+        <li><div class="check-box"></div><div class="check-text">小さめ巾着（脱衣所での貴重品用）</div></li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <h4>🚗 ロングドライブ装備</h4>
+      <ul class="check-list">
+        <li><div class="check-box"></div><div class="check-text">運転免許証 ×2人分 & 保険証</div></li>
+        <li><div class="check-box"></div><div class="check-text">ETCカード・現金（市場や製麺所用）</div></li>
+        <li><div class="check-box"></div><div class="check-text">車載スマホホルダー・充電ケーブル</div></li>
+        <li><div class="check-box"></div><div class="check-text">モバイルバッテリー</div></li>
+        <li><div class="check-box"></div><div class="check-text">スニーカー（かずら橋・にこ淵の階段用）</div></li>
+        <li><div class="check-box"></div><div class="check-text">酔い止め・常備薬（山道カーブ対策）</div></li>
+        <li><div class="check-box"></div><div class="check-text">薄手の羽織もの（車内冷房・渓谷の冷え）</div></li>
+        <li><div class="check-box"></div><div class="check-text">エコバッグ（おみやげ用）</div></li>
+        <li><div class="check-box"></div><div class="check-text">折りたたみ傘・虫除けスプレー</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CAUTION ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">07</div>
+    <div class="section-label">D R I V E &nbsp; T I P S</div>
+    <h2 class="section-title">
+      ドライブ注意点
+      <span class="accent">drive safely</span>
+    </h2>
+
+    <div class="caution-card">
+      <div class="caution-icon">🔁</div>
+      <div class="caution-text">
+        <h5>運転は2人で交代を</h5>
+        <p>総走行 約900kmのロングドライブ。<b>1〜2時間ごとにSA・道の駅で休憩</b>し、ドライバーを交代。無理せず安全第一で。</p>
+      </div>
+    </div>
+    <div class="caution-card">
+      <div class="caution-icon">🌀</div>
+      <div class="caution-text">
+        <h5>祖谷・仁淀の山道</h5>
+        <p>祖谷渓やにこ淵への道は<b>狭くカーブが多い山道</b>。すれ違いポイントが少ないので対向車に注意。夕方〜夜の走行は避けたい。</p>
+      </div>
+    </div>
+    <div class="caution-card">
+      <div class="caution-icon">⛽</div>
+      <div class="caution-text">
+        <h5>ガソリン・給油</h5>
+        <p>山間部はGSが少なく早く閉まる。<b>市街地で早めに満タン</b>に。残量1/2を切ったら給油する心づもりで。</p>
+      </div>
+    </div>
+    <div class="caution-card">
+      <div class="caution-icon">📵</div>
+      <div class="caution-text">
+        <h5>電波・ナビ</h5>
+        <p>渓谷エリアは<b>圏外</b>になることも。ナビの目的地は電波のあるうちに設定し、オフライン地図も用意しておくと安心。</p>
+      </div>
+    </div>
+    <div class="caution-card">
+      <div class="caution-icon">📱</div>
+      <div class="caution-text">
+        <h5>緊急連絡先</h5>
+        <p>JAF：#8139 ／ 道路情報（四国）：050-3369-6636 ／ 各高速道路の渋滞・通行止め情報は出発前に確認を。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ BGM ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">08</div>
+    <div class="section-label">B G M</div>
+    <h2 class="section-title">
+      ドライブBGM
+      <span class="accent">playlist mood</span>
+    </h2>
+
+    <div class="bgm-list">
+      <div class="bgm-row"><span class="bgm-scene">🌉 しまなみ海道</span><span class="bgm-genre">surf / city pop</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🏮 道後の夜</span><span class="bgm-genre">jazz / 和モダン</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🌊 太平洋ドライブ</span><span class="bgm-genre">indie pop</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🌿 祖谷の山道</span><span class="bgm-genre">acoustic / folk</span></div>
+      <div class="bgm-row"><span class="bgm-scene">♨ 露天でまったり</span><span class="bgm-genre">lo-fi chill</span></div>
+      <div class="bgm-row"><span class="bgm-scene">🌅 帰り道</span><span class="bgm-genre">邦楽バラード</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ HASHTAGS ═══════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-num">09</div>
+    <div class="section-label">S N S</div>
+    <h2 class="section-title">
+      ハッシュタグ
+      <span class="accent">share your trip</span>
+    </h2>
+
+    <div class="hashtag-box">
+      <span class="hashtag">#四国一周</span>
+      <span class="hashtag">#四国女子旅</span>
+      <span class="hashtag">#温泉旅</span>
+      <span class="hashtag">#道後温泉</span>
+      <span class="hashtag">#祖谷温泉</span>
+      <span class="hashtag">#讃岐うどん</span>
+      <span class="hashtag">#藁焼きカツオ</span>
+      <span class="hashtag">#四国グルメ</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== もっと探す ===== -->
+<section class="explore-section">
+  <h2 class="explore-title">もっと探す</h2>
+  <p class="explore-lead">行く前にビジュアルで下見を。</p>
+  <div class="explore-card">
+    <div class="explore-name">道後温泉本館</div>
+    <div class="explore-links">
+      <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89/" target="_blank" rel="noopener">Instagram</a>
+      <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">Pinterest</a>
+      <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">Google写真</a>
+    </div>
+  </div>
+  <div class="explore-card">
+    <div class="explore-name">祖谷温泉・かずら橋</div>
+    <div class="explore-links">
+      <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E7%A5%96%E8%B0%B7%E6%B8%A9%E6%B3%89/" target="_blank" rel="noopener">Instagram</a>
+      <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E7%A5%96%E8%B0%B7%E6%B8%A9%E6%B3%89%20%E9%9C%B2%E5%A4%A9" target="_blank" rel="noopener">Pinterest</a>
+      <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E3%83%9B%E3%83%86%E3%83%AB%E7%A5%96%E8%B0%B7%E6%B8%A9%E6%B3%89" target="_blank" rel="noopener">Google写真</a>
+    </div>
+  </div>
+  <div class="explore-card">
+    <div class="explore-name">藁焼きカツオのたたき</div>
+    <div class="explore-links">
+      <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E9%B0%B9%E3%81%AE%E3%81%9F%E3%81%9F%E3%81%8D/" target="_blank" rel="noopener">Instagram</a>
+      <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E9%B0%B9%E3%81%AE%E3%81%9F%E3%81%9F%E3%81%8D%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">Pinterest</a>
+      <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E3%81%B2%E3%82%8D%E3%82%81%E5%B8%82%E5%A0%B4%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">Google写真</a>
+    </div>
+  </div>
+  <div class="explore-card">
+    <div class="explore-name">讃岐うどん</div>
+    <div class="explore-links">
+      <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E8%AC%9B%E5%B2%90%E3%81%86%E3%81%A9%E3%82%93/" target="_blank" rel="noopener">Instagram</a>
+      <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E8%AC%9B%E5%B2%90%E3%81%86%E3%81%A9%E3%82%93" target="_blank" rel="noopener">Pinterest</a>
+      <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E8%AC%9B%E5%B2%90%E3%81%86%E3%81%A9%E3%82%93%20%E5%90%8D%E5%BA%97" target="_blank" rel="noopener">Google写真</a>
+    </div>
+  </div>
+  <div class="explore-card">
+    <div class="explore-name">鳴門の渦潮</div>
+    <div class="explore-links">
+      <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E9%B3%B4%E9%96%80%E3%81%AE%E6%B8%A6%E6%BD%AE/" target="_blank" rel="noopener">Instagram</a>
+      <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E9%B3%B4%E9%96%80%E3%81%AE%E6%B8%A6%E6%BD%AE" target="_blank" rel="noopener">Pinterest</a>
+      <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E9%B3%B4%E9%96%80%E3%81%AE%E6%B8%A6%E6%BD%AE" target="_blank" rel="noopener">Google写真</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CLOSING ═══════ -->
+<section class="closing">
+  <p class="closing-text">
+    海を渡って、四つの国をひとつなぎ。<br>
+    湯けむりに包まれて、美味に酔って。<br><br>
+    走った道のぶんだけ、思い出が増えた。<br>
+    女ふたりの四国一周、<br>
+    きっとまた話したくなる旅になる。<br><br>
+    いってらっしゃい ♨️🚗
+  </p>
+  <div class="closing-signature">round &amp; round Shikoku ♡</div>
+</section>
+
+<footer class="footer">
+  ※ 各施設の営業時間・料金・運航状況は2026年5月時点の目安です。<br>渦潮の時刻・温泉の入浴時間帯・人気店の営業は、お出かけ前に公式サイトで最新情報をご確認ください。
+</footer>
+
+<script>
+document.querySelectorAll('.check-list li').forEach(li => {
+  li.addEventListener('click', () => li.classList.toggle('checked'));
+});
+</script>
+
+</body>
+</html>
