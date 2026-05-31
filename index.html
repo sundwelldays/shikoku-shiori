@@ -36,7 +36,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    gap: 2px;
     cursor: pointer;
     background: none;
     border: none;
@@ -64,9 +64,19 @@
   .tab .label {
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     white-space: nowrap;
+    line-height: 1.2;
   }
+  .tab .sub {
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: #C2B4A6;
+    line-height: 1.1;
+  }
+  .tab.active .sub { color: #C19A8B; }
   .tab.active { color: #8B6552; }
   .tab.active::after {
     content: "";
@@ -123,7 +133,8 @@
       <path d="M5 19 C5 11, 11 5, 19 5 C19 13, 13 19, 5 19 Z"/>
       <path d="M5 19 C9 15, 13 11, 17 7"/>
     </svg>
-    <span class="label">四国</span>
+    <span class="label">松山・道後</span>
+    <span class="sub">1泊2日</span>
   </button>
   <button class="tab" data-tab="1">
     <!-- 波：高知・仁淀ブルー -->
@@ -132,6 +143,7 @@
       <path d="M3 15 C5 12, 7 12, 9 15 C11 18, 13 18, 15 15 C17 12, 19 12, 21 15"/>
     </svg>
     <span class="label">高知</span>
+    <span class="sub">1泊2日</span>
   </button>
   <button class="tab" data-tab="2">
     <!-- オリーブ：小豆島 -->
@@ -142,6 +154,7 @@
       <circle cx="12" cy="4" r="2"/>
     </svg>
     <span class="label">小豆島</span>
+    <span class="sub">1泊2日</span>
   </button>
   <button class="tab" data-tab="3">
     <!-- 湯けむり：四国一周 温泉&グルメ -->
@@ -152,6 +165,7 @@
       <path d="M15 3 C14 4.5, 16 5.5, 15 7"/>
     </svg>
     <span class="label">四国一周</span>
+    <span class="sub">3泊4日</span>
   </button>
 </nav>
 

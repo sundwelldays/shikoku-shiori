@@ -450,6 +450,25 @@ body {
 .explore-link.pin::before{content:"📌";}
 .explore-link.gmap-photo{color:var(--aqua-deep);border-color:var(--aqua);}
 .explore-link.gmap-photo::before{content:"🖼";}
+/* ───── コース早わかりMAP ───── */
+.journeymap{--jm-a:var(--terracotta);--jm-deep:var(--terracotta-deep);--jm-light:var(--terracotta-light);padding:44px 0 38px;background:linear-gradient(180deg,var(--sand-light) 0%,var(--bg) 100%);}
+.jm-inner{max-width:480px;margin:0 auto;padding:0 22px;}
+.jm-label{font-family:'DM Serif Display',serif;font-size:11px;letter-spacing:4px;color:var(--jm-deep);margin-bottom:6px;}
+.jm-title{font-family:'Shippori Mincho',serif;font-size:23px;font-weight:600;letter-spacing:.04em;line-height:1.4;}
+.jm-title span{display:block;font-family:'Caveat Brush',cursive;font-weight:400;font-size:18px;color:var(--jm-a);margin-top:2px;}
+.jm-summary{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 26px;}
+.jm-meta{font-size:11.5px;font-weight:600;background:var(--card);border:1px solid var(--jm-light);border-radius:20px;padding:5px 12px;box-shadow:var(--shadow-sm);}
+.jm-day{position:relative;padding-left:32px;padding-bottom:20px;}
+.jm-day:last-child{padding-bottom:0;}
+.jm-day:not(:last-child)::before{content:"";position:absolute;left:10px;top:24px;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,var(--jm-light) 0 5px,transparent 5px 10px);}
+.jm-node{position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--jm-a);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;box-shadow:var(--shadow-sm);}
+.jm-dhead{display:flex;align-items:baseline;gap:8px;margin-bottom:9px;flex-wrap:wrap;}
+.jm-dnum{font-family:'DM Serif Display',serif;font-style:italic;font-size:14px;color:var(--jm-deep);letter-spacing:1px;}
+.jm-dtitle{font-family:'Shippori Mincho',serif;font-size:14.5px;font-weight:600;}
+.jm-flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;}
+.jm-stop{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1px solid var(--jm-light);border-radius:11px;padding:6px 10px;font-size:11.5px;font-weight:600;box-shadow:var(--shadow-sm);}
+.jm-stop i{font-style:normal;font-size:14px;line-height:1;}
+.jm-arrow{color:var(--jm-a);font-weight:700;font-size:13px;margin:0 5px;opacity:.55;}
 </style>
 </head>
 <body>
@@ -474,6 +493,68 @@ body {
       <span>3N</span><span class="dot"></span>
       <span>4D</span><span class="dot"></span>
       <span>BY CAR</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ コース早わかりMAP ═══════ -->
+<section class="journeymap">
+  <div class="jm-inner">
+    <div class="jm-label">R O U T E &nbsp; M A P</div>
+    <h2 class="jm-title">コース早わかり<span>the whole journey at a glance</span></h2>
+    <div class="jm-summary">
+      <span class="jm-meta">📍 下関 発着</span>
+      <span class="jm-meta">🚗 車・約900km</span>
+      <span class="jm-meta">🌙 3泊4日</span>
+      <span class="jm-meta">♨ 温泉 × 🍴 グルメ</span>
+      <span class="jm-meta">🔄 時計回り一周</span>
+    </div>
+
+    <div class="jm-day">
+      <div class="jm-node">1</div>
+      <div class="jm-dhead"><span class="jm-dnum">Day 1</span><span class="jm-dtitle">愛媛｜しまなみと、道後の湯</span></div>
+      <div class="jm-flow">
+        <span class="jm-stop"><i>🌉</i>亀老山展望台</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🍳</i>今治グルメ</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🏯</i>松山城</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>♨</i>道後温泉</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🍊</i>みかん蛇口</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🐟</i>鯛めし</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🎨</i>蜷川マッピング</span>
+      </div>
+    </div>
+
+    <div class="jm-day">
+      <div class="jm-node">2</div>
+      <div class="jm-dhead"><span class="jm-dnum">Day 2</span><span class="jm-dtitle">高知｜太平洋と、藁焼きの煙</span></div>
+      <div class="jm-flow">
+        <span class="jm-stop"><i>🔥</i>藁焼きカツオ</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🌊</i>桂浜</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>💧</i>にこ淵</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🛏</i>高知の温泉宿</span>
+      </div>
+    </div>
+
+    <div class="jm-day">
+      <div class="jm-node">3</div>
+      <div class="jm-dhead"><span class="jm-dnum">Day 3</span><span class="jm-dtitle">徳島｜秘境・祖谷の渓谷湯</span></div>
+      <div class="jm-flow">
+        <span class="jm-stop"><i>⛵</i>大歩危峡 遊覧船</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🥢</i>祖谷そば</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🌉</i>かずら橋</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>♨</i>祖谷温泉（谷底露天）</span>
+      </div>
+    </div>
+
+    <div class="jm-day">
+      <div class="jm-node">4</div>
+      <div class="jm-dhead"><span class="jm-dnum">Day 4</span><span class="jm-dtitle">香川｜渦潮とうどんで、締め</span></div>
+      <div class="jm-flow">
+        <span class="jm-stop"><i>🌀</i>鳴門の渦潮</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🍜</i>讃岐うどん</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>⛩</i>こんぴら / 栗林公園</span><span class="jm-arrow">›</span>
+        <span class="jm-stop"><i>🌅</i>瀬戸大橋 → 下関</span>
+      </div>
     </div>
   </div>
 </section>
@@ -618,9 +699,30 @@ body {
     <div class="route-step">
       <div class="route-dot">5</div>
       <div class="route-body">
+        <div class="route-time">18:00</div>
+        <div class="route-name">みかんジュース蛇口＆ハイカラ通りさんぽ</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%84%9B%E5%AA%9B%E3%81%AE%E9%A3%9F%E5%8D%931970%20%E9%81%93%E5%BE%8C" target="_blank" rel="noopener">愛媛の食卓1970</a>
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E4%BC%8A%E7%B9%94%20%E6%9C%AC%E5%BA%97%20%E9%81%93%E5%BE%8C" target="_blank" rel="noopener">伊織 本店</a>
+        </div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">6</div>
+      <div class="route-body">
         <div class="route-time">19:00</div>
         <div class="route-name">鯛めし・じゃこ天ディナー</div>
         <div class="route-note">道後・大街道エリアで。</div>
+      </div>
+    </div>
+    <div class="route-step">
+      <div class="route-dot">7</div>
+      <div class="route-body">
+        <div class="route-time">20:30</div>
+        <div class="route-name">蜷川実花 プロジェクションマッピング</div>
+        <div class="map-links">
+          <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">道後温泉本館（西面）</a>
+        </div>
       </div>
     </div>
   </div>
@@ -715,6 +817,30 @@ body {
     </div>
   </div>
 
+  <!-- 18:00 みかん蛇口 -->
+  <div class="timeline-item">
+    <div class="timeline-time">18:00 — 18:45</div>
+    <div class="timeline-card">
+      <div class="timeline-card-header">
+        <h3>蛇口からみかんジュース 🍊<br>ハイカラ通りさんぽ</h3>
+        <div class="tags">
+          <span class="tag tag-food">🍊 ご当地</span>
+          <span class="tag tag-photo">📸 映え</span>
+          <span class="tag tag-onsen">🏮 温泉街</span>
+        </div>
+      </div>
+      <div class="timeline-card-body">
+        <p>湯上がりは、愛媛の「都市伝説」が本当だったあの体験を。<b>蛇口をひねるとみかんジュース</b>がジャー。道後ハイカラ通りの<b>「愛媛の食卓1970」</b>は<b>20種類</b>の柑橘100％ストレート果汁を飲み比べできる名店。</p>
+        <p>本館からすぐの<b>「伊織 本店」</b>でも蛇口ジュースが楽しめる。坊っちゃん団子や柑橘スイーツを片手に、レトロかわいい商店街を浴衣でそぞろ歩き。</p>
+        <div class="info-box">
+          <span>📍 道後ハイカラ通り</span>
+          <span>🕙 〜21:00（年中無休）</span>
+          <span>🍊 柑橘100％</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- 19:00 ディナー -->
   <div class="timeline-item">
     <div class="timeline-time">19:00 —</div>
@@ -733,6 +859,22 @@ body {
           愛媛は隠れた日本酒どころ。「石鎚」「梅錦」など、すっきり系の地酒が魚介に合う。明日は運転なので、飲むのは1人ずつ交代で◎。
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- 20:30 プロジェクションマッピング (Feature) -->
+  <div class="timeline-item">
+    <div class="timeline-time">20:30 — 21:30</div>
+    <div class="feature-hero">
+      <span class="feature-tag">★ NIGHT ART</span>
+      <h3>蜷川実花 × 道後温泉</h3>
+      <div class="feature-sub">— DOGO ART projection mapping —</div>
+      <p>夜の道後のクライマックス。写真家・映画監督の<b>蜷川実花</b>とクリエイティブチームEiMが手がける、道後温泉本館をまるごとキャンバスにした<b>プロジェクションマッピング</b>。象徴的な花のモチーフと極彩色の映像が、音とともに本館の西面に投影される。</p>
+      <p style="margin-top:14px;">レトロな建築が一瞬で幻想世界に。浴衣姿で見上げれば、写真も思い出も格別。女ふたりの旅、初日のハイライトに。</p>
+    </div>
+    <div class="tip-box onsen">
+      <span class="tip-label">☞ ART TIP</span>
+      上映は<b>道後温泉本館 西面</b>。<b>19:30〜21:30の間、30分ごとに約5分</b>の投影（2026年は4/21〜7/31開催）。短いサイクルなので、開始時刻に合わせて少し早めに場所どりを。観覧は無料。会期・時間は変わることがあるので「道後アート」公式で最新情報の確認を。
     </div>
   </div>
 </section>
@@ -1414,6 +1556,9 @@ body {
       <span class="hashtag">#四国女子旅</span>
       <span class="hashtag">#温泉旅</span>
       <span class="hashtag">#道後温泉</span>
+      <span class="hashtag">#道後アート</span>
+      <span class="hashtag">#蜷川実花</span>
+      <span class="hashtag">#みかん蛇口</span>
       <span class="hashtag">#祖谷温泉</span>
       <span class="hashtag">#讃岐うどん</span>
       <span class="hashtag">#藁焼きカツオ</span>
