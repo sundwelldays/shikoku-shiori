@@ -870,19 +870,6 @@ body {
   transition: background 0.18s ease;
 }
 .route-link:active { background: var(--accent-light); }
-  .route-link-official {
-    display: inline-block;
-    font-size: 11px;
-    text-decoration: none;
-    color: #6E7A55;
-    border: 1px solid #AEBA95;
-    background: #fff;
-    border-radius: 20px;
-    padding: 3px 11px;
-    margin-top: 4px;
-  }
-  .route-link-official::before { content: "\1F517"; font-size: 10px; margin-right: 3px; }
-  .route-link-official:active { background: #EEF1E6; }
 .route-link::before { content: "📍"; font-size: 10px; }
 .route-note {
   font-size: 11px;
@@ -901,6 +888,23 @@ body {
   display: block;
   margin-bottom: 5px;
 }
+
+/* もっと探す（ビジュアル下見セクション） */
+.explore-section{padding:38px 24px 32px;background:var(--card,#fff);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.explore-title{font-family:"Noto Serif JP",serif;font-weight:600;font-size:18px;letter-spacing:.06em;text-align:center;margin-bottom:6px;color:var(--ink);}
+.explore-lead{font-family:"Caveat",cursive;font-size:15px;color:var(--accent-deep);letter-spacing:.04em;text-align:center;margin-bottom:22px;}
+.explore-card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;background:var(--bg);}
+.explore-card:last-child{margin-bottom:0;}
+.explore-name{font-family:"Noto Serif JP",serif;font-weight:500;font-size:14px;color:var(--ink);letter-spacing:.04em;margin-bottom:8px;}
+.explore-links{display:flex;flex-wrap:wrap;gap:7px;}
+.explore-link{display:inline-block;font-size:11px;text-decoration:none;border-radius:20px;padding:3px 11px;border:1px solid var(--line);background:#fff;}
+.explore-link::before{font-size:10px;margin-right:3px;}
+.explore-link.insta{color:#B85478;border-color:#E5B5C5;}
+.explore-link.insta::before{content:"📷";}
+.explore-link.pin{color:#C5443D;border-color:#E5B5B0;}
+.explore-link.pin::before{content:"📌";}
+.explore-link.gmap-photo{color:var(--accent-deep);border-color:var(--accent);}
+.explore-link.gmap-photo::before{content:"🖼";}
 </style>
 </head>
 <body>
@@ -1035,7 +1039,6 @@ body {
         <div class="route-time">11:30</div>
         <div class="route-name">今治タオル美術館</div>
         <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E4%BB%8A%E6%B2%BB%E3%82%BF%E3%82%AA%E3%83%AB%E7%BE%8E%E8%A1%93%E9%A4%A8" target="_blank" rel="noopener">地図</a>
-        <a class="route-link-official" href="https://www.towel-museum.com/" target="_blank" rel="noopener">公式サイト</a>
       </div>
     </div>
 
@@ -1059,7 +1062,6 @@ body {
         <div class="route-time">14:30</div>
         <div class="route-name">松山城 & ロープウェイ</div>
         <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%BE%E5%B1%B1%E5%9F%8E%20%E6%84%9B%E5%AA%9B" target="_blank" rel="noopener">地図</a>
-        <a class="route-link-official" href="https://www.matsuyamajo.jp/" target="_blank" rel="noopener">公式サイト</a>
       </div>
     </div>
 
@@ -1092,7 +1094,6 @@ body {
         <div class="route-time">19:00</div>
         <div class="route-name">道後温泉 & 蜷川アート</div>
         <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">地図</a>
-        <a class="route-link-official" href="https://dogoonsenart.com/" target="_blank" rel="noopener">道後アート 公式</a>
       </div>
     </div>
   </div>
@@ -1628,6 +1629,53 @@ body {
 </section>
 
 <!-- ═══════ CLOSING ═══════ -->
+
+<!-- ===== もっと探す（ビジュアル下見） ===== -->
+<section class="explore-section">
+  <h2 class="explore-title">もっと探す</h2>
+  <p class="explore-lead">行く前にビジュアルで下見を。</p>
+    <div class="explore-card">
+      <div class="explore-name">道後温泉本館</div>
+      <div class="explore-links">
+        <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89/" target="_blank" rel="noopener">Instagram</a>
+        <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%20%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">Pinterest</a>
+        <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%E6%9C%AC%E9%A4%A8%20%E6%9D%BE%E5%B1%B1" target="_blank" rel="noopener">Google写真</a>
+      </div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-name">松山城</div>
+      <div class="explore-links">
+        <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E6%9D%BE%E5%B1%B1%E5%9F%8E/" target="_blank" rel="noopener">Instagram</a>
+        <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E6%9D%BE%E5%B1%B1%E5%9F%8E" target="_blank" rel="noopener">Pinterest</a>
+        <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%BE%E5%B1%B1%E5%9F%8E%20%E6%84%9B%E5%AA%9B" target="_blank" rel="noopener">Google写真</a>
+      </div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-name">鯛めし（愛媛の名物）</div>
+      <div class="explore-links">
+        <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E6%84%9B%E5%AA%9B%E9%AF%9B%E3%82%81%E3%81%97/" target="_blank" rel="noopener">Instagram</a>
+        <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E6%84%9B%E5%AA%9B%20%E9%AF%9B%E3%82%81%E3%81%97" target="_blank" rel="noopener">Pinterest</a>
+        <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E9%AF%9B%E3%82%81%E3%81%97%20%E6%9D%BE%E5%B1%B1" target="_blank" rel="noopener">Google写真</a>
+      </div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-name">鍋焼きうどん（松山ソウルフード）</div>
+      <div class="explore-links">
+        <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E6%9D%BE%E5%B1%B1%E9%8D%8B%E7%84%BC%E3%81%8D%E3%81%86%E3%81%A9%E3%82%93/" target="_blank" rel="noopener">Instagram</a>
+        <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E6%9D%BE%E5%B1%B1%20%E9%8D%8B%E7%84%BC%E3%81%8D%E3%81%86%E3%81%A9%E3%82%93" target="_blank" rel="noopener">Pinterest</a>
+        <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E9%8D%8B%E7%84%BC%E3%81%8D%E3%81%86%E3%81%A9%E3%82%93%20%E6%9D%BE%E5%B1%B1" target="_blank" rel="noopener">Google写真</a>
+      </div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-name">道後温泉 蜷川実花アート</div>
+      <div class="explore-links">
+        <a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E9%81%93%E5%BE%8C%E3%82%AA%E3%83%B3%E3%82%BB%E3%83%8A%E3%83%BC%E3%83%88/" target="_blank" rel="noopener">Instagram</a>
+        <a class="explore-link pin" href="https://www.pinterest.jp/search/pins/?q=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%20%E3%82%A2%E3%83%BC%E3%83%88" target="_blank" rel="noopener">Pinterest</a>
+        <a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89%20%E8%9C%B7%E5%B7%9D%E5%AE%9F%E8%8A%B1" target="_blank" rel="noopener">Google写真</a>
+      </div>
+    </div>
+</section>
+
 <section class="closing">
   <p class="closing-text">
     梅雨だから旅行はやめとこう、なんてもったいない。<br>
