@@ -187,6 +187,23 @@ body {
   align-self: center;
 }
 
+.hero-image-wrap {
+  position: relative;
+  z-index: 3;
+  max-width: 460px;
+  margin: -72px auto 0;
+  padding: 0 20px;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: var(--shadow-lg);
+}
+
 /* ─── Container ─── */
 .container {
   max-width: 460px;
@@ -860,6 +877,10 @@ body {
     </div>
   </div>
 </section>
+
+<div class="hero-image-wrap">
+  <img class="hero-image" src="assets/kochi-niyodo-blue.png" alt="仁淀ブルーの清流と土佐の食の旅イメージ" loading="eager" decoding="async">
+</div>
 
 <!-- ═══════ コース早わかりMAP ═══════ -->
 <section class="journeymap">
