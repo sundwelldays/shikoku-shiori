@@ -11,19 +11,21 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 html,body{background:#fff;}
 /* L判 photo paper = 89mm x 127mm (portrait). The image fills it edge to edge. */
-.sheet{width:89mm;height:127mm;background:#fff;position:relative;font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);}
-/* Trim box: cut along this rounded rectangle to get a name-card-sized glossy card. */
-.slot{position:absolute;left:2mm;width:85mm;height:51.4mm;border:.2mm dashed var(--guide);border-radius:2mm;}
+.sheet{width:89mm;height:127mm;background:#fff;position:relative;overflow:hidden;font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);}
+/* Trim box = finished name-card size. Cut along this rectangle. The card art bleeds
+   PAST this line (full bleed) so a slight cut drift never exposes a white edge. */
+.slot{position:absolute;left:2mm;width:85mm;height:51.4mm;border:.2mm dashed var(--guide);}
 .slot.top{top:8.6mm;}
 .slot.bottom{top:67mm;}
 .cut{position:absolute;top:-4.4mm;left:0;font-size:5.4pt;letter-spacing:.3pt;color:var(--guide);font-family:'Zen Kaku Gothic New',sans-serif;}
 
 /* Card face — same look as card.html, centered inside the trim box with a hair of gutter. */
 .card{position:absolute;top:50%;left:50%;width:91mm;height:55mm;
-  /* center in the trim box and visually scale to ~82.5mm wide so a ~1.2mm white gutter sits inside the cut line.
+  /* Full bleed: scale so the art (~89.6mm wide) overruns the 85mm trim box by ~2mm
+     on every side, reaching the L判 edge. The sheet clips the overrun.
      translate + scale MUST be one transform (a separate scale property composes in a different order and offsets the card). */
-  transform:translate(-50%,-50%) scale(.906);transform-origin:center;
-  overflow:hidden;border-radius:3.4mm;display:flex;align-items:stretch;
+  transform:translate(-50%,-50%) scale(.985);transform-origin:center;
+  overflow:hidden;border-radius:0;display:flex;align-items:stretch;
   background:
     radial-gradient(circle at 86% 16%, rgba(196,119,90,.12), transparent 42%),
     radial-gradient(circle at 10% 92%, rgba(74,119,109,.12), transparent 42%),
