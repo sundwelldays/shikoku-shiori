@@ -53,9 +53,10 @@ html,body{background:#fff;}
 .cut{position:absolute;top:-4.4mm;left:0;font-size:5.4pt;letter-spacing:.3pt;color:var(--guide);font-family:'Zen Kaku Gothic New',sans-serif;}
 
 /* Card face — same look as card.html, centered inside the trim box with a hair of gutter. */
-.card{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:91mm;height:55mm;
-  /* visually scaled to ~82.5mm wide so a ~1.2mm white gutter sits inside the cut line */
-  scale:.906;
+.card{position:absolute;top:50%;left:50%;width:91mm;height:55mm;
+  /* center in the trim box and visually scale to ~82.5mm wide so a ~1.2mm white gutter sits inside the cut line.
+     translate + scale MUST be one transform (a separate scale property composes in a different order and offsets the card). */
+  transform:translate(-50%,-50%) scale(.906);transform-origin:center;
   overflow:hidden;border-radius:3.4mm;display:flex;align-items:stretch;
   background:
     radial-gradient(circle at 86% 16%, rgba(196,119,90,.12), transparent 42%),
