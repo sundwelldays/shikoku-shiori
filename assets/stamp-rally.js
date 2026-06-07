@@ -65,7 +65,7 @@
       '.sr-tile{opacity:.92;}',
       '.sr-tile.on{border:1.5px solid var(--sr-a);opacity:1;background:#fff;}',
       '.sr-tile.on .sr-stamp{filter:none;opacity:1;background:#fff;border:2.5px solid var(--sr-a);box-shadow:0 0 0 2px var(--sr-a);transform:rotate(-7deg);}',
-      '.sr-got{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:var(--sr-a);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.22);}',
+      '.sr-conq{position:absolute;left:50%;top:36px;transform:translate(-50%,-50%) rotate(-11deg);font-family:"Shippori Mincho",serif;font-weight:700;font-size:23px;letter-spacing:2px;color:#D8403A;background:rgba(216,64,58,.07);border:3px solid #D8403A;box-shadow:inset 0 0 0 1.5px #fff,inset 0 0 0 4.5px rgba(216,64,58,.5);border-radius:7px;padding:3px 8px 2px;line-height:1.25;pointer-events:none;text-shadow:0 0 3px #fff,0 0 2px #fff;}',
       '.sr-tile.ready{border:1.5px solid var(--sr-a);opacity:1;background:#fff;animation:srready 1.3s ease-in-out infinite;}',
       '@keyframes srready{0%,100%{box-shadow:0 2px 10px rgba(40,55,50,.06);}50%{box-shadow:0 0 0 3px var(--sr-a),0 4px 14px rgba(40,55,50,.14);}}',
       '.sr-tile.ready .sr-stamp{filter:none;opacity:1;background:#fff;border:2px solid var(--sr-a);color:var(--sr-a);}',
@@ -250,8 +250,8 @@
         var on = !!got[s.gid], rdy = !on && !!unlock[s.gid];
         h += '<button class="sr-tile' + (on ? ' on' : (rdy ? ' ready' : '')) + '" data-gid="' + s.gid + '">'
           + (s.cat ? '<span class="sr-cat">' + s.cat + '</span>' : '')
-          + (on ? '<span class="sr-got">✓</span>' : '')
           + '<span class="sr-stamp">' + (s.icon || '📍') + '</span>'
+          + (on ? '<span class="sr-conq">制覇</span>' : '')
           + '<span class="sr-name">' + (s.short || s.name) + '</span>'
           + '<span class="sr-sub">' + (on ? fmtDate(got[s.gid]) : (rdy ? '✨ 押せる！' : '🔒 近くで解放')) + '</span></button>';
       });
