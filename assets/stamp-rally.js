@@ -150,7 +150,16 @@
       '.sr-slam{position:fixed;left:50%;top:46%;transform:translate(-50%,-50%);z-index:10002;pointer-events:none;font-size:96px;text-shadow:0 6px 18px rgba(0,0,0,.18);animation:srslam .95s cubic-bezier(.2,1.2,.3,1) forwards;}',
       '@keyframes srslam{0%{transform:translate(-50%,-50%) scale(2.7) rotate(-20deg);opacity:0;}26%{transform:translate(-50%,-50%) scale(.8) rotate(7deg);opacity:1;}44%{transform:translate(-50%,-50%) scale(1.05) rotate(-2deg);opacity:1;}78%{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1;}100%{transform:translate(-50%,-54%) scale(1.08);opacity:0;}}',
       '.sr-ring0{position:fixed;left:50%;top:46%;width:44px;height:44px;border-radius:50%;border:5px solid var(--sr-a);z-index:10001;pointer-events:none;animation:srring .72s ease-out forwards;}',
-      '@keyframes srring{0%{opacity:.85;transform:translate(-50%,-50%) scale(.4);}100%{opacity:0;transform:translate(-50%,-50%) scale(7.5);}}'
+      '@keyframes srring{0%{opacity:.85;transform:translate(-50%,-50%) scale(.4);}100%{opacity:0;transform:translate(-50%,-50%) scale(7.5);}}',
+      /* 巨大スタンプ・インプレッション（各押下のメイン演出） */
+      '.sr-pop{position:fixed;inset:0;z-index:10002;pointer-events:none;display:flex;align-items:center;justify-content:center;}',
+      '.sr-pop .sunb{position:absolute;width:540px;height:540px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,214,120,0) 0deg 8deg,rgba(255,214,120,.55) 8deg 16deg);animation:srsun .85s ease-out forwards;-webkit-mask:radial-gradient(circle,transparent 72px,#000 92px,#000 235px,transparent 262px);mask:radial-gradient(circle,transparent 72px,#000 92px,#000 235px,transparent 262px);}',
+      '@keyframes srsun{0%{transform:rotate(0) scale(.4);opacity:0;}28%{opacity:.95;}100%{transform:rotate(42deg) scale(1.12);opacity:0;}}',
+      '.sr-pop .seal{position:relative;width:198px;height:198px;border-radius:50%;background:rgba(255,255,255,.97);border:6px solid var(--sr-a);box-shadow:0 14px 44px rgba(0,0,0,.30);display:flex;flex-direction:column;align-items:center;justify-content:center;animation:srpopin .95s cubic-bezier(.2,1.4,.3,1) forwards;}',
+      '@keyframes srpopin{0%{transform:scale(2.9) rotate(-22deg);opacity:0;}22%{transform:scale(.8) rotate(8deg);opacity:1;}40%{transform:scale(1.07) rotate(-4deg);}62%{transform:scale(1) rotate(-6deg);}84%{transform:scale(1) rotate(-6deg);opacity:1;}100%{transform:scale(1.14) rotate(-6deg);opacity:0;}}',
+      '.sr-pop .seal .ic{font-size:66px;line-height:1;}',
+      '.sr-pop .seal .gt{font-family:"Caveat",cursive;font-weight:700;font-size:32px;color:var(--sr-a);margin-top:1px;line-height:1;}',
+      '.sr-pop .seal .nm{font-size:12px;font-weight:700;color:#3c3c36;margin-top:3px;}'
     ].join('');
     document.head.appendChild(st);
   }
@@ -288,24 +297,28 @@
     var sel = rd(SEL); toast('🌸 「' + (sel[g] ? sel[g].name : '') + '」GET！おつかれさま✨');
     return true;
   }
-  /* 各スタンプ押下のド派手演出 */
+  /* 各スタンプ押下のド派手演出：巨大スタンプがドン！と捺される */
   function celebrateStamp(g) {
-    var sel = rd(SEL), s = sel[g] || {}, icon = s.icon || '🌸';
-    flash(true); shake(); stampSlam(icon);
-    burst(window.innerWidth / 2, window.innerHeight * 0.46);
-    fireworks(5);
+    var sel = rd(SEL), s = sel[g] || {}, icon = s.icon || '🌸', name = s.short || s.name || '';
+    var cx = window.innerWidth / 2, cy = window.innerHeight * 0.46;
+    flash(); shake(); confetti(90);
+    burst(cx, cy, 44); burst(cx, cy + 70, 22);
+    fireworks(9);
+    ring(); setTimeout(ring, 130); setTimeout(ring, 280);
+    var box = document.createElement('div'); box.className = 'sr-pop'; box.style.setProperty('--sr-a', ACCENT);
+    box.innerHTML = '<div class="sunb"></div><div class="seal"><div class="ic">' + icon + '</div><div class="gt">GET! ✨</div>'
+      + (name ? '<div class="nm">' + name + '</div>' : '') + '</div>';
+    document.body.appendChild(box); setTimeout(function () { box.remove(); }, 1050);
   }
-  function stampSlam(icon) {
-    var el = document.createElement('div'); el.className = 'sr-slam'; el.textContent = icon;
-    document.body.appendChild(el); setTimeout(function () { el.remove(); }, 1000);
-    var ring = document.createElement('div'); ring.className = 'sr-ring0'; ring.style.setProperty('--sr-a', ACCENT);
-    document.body.appendChild(ring); setTimeout(function () { ring.remove(); }, 800);
+  function ring() {
+    var r = document.createElement('div'); r.className = 'sr-ring0'; r.style.setProperty('--sr-a', ACCENT);
+    document.body.appendChild(r); setTimeout(function () { r.remove(); }, 800);
   }
   /* 花吹雪バースト（スタンプ押下時） */
-  function burst(x, y) {
+  function burst(x, y, count) {
     var box = document.createElement('div'); box.className = 'sr-burst';
     var petals = ['🌸', '💕', '✨', '🌸', '🌟', '💮', '🎀', '✨'];
-    var n = 26;
+    var n = count || 26;
     for (var i = 0; i < n; i++) {
       var p = document.createElement('i');
       var ang = (i / n) * Math.PI * 2 + Math.random() * 0.5;
@@ -476,7 +489,12 @@
     });
   }
   function flash(lite) { var f = document.createElement('div'); f.className = 'sr-flash' + (lite ? ' lite' : ''); document.body.appendChild(f); setTimeout(function () { f.remove(); }, lite ? 800 : 1200); }
-  function shake() { mount.classList.remove('sr-shake'); void mount.offsetWidth; mount.classList.add('sr-shake'); setTimeout(function () { mount.classList.remove('sr-shake'); }, 700); }
+  function shake() {
+    [mount, document.getElementById('sr-map-wrap')].forEach(function (el) {
+      if (!el) return; el.classList.remove('sr-shake'); void el.offsetWidth; el.classList.add('sr-shake');
+      setTimeout(function () { el.classList.remove('sr-shake'); }, 700);
+    });
+  }
   function fireworks(maxN) {
     var box = document.createElement('div'); box.className = 'sr-fw'; document.body.appendChild(box);
     var colors = ['#FF9EC4', '#FFD66B', '#8FE3C8', '#C3A6E8', '#8FD0FF', '#FF8FA3', '#ffffff'];
