@@ -3,186 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>四国 禅と滝のしおり｜座禅・滝行スポット</title>
+<title>マイ スタンプ帳｜四国・瀬戸内 旅のしおり</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4F1EA; --bg-soft:#EAE5DB; --card:#FFFFFF;
-  --text:#2C3A36; --text-soft:#76837C; --line:#E3E0D6;
-  --ai:#3B6E8F; --ai-deep:#2A4D66; --ai-light:#D7E4EC;
-  --moss:#7E9A82; --moss-deep:#566B59; --moss-light:#DCE6D7;
-  --gold:#B8923E; --gold-light:#F0E6C8;
-  --shadow-sm:0 2px 12px rgba(40,55,50,0.06);
-  --shadow-md:0 6px 24px rgba(40,55,50,0.10);
-  --shadow-lg:0 12px 40px rgba(40,55,50,0.14);
+  --bg:#F4EFE6; --card:#FFFFFF; --text:#3A2F2A; --text-soft:#8a7f76;
+  --ink:#C0584B; --ink-deep:#7E342A; --ink-light:#F0D9D4;
+  --shadow-sm:0 2px 12px rgba(80,40,35,0.07);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
 body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@keyframes ripple{0%{transform:scale(0.6);opacity:.5;}100%{transform:scale(2.2);opacity:0;}}
-
-/* Hero */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:64px 24px;overflow:hidden;
-  background:radial-gradient(ellipse at 50% 18%,#D7E4EC 0%,transparent 55%),radial-gradient(ellipse at 80% 75%,#DCE6D7 0%,transparent 55%),linear-gradient(180deg,#EAE5DB 0%,#E3E9E1 100%);}
-.enso{position:absolute;top:50%;left:50%;width:300px;height:300px;border:3px solid rgba(43,77,102,0.16);border-radius:50%;border-top-color:transparent;border-right-color:rgba(43,77,102,0.05);transform:translate(-50%,-58%) rotate(-25deg);z-index:0;}
+@keyframes stampin{0%{transform:scale(2) rotate(-18deg);opacity:0;}60%{transform:scale(.9) rotate(6deg);opacity:1;}100%{transform:scale(1) rotate(-8deg);opacity:1;}}
+.hero{position:relative;min-height:62vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 24px 44px;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 20%,#F0D9D4 0%,transparent 55%),linear-gradient(180deg,#EFE7DB 0%,#F0E3D6 100%);}
+.hero-seal{position:absolute;top:46px;right:30px;width:84px;height:84px;border:3px solid var(--ink);border-radius:14px;color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Shippori Mincho',serif;font-weight:700;font-size:26px;opacity:.16;transform:rotate(-8deg);animation:stampin .9s .4s both;}
 .hero-content{position:relative;z-index:2;}
-.hero-label{font-size:11px;letter-spacing:6px;color:var(--ai-deep);margin-bottom:22px;opacity:0;animation:fadeUp .9s .2s forwards;}
-.hero-emoji{font-size:34px;margin-bottom:14px;display:block;opacity:0;animation:fadeUp .9s .3s forwards;}
-.hero-title{font-family:'Shippori Mincho',serif;font-size:clamp(28px,8vw,40px);font-weight:600;line-height:1.5;letter-spacing:0.08em;margin-bottom:14px;opacity:0;animation:fadeUp .9s .5s forwards;}
-.hero-sub{font-family:'Caveat',cursive;font-size:clamp(20px,5vw,26px);color:var(--ai);margin-bottom:30px;opacity:0;animation:fadeUp .9s .7s forwards;}
-.hero-poem{max-width:300px;font-size:13px;color:var(--text-soft);line-height:2.4;margin:0 auto;opacity:0;animation:fadeUp .9s .9s forwards;}
-.hero-meta{margin-top:36px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-size:11px;letter-spacing:1px;color:var(--ai-deep);opacity:0;animation:fadeUp .9s 1.1s forwards;}
-.hero-meta span{background:rgba(255,255,255,0.6);border:1px solid var(--ai-light);border-radius:20px;padding:5px 13px;}
-
-/* Container */
-.container{max-width:480px;margin:0 auto;padding:0 22px;}
-.section{padding:52px 0 12px;}
-.section-label{font-family:'Shippori Mincho',serif;font-size:11px;letter-spacing:4px;color:var(--moss-deep);margin-bottom:6px;}
-.section-title{font-family:'Shippori Mincho',serif;font-size:23px;font-weight:600;margin-bottom:8px;letter-spacing:.05em;}
-.section-title .accent{font-family:'Caveat',cursive;font-size:22px;color:var(--ai);display:block;font-weight:500;letter-spacing:0;}
-.section-lead{font-size:13px;color:var(--text-soft);margin-bottom:24px;line-height:1.9;}
-
-/* Journey / spot map */
-.journeymap{--jm-a:var(--moss);--jm-deep:var(--ai-deep);--jm-light:var(--moss-light);padding:46px 0 40px;background:linear-gradient(180deg,var(--moss-light) 0%,var(--bg) 100%);}
-.jm-inner{max-width:480px;margin:0 auto;padding:0 22px;}
-.jm-label{font-family:'Shippori Mincho',serif;font-size:11px;letter-spacing:4px;color:var(--jm-deep);margin-bottom:6px;}
-.jm-title{font-family:'Shippori Mincho',serif;font-size:23px;font-weight:600;letter-spacing:.04em;line-height:1.4;}
-.jm-title span{display:block;font-family:'Caveat',cursive;font-weight:500;font-size:19px;color:var(--jm-a);margin-top:2px;}
-.jm-summary{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 18px;}
-.jm-meta{font-size:11.5px;font-weight:500;background:var(--card);border:1px solid var(--jm-light);border-radius:20px;padding:5px 12px;box-shadow:var(--shadow-sm);}
-.jm-map{margin:6px 0 18px;border-radius:16px;overflow:hidden;border:1px solid var(--jm-light);box-shadow:var(--shadow-sm);background:#E7EFF2;}
-.jm-map svg{display:block;width:100%;height:auto;}
-.jm-land{fill:var(--jm-light);stroke:var(--moss-deep);stroke-width:1.1;stroke-opacity:.55;opacity:.95;}
-.jm-land-ctx{fill:#DAD4C6;stroke:#BCB3A2;stroke-width:1;stroke-opacity:.5;opacity:.5;}
-.jm-sealabel{fill:#9DB4C0;font-family:'Caveat',cursive;font-size:12px;letter-spacing:2px;}
-.jm-pin{fill:var(--ai-deep);stroke:#fff;stroke-width:1.5;}
-.jm-pin.taki{fill:var(--ai);}
-.jm-pinnum{fill:#fff;font-family:'Shippori Mincho',serif;font-size:11px;font-weight:700;text-anchor:middle;}
-.jm-stops{margin-bottom:8px;}
-.jm-stops h4{font-size:12px;color:var(--jm-deep);margin:10px 0 7px;letter-spacing:1px;font-weight:700;}
-.jm-chips{display:flex;flex-wrap:wrap;gap:7px;}
-.jm-chip{display:inline-block;font-size:11.5px;text-decoration:none;border-radius:20px;padding:4px 11px;border:1px solid var(--jm-light);background:#fff;color:var(--text);}
-.jm-chip.taki{border-color:var(--ai-light);color:var(--ai-deep);}
-.jm-chip.zen{border-color:var(--moss-light);color:var(--moss-deep);}
-.jm-chip::before{content:"📍";font-size:10px;margin-right:3px;}
-
-/* Spot cards */
-.spot-card{background:var(--card);border-radius:18px;padding:20px 18px;box-shadow:var(--shadow-sm);margin-bottom:16px;border:1px solid var(--line);position:relative;}
-.spot-card.is-reco{border:1.5px solid var(--gold);box-shadow:0 6px 22px rgba(184,146,62,0.16);}
-.spot-head{display:flex;gap:13px;align-items:flex-start;margin-bottom:12px;}
-.spot-num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--moss-light);color:var(--moss-deep);font-family:'Shippori Mincho',serif;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;}
-.is-reco .spot-num{background:var(--gold-light);color:var(--gold);}
-.spot-headtext{flex:1;}
-.spot-badges{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:3px;}
-.spot-type{font-size:10.5px;font-weight:700;border-radius:6px;padding:2px 9px;letter-spacing:1px;}
-.spot-type.zen{background:var(--moss-light);color:var(--moss-deep);}
-.spot-type.taki{background:var(--ai-light);color:var(--ai-deep);}
-.spot-reco{font-size:10.5px;font-weight:700;color:#fff;background:var(--gold);border-radius:6px;padding:2px 9px;letter-spacing:.5px;}
-.spot-name{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;letter-spacing:.03em;line-height:1.4;margin-bottom:2px;}
-.spot-pref{font-size:11.5px;color:var(--text-soft);}
-.spot-desc{font-size:13.5px;line-height:1.95;margin-bottom:14px;}
-.spot-meta{background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:13px;}
-.spot-meta div{display:flex;gap:10px;padding:4px 0;font-size:12.5px;}
-.spot-meta div+div{border-top:1px dashed var(--line);}
-.spot-meta dt{flex-shrink:0;width:48px;color:var(--moss-deep);font-weight:700;}
-.spot-meta dd{flex:1;color:var(--text);}
-.spot-links{display:flex;gap:8px;margin-bottom:13px;}
-.spot-link{flex:1;text-align:center;font-size:12.5px;font-weight:700;text-decoration:none;border-radius:12px;padding:9px 0;letter-spacing:.04em;}
-.spot-link.official{background:var(--ai-deep);color:#fff;}
-.spot-link.gmap{background:var(--moss);color:#fff;}
-.spot-link:active{opacity:.75;}
-.spot-link.official::before{content:"🔗 ";}
-.spot-link.gmap::before{content:"🗺 ";}
-.spot-sns{border-top:1px dashed var(--line);padding-top:11px;}
-.spot-sns-label{font-size:11px;color:var(--text-soft);display:block;margin-bottom:7px;letter-spacing:.04em;}
-
-/* shared SNS link pills */
-.explore-links{display:flex;flex-wrap:wrap;gap:7px;}
-.explore-link{display:inline-block;font-size:11px;text-decoration:none;border-radius:20px;padding:3px 11px;border:1px solid var(--line);background:#fff;}
-.explore-link::before{font-size:10px;margin-right:3px;}
-.explore-link.insta{color:#B85478;border-color:#E5B5C5;}
-.explore-link.insta::before{content:"📷";}
-.explore-link.fb{color:#3B5998;border-color:#B9C4DD;}
-.explore-link.fb::before{content:"📘";}
-.explore-link.x{color:#222;border-color:#C9C9C9;}
-.explore-link.x::before{content:"✕";}
-.explore-link.gmap-photo{color:var(--ai-deep);border-color:var(--ai-light);}
-.explore-link.gmap-photo::before{content:"🖼";}
-
-/* reco highlight banner */
-.reco-banner{background:linear-gradient(135deg,var(--gold-light) 0%,#FBF6E6 100%);border:1px solid #E4D29A;border-radius:16px;padding:18px 18px;margin-bottom:22px;}
-.reco-banner h4{font-family:'Shippori Mincho',serif;font-size:15px;color:var(--gold);margin-bottom:8px;letter-spacing:.04em;}
-.reco-banner p{font-size:12.5px;color:#7a6a3e;line-height:1.85;}
-.reco-banner ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:5px;}
-.reco-banner li{font-size:12.5px;color:#6a5c34;}
-.reco-banner li b{color:var(--gold);}
-
-/* checklist */
-.check-block{background:var(--card);border-radius:16px;padding:18px 18px;box-shadow:var(--shadow-sm);margin-bottom:14px;border:1px solid var(--line);}
-.check-block h4{font-family:'Shippori Mincho',serif;font-size:14px;margin-bottom:12px;letter-spacing:1px;display:flex;align-items:center;gap:7px;}
-.check-block.taki h4{color:var(--ai-deep);}
-.check-block.zen h4{color:var(--moss-deep);}
-.check-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:13px;cursor:pointer;}
-.check-item input{appearance:none;-webkit-appearance:none;width:19px;height:19px;border:2px solid var(--moss);border-radius:6px;flex-shrink:0;margin-top:2px;position:relative;cursor:pointer;}
-.check-item input:checked{background:var(--moss);}
-.check-item input:checked::after{content:"✓";color:#fff;font-size:13px;font-weight:700;position:absolute;left:2.5px;top:-1px;}
-.check-item input:checked+span{color:var(--text-soft);text-decoration:line-through;}
-
-/* caution */
-.caution-card{background:var(--card);border-radius:14px;padding:15px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;gap:12px;border:1px solid var(--line);}
-.caution-icon{font-size:22px;flex-shrink:0;}
-.caution-text h5{font-size:13.5px;font-weight:700;margin-bottom:3px;}
-.caution-text p{font-size:12px;color:var(--text-soft);line-height:1.8;}
-
-/* explore section */
-.explore-section{padding:44px 22px 36px;margin-top:36px;background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.explore-title{font-family:'Shippori Mincho',serif;font-weight:600;font-size:19px;letter-spacing:.06em;text-align:center;margin-bottom:6px;}
-.explore-lead{font-family:'Caveat',cursive;font-size:16px;color:var(--ai);letter-spacing:.04em;text-align:center;margin-bottom:22px;}
-.explore-card{border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin-bottom:10px;background:var(--bg);max-width:480px;margin-left:auto;margin-right:auto;}
-.explore-card:last-child{margin-bottom:0;}
-.explore-name{font-family:'Shippori Mincho',serif;font-weight:500;font-size:13.5px;letter-spacing:.03em;margin-bottom:8px;}
-
-/* closing */
-.closing{text-align:center;padding:54px 24px 70px;}
-.closing-mark{font-size:30px;margin-bottom:14px;}
-.closing-text{font-family:'Shippori Mincho',serif;font-size:16px;line-height:2.1;letter-spacing:.05em;margin-bottom:8px;}
-.closing-sub{font-family:'Caveat',cursive;font-size:20px;color:var(--ai);}
-.disclaimer{font-size:10.5px;color:var(--text-soft);line-height:1.8;margin-top:26px;max-width:360px;margin-left:auto;margin-right:auto;}
+.hero-label{font-size:11px;letter-spacing:6px;color:var(--ink-deep);margin-bottom:20px;opacity:0;animation:fadeUp .9s .2s forwards;}
+.hero-emoji{font-size:34px;margin-bottom:12px;display:block;opacity:0;animation:fadeUp .9s .3s forwards;}
+.hero-title{font-family:'Shippori Mincho',serif;font-size:clamp(28px,8vw,38px);font-weight:600;letter-spacing:.08em;margin-bottom:12px;opacity:0;animation:fadeUp .9s .5s forwards;}
+.hero-sub{font-family:'Caveat',cursive;font-size:clamp(20px,5vw,25px);color:var(--ink);margin-bottom:24px;opacity:0;animation:fadeUp .9s .7s forwards;}
+.hero-poem{max-width:310px;font-size:13px;color:var(--text-soft);line-height:2.3;margin:0 auto;opacity:0;animation:fadeUp .9s .9s forwards;}
+.section{padding:30px 0 12px;}
+.section-inner{max-width:480px;margin:0 auto;padding:0 22px;}
+.smap-label{font-size:11px;letter-spacing:4px;color:var(--ink-deep);margin-bottom:6px;}
+.smap-title{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:600;letter-spacing:.04em;margin-bottom:14px;}
+.smap-title span{display:block;font-family:'Caveat',cursive;font-size:17px;color:var(--ink);font-weight:500;margin-top:1px;}
+.smap-card{border-radius:16px;overflow:hidden;border:1px solid var(--ink-light);box-shadow:var(--shadow-sm);background:#EFE7D9;margin-bottom:6px;}
+.sr-map{display:block;width:100%;height:auto;}
+.jm-land{fill:#DED6C4;stroke:#B6AB94;stroke-width:1.1;stroke-opacity:.6;}
+.jm-land-ctx{fill:#E6E0D2;stroke:#CDC4B2;stroke-width:1;stroke-opacity:.4;opacity:.55;}
+.jm-sealabel{fill:#C6BAA4;font-family:'Caveat',cursive;font-size:12px;letter-spacing:2px;}
+.smap-note{font-size:11px;color:var(--text-soft);text-align:center;margin-bottom:8px;}
+.closing{text-align:center;padding:44px 24px 70px;}
+.closing .m{font-size:26px;margin-bottom:10px;}
+.closing p{font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:.05em;}
+.closing .s{font-family:'Caveat',cursive;font-size:19px;color:var(--ink);margin-top:4px;}
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="enso"></div>
+  <div class="hero-seal">巡</div>
   <div class="hero-content">
-    <div class="hero-label">S H I K O K U &nbsp; Z E N &nbsp; &amp; &nbsp; F A L L S</div>
-    <span class="hero-emoji">🧘‍♀️💧</span>
-    <h1 class="hero-title">四国<br>禅と滝のしおり</h1>
-    <p class="hero-sub">zazen &amp; waterfall retreat</p>
-    <p class="hero-poem">心を整える、四国の旅。<br>静かに坐る座禅と、滝に打たれる滝行。<br>人気のスポットと、持ち物・地図・<br>注意事項をまとめました。</p>
-    <div class="hero-meta">
-      <span>🧘 座禅 4寺</span><span>💧 滝行 2スポット</span><span>⭐ 20代女子おすすめ 3選</span>
-    </div>
+    <div class="hero-label">M Y &nbsp; S T A M P &nbsp; B O O K</div>
+    <span class="hero-emoji">📖✨</span>
+    <h1 class="hero-title">マイ スタンプ帳</h1>
+    <p class="hero-sub">your journey stamps</p>
+    <p class="hero-poem">各タブで選んだ「行きたい場所」がここに集合。<br>現地でスタンプを集めて、自分だけの<br>巡礼マップを完成させよう。</p>
   </div>
 </header>
 
-<!-- ===== スポットMAP ===== -->
-<section class="journeymap">
-  <div class="jm-inner">
-    <div class="jm-label">S P O T &nbsp; M A P</div>
-    <h2 class="jm-title">スポット早わかりMAP<span>where to sit &amp; stand under the falls</span></h2>
-    <div class="jm-summary">
-      <span class="jm-meta">🗾 四国4県</span>
-      <span class="jm-meta">🧘 座禅</span>
-      <span class="jm-meta">💧 滝行</span>
-      <span class="jm-meta">📍 ピンをタップで地図へ</span>
-    </div>
-    <div class="jm-map">
-      <svg viewBox="0 0 340 257.7" role="img" aria-label="四国 座禅・滝行スポット地図">
-        <text class="jm-sealabel" x="150" y="92">S E T O   I N L A N D   S E A</text>
+<!-- あなたの巡礼MAP（選択スポットを自動ピン） -->
+<section class="section">
+  <div class="section-inner">
+    <div class="smap-label">Y O U R &nbsp; M A P</div>
+    <h2 class="smap-title">あなたの巡礼MAP<span>selected spots on the map</span></h2>
+    <div id="sr-map-wrap">
+      <div class="smap-card">
+        <svg id="sr-map" class="sr-map" viewBox="0 0 340 257.7" role="img" aria-label="選択スポット地図">
+          <text class="jm-sealabel" x="150" y="92">S E T O   I N L A N D   S E A</text>
         <path class="jm-land-ctx" d="M240.3,-128.9L240.1,-126.9L239.1,-125.2L239.8,-122.8L241.9,-122.8L243.8,-122.1L246.0,-122.1L247.8,-122.1L249.6,-122.5L251.0,-120.9L252.3,-119.4L254.3,-118.9L255.6,-116.5L255.7,-114.1L255.8,-111.9L258.0,-111.5L257.3,-108.9L256.9,-106.6L258.5,-105.0L259.1,-103.0L261.2,-104.0L261.7,-105.9L264.1,-106.0L265.8,-107.0L267.8,-107.3L269.7,-108.8L270.9,-107.5L273.4,-107.4L276.2,-107.5L278.3,-109.1L280.4,-110.7L282.6,-112.0L283.1,-113.9L285.5,-114.9L286.6,-113.2L285.9,-111.4L284.0,-110.0L284.3,-106.7L286.4,-105.6L287.7,-103.9L287.6,-101.8L287.3,-99.9L285.6,-100.6L283.6,-100.1L281.7,-98.4L281.1,-96.5L280.8,-93.1L279.0,-91.5L276.6,-90.6L276.8,-88.4L276.2,-85.6L274.0,-84.9L272.3,-84.2L271.4,-82.1L270.4,-80.5L271.6,-78.9L271.4,-76.8L271.2,-73.9L270.0,-72.0L268.9,-69.8L271.5,-68.6L272.5,-66.8L273.7,-65.5L272.4,-63.9L270.6,-62.7L270.4,-60.8L269.4,-59.1L269.1,-57.0L269.9,-55.3L271.1,-54.0L272.9,-53.2L274.7,-52.1L275.8,-50.5L276.6,-48.0L277.9,-46.3L276.7,-44.3L276.1,-41.6L276.9,-39.8L274.3,-40.9L272.3,-40.1L270.7,-39.1L268.8,-38.4L266.6,-38.8L265.4,-40.2L263.5,-40.2L260.8,-41.2L262.9,-39.7L261.8,-38.2L263.8,-38.2L262.3,-37.0L264.4,-37.1L266.2,-38.0L267.5,-36.2L266.6,-34.6L264.6,-33.6L263.7,-31.9L261.6,-30.8L261.3,-29.0L259.5,-29.2L259.2,-27.1L260.9,-26.0L259.5,-24.8L258.3,-23.5L256.2,-23.9L254.6,-22.6L253.1,-20.5L251.1,-20.0L248.8,-18.7L246.9,-19.2L245.0,-19.5L245.4,-21.9L243.6,-22.6L241.1,-22.7L238.2,-23.4L236.6,-22.3L234.8,-21.4L232.8,-21.8L233.3,-19.5L235.3,-20.6L237.5,-20.5L239.8,-21.1L241.6,-21.3L243.4,-19.5L242.6,-17.7L242.1,-15.7L241.2,-13.7L239.2,-13.8L238.0,-11.8L238.5,-9.9L237.0,-11.5L235.1,-11.5L233.6,-10.3L233.5,-8.1L233.9,-6.0L232.2,-5.5L231.3,-3.6L231.7,-1.7L230.6,-0.2L228.3,-0.4L226.4,-1.0L224.2,-0.9L222.8,-2.3L220.9,-2.8L219.1,-3.0L216.9,-2.7L215.6,-1.3L216.0,1.2L217.3,2.9L215.3,2.0L213.5,1.7L211.2,-1.0L210.7,-3.2L209.9,-5.2L207.8,-7.6L207.5,-9.4L206.9,-7.6L205.0,-7.6L207.2,-5.8L207.9,-2.9L205.9,-3.8L203.2,-4.0L203.3,-7.6L203.4,-9.5L203.2,-12.9L201.7,-10.4L200.8,-8.1L200.0,-9.8L197.9,-10.1L196.5,-8.9L195.4,-7.4L193.5,-6.4L191.3,-6.4L189.6,-4.8L191.0,-3.4L188.3,-2.9L186.2,-2.6L183.8,-1.7L182.4,-3.9L180.8,-5.7L179.5,-7.0L177.6,-8.9L179.1,-6.9L180.8,-4.1L182.2,-2.7L182.2,-0.7L180.0,-0.2L178.4,0.7L176.3,1.0L177.3,-1.0L175.0,-1.0L173.7,-2.9L172.5,-4.5L173.5,-6.4L172.4,-8.0L172.6,-9.8L173.3,-12.2L172.5,-14.3L171.2,-16.4L169.9,-18.0L168.8,-19.5L166.6,-20.8L166.1,-22.6L165.0,-24.6L165.9,-26.1L166.0,-28.6L167.0,-30.3L166.6,-32.3L164.9,-32.9L164.1,-35.0L163.7,-37.0L163.3,-39.1L162.0,-40.6L163.3,-42.1L162.4,-43.7L162.9,-45.6L163.7,-47.2L164.1,-49.6L164.0,-51.9L162.2,-53.0L160.7,-54.7L158.9,-55.8L158.5,-57.7L157.0,-59.7L155.8,-61.3L154.8,-62.9L154.4,-64.8L155.6,-67.3L156.1,-69.7L154.7,-72.3L155.5,-74.7L157.1,-76.3L157.4,-78.2L157.0,-80.3L155.4,-81.5L154.2,-83.5L152.7,-84.7L151.1,-86.2L152.4,-88.2L153.7,-89.8L153.7,-91.9L155.0,-93.6L156.6,-92.7L159.0,-93.0L160.9,-93.7L163.1,-94.5L165.0,-95.1L167.2,-95.1L168.3,-98.1L167.3,-100.4L166.7,-102.3L166.3,-104.1L167.9,-105.3L169.7,-104.0L171.7,-103.5L173.7,-103.6L175.7,-104.3L177.3,-105.5L179.1,-106.3L181.4,-104.8L181.9,-106.6L181.5,-108.4L180.7,-110.3L179.8,-112.1L182.1,-112.9L183.9,-113.4L186.0,-114.0L187.0,-115.9L187.4,-117.8L187.4,-119.9L188.0,-121.8L188.2,-123.9L189.6,-125.7L190.2,-127.8L192.6,-127.5L194.9,-127.3L196.8,-126.8L199.1,-125.0L201.8,-124.6L204.1,-125.1L205.8,-124.4L207.8,-124.1L209.5,-122.9L211.8,-121.6L213.5,-120.7L215.8,-118.0L216.6,-116.4L218.4,-114.4L221.0,-116.6L222.5,-117.8L221.9,-119.9L224.0,-121.0L225.7,-121.7L227.4,-122.4L229.6,-122.8L229.9,-124.9L231.0,-126.8L233.0,-127.3L235.1,-128.5L237.4,-128.6L239.6,-128.9L240.3,-128.9ZM211.2,4.4L210.0,2.6L211.9,3.9L211.2,4.4ZM180.5,8.6L179.7,6.8L181.2,5.3L182.0,7.2L180.5,8.6ZM184.3,11.9L182.2,10.2L181.6,8.4L183.4,7.0L185.1,8.1L184.2,10.0L186.0,11.3L184.3,11.9Z"/>
         <path class="jm-land-ctx" d="M102.5,-92.0L104.0,-93.3L105.9,-93.9L108.4,-91.1L110.2,-90.6L113.3,-89.5L115.3,-90.3L116.9,-92.2L118.9,-92.8L120.7,-91.4L122.3,-89.7L124.5,-88.5L126.5,-90.4L129.3,-90.0L131.5,-90.6L133.5,-90.8L135.3,-89.5L136.8,-88.4L138.5,-89.3L140.7,-88.4L142.9,-89.1L144.9,-89.3L146.5,-88.5L147.9,-90.0L150.1,-88.4L151.3,-87.0L152.3,-85.0L154.2,-83.5L155.4,-81.5L157.0,-80.3L157.4,-78.2L157.3,-76.3L155.5,-74.7L155.0,-72.8L156.1,-69.7L155.6,-67.3L154.6,-65.2L154.8,-62.9L155.8,-61.3L157.0,-59.7L158.7,-58.1L158.9,-55.8L160.4,-54.3L161.9,-53.3L163.3,-52.2L164.1,-49.6L163.6,-47.9L162.9,-45.6L162.4,-43.7L163.3,-42.1L162.0,-40.6L163.3,-39.1L163.5,-37.1L164.1,-35.0L165.3,-33.5L167.4,-31.8L166.6,-29.0L165.6,-27.2L165.3,-25.2L166.1,-22.9L166.6,-20.8L168.5,-19.9L169.9,-18.0L171.2,-16.4L172.4,-15.0L172.9,-13.3L173.3,-11.4L172.8,-8.8L173.5,-6.4L172.5,-4.5L172.3,0.5L170.1,-0.4L168.7,-4.1L167.8,-1.7L171.1,1.0L170.7,3.7L168.4,1.8L166.6,3.3L164.6,8.2L164.5,10.1L163.1,11.6L160.6,12.1L159.9,10.2L158.0,9.8L156.1,9.7L153.9,9.3L152.7,7.8L150.5,7.9L148.7,8.7L149.4,6.9L151.6,6.3L151.8,4.3L151.0,2.2L149.3,1.2L149.7,3.2L148.1,2.0L148.4,3.8L147.0,5.1L145.3,5.8L142.3,6.7L140.6,7.3L137.6,8.1L134.7,9.5L132.4,8.9L129.8,8.0L129.6,10.3L129.1,13.2L127.9,15.3L125.2,15.6L124.0,17.0L122.0,17.0L120.1,17.2L118.4,16.2L115.1,16.2L113.3,16.2L110.9,17.7L109.3,16.9L106.7,17.7L105.6,19.2L103.6,19.8L102.8,21.8L101.0,22.6L99.5,20.9L98.3,19.3L95.5,20.0L94.9,21.7L93.9,23.5L91.8,24.5L89.9,24.0L90.5,25.9L92.0,27.3L91.0,28.9L89.1,29.7L86.8,30.1L83.9,30.6L82.5,31.8L81.6,34.2L79.5,33.1L78.6,34.8L76.7,35.3L74.8,34.9L73.5,32.4L71.1,31.4L69.9,33.7L68.2,35.5L66.0,36.4L64.1,36.7L64.8,34.5L63.4,32.7L65.2,32.1L66.5,30.5L64.5,29.7L62.5,29.2L62.6,27.4L61.6,25.2L61.3,23.1L60.1,21.2L59.0,19.5L60.0,17.6L58.6,16.2L59.3,14.5L60.5,15.9L60.6,14.0L62.2,13.0L59.7,13.5L57.8,13.5L56.0,14.0L54.6,12.4L53.6,14.1L51.2,13.6L49.2,12.5L47.3,12.5L45.3,12.7L43.1,13.4L40.6,13.8L41.4,15.5L39.6,15.0L38.1,16.2L37.9,18.0L36.5,19.3L35.0,21.1L33.7,22.9L32.6,24.4L30.9,25.4L29.4,26.6L27.7,27.6L27.2,29.4L26.2,31.0L28.2,32.1L29.2,33.7L26.4,34.6L24.0,34.7L24.3,32.3L21.8,31.7L19.9,31.7L18.2,31.0L17.5,28.2L16.1,26.0L16.6,23.7L15.4,22.3L14.6,20.2L15.2,18.4L14.5,16.7L12.8,17.5L12.0,15.1L10.1,13.2L8.3,13.4L8.3,11.5L8.9,9.5L8.7,6.9L8.1,5.0L9.2,3.5L9.6,1.1L8.2,-2.0L7.6,-3.8L6.9,-5.5L5.8,-7.1L5.8,-9.5L6.3,-11.4L8.9,-12.3L10.9,-13.8L12.1,-15.1L13.7,-16.7L14.5,-18.8L15.5,-21.2L13.8,-23.3L15.5,-25.8L16.0,-28.0L17.5,-30.4L18.4,-32.6L18.9,-34.3L17.1,-34.9L15.6,-36.1L17.0,-37.5L18.3,-38.8L21.0,-40.6L23.0,-41.1L24.2,-42.8L26.4,-43.0L27.0,-45.2L28.4,-47.2L28.9,-50.0L30.9,-51.0L32.7,-50.1L33.4,-47.7L35.1,-47.0L36.5,-48.7L37.7,-50.3L40.0,-48.7L42.0,-49.8L44.4,-50.3L45.5,-48.1L47.2,-47.2L48.4,-48.8L50.4,-49.8L50.2,-52.1L51.8,-53.0L54.4,-51.2L56.2,-50.4L58.5,-50.1L60.3,-49.5L62.0,-50.6L64.1,-49.4L66.0,-51.3L67.9,-51.8L69.4,-52.7L70.8,-54.3L72.7,-54.7L73.6,-56.3L75.4,-55.8L77.6,-55.9L79.8,-54.8L81.0,-57.4L82.6,-56.5L84.7,-57.2L84.1,-59.2L83.5,-61.8L81.6,-62.2L80.4,-63.6L78.1,-64.4L75.8,-64.2L76.8,-65.8L78.3,-67.7L80.3,-69.0L81.5,-70.9L83.4,-72.0L85.5,-71.6L88.0,-73.1L89.7,-74.0L91.0,-76.0L91.3,-78.2L93.1,-79.2L94.7,-81.6L96.7,-83.3L98.9,-85.5L98.7,-87.5L100.2,-89.3L101.4,-90.8L102.5,-92.0ZM144.5,13.4L142.5,13.0L140.8,12.2L140.0,10.0L140.0,8.1L142.2,7.4L143.9,6.3L145.8,6.2L147.7,7.5L146.0,9.6L145.1,11.8L144.5,13.4ZM139.7,11.0L137.8,10.1L138.5,8.4L139.8,10.3L139.7,11.0ZM151.5,12.7L149.9,10.2L151.9,10.2L151.6,12.4L151.5,12.7ZM155.4,15.3L153.8,13.5L155.1,11.9L157.1,11.1L157.9,12.9L159.9,11.5L159.5,13.3L157.4,13.9L155.4,15.3ZM132.7,19.0L130.7,18.1L131.1,16.2L131.7,13.3L133.8,14.1L134.3,16.2L132.7,19.0ZM142.2,25.0L140.6,23.9L139.5,22.3L137.4,20.3L136.0,17.7L136.1,15.7L137.0,13.6L138.7,13.2L140.3,15.2L142.2,16.2L143.6,18.8L142.4,21.2L144.3,21.8L142.7,23.4L142.2,25.0ZM150.5,16.8L150.6,14.8L152.8,13.4L153.3,15.8L151.3,16.6L150.5,16.8ZM172.5,16.3L170.6,15.9L171.6,14.2L173.1,15.5L172.5,16.3ZM128.5,21.2L126.6,19.5L127.8,17.0L129.1,18.3L129.0,20.7L128.5,21.2ZM51.6,21.9L49.5,21.5L51.0,20.2L52.1,18.1L52.9,20.3L51.6,21.9ZM129.1,27.7L127.4,26.6L127.9,24.3L128.9,21.8L129.7,19.8L131.4,20.6L133.8,19.6L135.9,19.3L137.0,21.6L136.4,23.5L134.6,24.5L132.8,25.5L131.5,26.9L129.1,27.7ZM32.7,31.3L32.1,29.0L32.5,27.1L33.7,25.0L35.0,23.1L36.9,22.0L38.5,21.1L40.5,21.0L41.3,24.2L39.8,25.6L37.7,27.3L36.2,29.4L34.0,30.7L32.7,31.3ZM109.3,24.3L107.9,23.0L109.1,21.5L110.2,23.5L109.3,24.3ZM51.1,46.0L52.1,44.1L52.9,42.2L53.5,40.3L54.0,38.3L52.8,36.6L51.7,38.7L50.2,36.3L48.6,35.2L45.9,32.2L46.2,30.1L45.2,28.2L47.4,27.2L50.3,27.7L51.6,30.1L52.3,32.0L54.5,31.5L55.3,33.3L57.1,31.3L55.9,29.1L54.3,27.7L52.7,29.3L52.4,27.2L52.2,25.1L52.6,23.1L54.7,23.3L56.4,23.8L57.0,22.0L58.2,23.8L59.3,25.8L59.0,28.2L59.2,30.2L58.3,33.0L58.4,35.2L57.1,36.8L56.2,38.6L57.3,40.1L58.5,42.9L56.1,44.6L54.3,45.3L52.0,45.5L51.1,46.0ZM104.9,35.0L102.8,34.5L100.6,32.8L100.6,30.4L102.5,29.8L104.1,28.9L105.7,27.0L106.4,28.7L108.3,27.2L109.2,25.7L110.4,24.0L112.3,24.7L111.1,28.2L109.7,30.5L109.3,32.7L107.3,34.0L105.6,34.7L104.9,35.0ZM104.4,27.9L103.2,25.9L104.5,27.4L104.4,27.9ZM88.0,41.8L88.1,39.7L86.2,40.1L85.1,38.6L82.6,38.2L81.8,36.3L84.5,35.2L86.0,36.2L88.9,36.8L90.0,38.2L90.6,40.1L89.1,41.2L88.0,41.8ZM79.0,40.1L76.9,39.9L77.3,37.9L78.5,36.2L80.1,35.4L81.4,37.2L80.4,39.6L79.0,40.1ZM65.7,53.1L64.8,51.4L63.7,49.7L62.1,50.9L60.7,49.6L59.4,51.3L57.7,52.0L54.9,52.6L53.4,51.0L53.4,49.0L55.3,47.9L56.7,46.6L58.3,45.7L60.5,44.2L59.0,43.1L59.1,40.1L59.8,38.1L61.3,37.0L62.7,35.8L63.8,37.6L65.8,37.6L66.4,39.7L64.5,39.7L62.4,41.6L63.3,43.4L65.4,42.8L65.1,46.0L64.4,47.9L66.5,47.7L68.3,46.6L69.5,48.2L67.7,50.4L66.7,52.0L65.7,53.1ZM36.0,38.0L35.2,35.9L37.1,36.2L36.4,38.0L36.0,38.0ZM97.8,42.8L95.9,42.4L95.8,40.1L97.1,38.4L98.8,37.8L100.8,36.6L102.2,37.9L103.5,39.3L102.0,40.6L100.1,41.6L98.3,42.4L97.8,42.8ZM92.1,41.4L91.9,39.6L93.1,37.7L95.2,39.1L93.4,41.3L92.1,41.4ZM47.5,43.4L45.8,42.0L45.6,40.1L47.4,40.0L49.3,41.2L48.0,43.3L47.5,43.4ZM63.3,57.8L62.8,55.3L63.7,57.6L63.3,57.8Z"/>
         <path class="jm-land-ctx" d="M-37.0,-33.1L-37.7,-31.2L-36.4,-29.4L-36.2,-27.4L-36.5,-25.5L-35.5,-23.6L-33.6,-23.2L-33.7,-21.1L-33.3,-18.9L-34.0,-16.9L-35.3,-15.6L-35.3,-13.1L-36.8,-10.4L-39.3,-8.7L-38.2,-6.2L-37.9,-4.1L-35.9,-3.5L-36.4,-0.9L-36.6,1.0L-34.5,2.9L-32.3,2.5L-30.4,2.1L-28.3,2.2L-25.7,2.2L-24.9,4.3L-25.5,6.1L-27.1,8.4L-28.2,9.8L-28.0,12.2L-26.6,13.8L-27.0,16.1L-25.2,17.2L-24.1,19.1L-22.2,19.8L-20.3,21.1L-18.5,20.0L-16.6,20.7L-14.4,20.2L-13.8,18.4L-12.0,18.7L-10.5,17.1L-8.4,16.7L-7.0,17.9L-5.0,20.6L-4.6,18.4L-3.0,16.6L-2.2,14.3L-0.8,12.8L1.4,11.7L1.5,9.6L-0.2,7.1L-1.3,5.1L-0.4,3.2L1.6,1.9L1.9,-0.5L3.6,-1.8L5.6,-2.8L7.9,-2.6L9.6,1.1L9.0,3.4L8.1,5.0L8.7,6.9L9.2,8.8L8.6,10.6L8.5,12.5L10.5,14.1L12.0,16.2L14.1,17.1L14.8,19.4L14.8,22.0L16.6,23.7L15.9,25.7L16.9,27.2L17.1,29.9L18.5,31.3L20.3,31.6L23.0,32.0L23.0,34.8L24.9,35.4L29.2,34.3L28.6,36.2L27.5,37.6L28.7,39.1L29.9,40.8L29.3,43.2L27.8,46.3L24.0,46.5L23.8,48.5L24.9,52.0L25.1,54.0L25.4,56.9L25.9,59.5L25.4,64.0L24.2,65.7L22.6,69.1L20.6,69.9L16.7,70.7L14.8,72.0L14.9,74.0L15.1,75.9L15.6,78.0L15.3,80.1L17.3,82.3L18.6,84.3L18.8,86.6L17.2,87.8L15.4,88.3L13.9,87.3L13.8,85.0L14.2,82.3L11.8,81.2L9.7,80.1L9.0,78.3L7.2,77.4L5.3,77.4L6.9,75.9L5.3,76.8L3.2,78.1L1.0,77.3L-0.4,76.1L-2.2,74.6L-3.5,75.9L-4.4,72.5L-6.3,71.6L-8.4,71.5L-9.9,69.0L-11.7,68.4L-14.1,67.1L-16.4,66.1L-15.9,64.3L-17.6,63.3L-19.5,63.1L-21.6,65.3L-24.6,66.2L-22.1,67.0L-22.7,69.0L-24.4,67.7L-26.5,68.1L-28.5,68.0L-26.8,66.6L-24.9,64.0L-23.4,62.1L-21.7,61.0L-22.5,58.9L-24.3,58.6L-25.6,60.5L-24.5,57.6L-26.1,56.4L-28.0,56.8L-30.2,57.8L-30.6,55.9L-28.9,55.1L-30.6,54.4L-32.3,55.4L-34.1,55.8L-35.9,56.5L-37.7,57.0L-39.1,58.2L-42.3,59.0L-45.1,59.0L-46.0,60.8L-47.5,59.5L-49.8,59.0L-49.6,60.8L-52.3,62.5L-53.5,64.0L-55.5,64.2L-57.6,64.0L-58.1,61.8L-60.0,60.8L-62.6,59.0L-63.7,60.8L-62.4,62.0L-64.3,63.9L-64.4,66.2L-66.6,65.6L-68.8,66.0L-68.0,64.0L-69.4,62.2L-70.6,64.0L-71.7,65.4L-71.2,63.5L-70.2,61.5L-72.2,60.8L-71.7,58.6L-73.5,57.4L-73.7,59.2L-75.3,60.4L-74.3,63.3L-76.1,64.9L-77.3,66.3L-77.5,68.5L-78.7,70.2L-80.5,71.2L-82.4,71.5L-83.6,72.9L-85.3,73.4L-87.6,75.5L-89.6,74.8L-91.6,74.8L-90.4,73.3L-90.9,71.4L-92.0,73.0L-93.7,73.5L-95.6,72.6L-97.3,74.1L-100.1,71.4L-99.2,69.7L-99.2,67.6L-100.0,65.9L-101.8,65.2L-103.4,64.0L-105.6,62.5L-106.9,60.3L-108.4,59.1L-111.3,58.9L-113.7,58.4L-114.2,56.2L-116.0,57.9L-117.5,60.3L-117.8,62.8L-119.0,64.5L-120.3,66.3L-121.9,67.4L-124.6,69.5L-126.3,70.8L-128.2,72.1L-128.3,74.1L-128.5,76.7L-130.8,76.8L-130.1,75.1L-131.9,74.5L-133.7,72.6L-131.3,72.3L-130.0,71.0L-129.7,72.8L-130.1,70.8L-129.7,68.6L-129.7,66.8L-130.2,64.3L-129.4,62.7L-130.2,60.8L-129.6,58.2L-129.9,56.0L-131.4,54.5L-133.3,53.9L-133.7,52.0L-134.6,50.4L-136.0,48.7L-135.3,45.5L-133.8,44.7L-131.0,44.3L-131.7,42.6L-130.1,41.6L-128.2,40.1L-127.7,38.3L-127.8,35.1L-129.1,33.9L-128.7,30.2L-131.0,28.2L-132.2,26.1L-134.1,24.3L-134.9,22.6L-133.0,21.1L-132.5,19.0L-132.2,17.0L-132.4,14.8L-131.2,12.6L-129.8,13.7L-128.2,14.9L-126.4,14.1L-124.4,13.5L-121.7,12.4L-120.0,11.2L-117.9,11.0L-115.2,11.4L-115.3,9.5L-116.8,8.4L-117.3,6.6L-119.1,7.3L-121.0,7.1L-122.7,6.1L-125.2,6.5L-124.7,8.7L-126.7,8.5L-126.8,6.6L-124.3,5.5L-123.9,3.2L-122.6,1.7L-119.7,2.8L-118.8,5.0L-117.0,5.6L-115.1,5.4L-113.1,5.0L-111.3,4.5L-109.1,4.3L-106.6,5.1L-104.8,5.6L-102.8,7.1L-102.3,9.6L-100.9,11.1L-98.3,10.4L-95.8,7.5L-94.6,9.7L-93.6,11.3L-92.8,9.5L-90.9,9.0L-88.9,9.5L-87.0,8.6L-85.2,9.1L-82.9,9.6L-81.3,8.5L-80.3,6.5L-79.1,4.5L-77.2,5.6L-75.4,5.0L-74.0,3.9L-72.1,4.3L-70.8,3.1L-69.9,1.3L-71.8,0.5L-72.0,-1.5L-70.2,-0.2L-67.4,-2.4L-66.2,-4.0L-64.3,-5.2L-63.7,-6.9L-64.9,-8.4L-65.0,-10.9L-63.7,-12.7L-62.1,-11.8L-60.0,-11.7L-58.2,-14.0L-56.2,-15.7L-54.8,-17.0L-53.2,-18.7L-53.6,-20.5L-53.1,-22.4L-51.9,-24.5L-49.4,-24.9L-47.4,-24.9L-49.0,-26.1L-48.8,-28.1L-47.4,-30.3L-45.5,-30.7L-43.7,-30.6L-43.0,-28.4L-41.3,-29.1L-39.7,-30.0L-39.7,-32.2L-37.8,-32.2L-37.0,-33.1ZM50.2,62.8L48.0,61.6L49.4,60.1L50.5,61.7L50.2,62.8ZM31.9,65.3L30.8,63.4L32.4,64.9L31.9,65.3ZM-21.4,74.3L-23.2,73.1L-23.0,71.3L-21.5,72.3L-20.0,70.8L-18.2,71.2L-18.1,69.1L-17.7,67.3L-15.8,67.0L-14.7,68.6L-17.0,69.6L-16.6,71.4L-18.3,72.2L-19.6,73.8L-21.4,74.3ZM24.7,84.9L23.8,83.1L22.8,80.8L21.1,79.6L21.0,75.9L22.4,73.8L21.8,71.5L24.2,71.8L25.5,69.4L27.2,70.2L29.1,69.7L31.5,71.8L33.2,71.1L34.2,72.7L35.9,74.4L36.3,76.3L38.0,75.6L37.7,77.8L39.9,78.5L42.6,77.3L43.6,75.1L45.8,74.9L48.0,74.5L48.5,72.6L50.4,71.0L52.2,71.7L54.1,72.6L55.9,71.9L53.7,74.1L51.8,74.1L50.3,75.1L48.9,76.8L47.2,76.2L44.9,76.7L43.6,78.4L43.3,80.5L43.9,83.1L41.9,83.6L40.0,84.2L40.2,81.9L38.5,79.9L35.3,79.2L33.3,78.7L32.0,80.2L31.9,82.0L29.4,82.2L27.2,82.2L25.6,83.4L24.7,84.9ZM56.5,71.0L54.7,69.7L56.8,69.7L56.5,71.0ZM42.0,73.1L40.3,72.0L41.7,70.1L42.2,72.2L42.0,73.1ZM55.5,76.6L54.1,74.9L55.4,76.1L55.5,76.6ZM5.9,80.6L5.1,78.7L6.4,80.1L5.9,80.6ZM7.3,83.5L7.2,81.0L8.2,83.1L7.3,83.5ZM2.6,85.6L0.6,85.3L1.8,83.8L2.8,85.4L2.6,85.6ZM43.9,86.3L42.1,85.3L44.4,85.6L43.9,86.3ZM5.9,95.2L3.9,94.8L5.5,93.3L6.8,92.0L7.8,90.3L9.2,89.2L8.6,86.8L8.4,84.7L9.8,86.7L12.1,86.8L13.2,88.5L10.8,89.3L9.0,91.0L7.6,92.6L6.8,94.5L5.9,95.2ZM30.6,97.8L29.4,96.4L28.0,95.4L25.7,95.8L24.2,94.2L22.7,92.4L20.7,93.8L22.0,91.6L23.7,91.1L26.0,90.9L27.6,92.1L28.8,93.8L30.4,94.6L31.4,96.2L30.6,97.8ZM-4.4,97.5L-6.4,95.9L-4.7,94.1L-1.5,94.9L-2.8,96.7L-4.4,97.5ZM16.0,105.5L15.8,103.5L17.2,102.0L17.0,99.7L17.4,102.1L17.7,104.3L16.0,105.5Z"/>
@@ -190,327 +73,38 @@ body{font-family:'Zen Kaku Gothic New',sans-serif;background:var(--bg);color:var
         <path class="jm-land" d="M278.2,-16.2L279.6,-16.4L279.9,-15.2L281.0,-15.8L282.1,-15.9L280.9,-15.4L280.1,-14.5L279.7,-13.1L280.9,-12.7L281.5,-11.5L281.0,-9.1L280.1,-7.6L280.5,-6.1L279.5,-5.0L280.6,-4.1L280.2,-1.7L279.2,-0.3L279.0,1.4L277.9,0.6L276.7,-0.9L275.5,-0.8L274.3,-0.4L273.5,0.4L272.5,1.1L272.6,-0.3L273.0,-1.7L274.5,-1.4L275.8,-1.5L276.4,-3.0L274.8,-3.8L273.5,-3.8L272.3,-3.1L271.0,-2.7L269.5,-0.7L269.2,0.8L268.6,1.8L268.0,3.0L268.0,4.1L266.3,5.1L265.4,3.4L266.3,2.6L265.3,1.8L266.3,1.0L266.9,0.1L267.4,-1.2L266.9,-2.2L265.9,-2.9L265.8,-4.3L264.3,-3.3L263.5,-4.7L262.3,-4.6L261.1,-4.6L260.3,-3.6L259.0,-3.2L258.1,-1.8L256.7,-1.5L256.1,-2.6L255.8,-4.0L257.3,-6.1L258.4,-6.2L259.6,-5.3L258.3,-7.1L257.8,-8.2L258.4,-9.2L258.5,-10.6L260.3,-9.4L261.5,-10.1L262.6,-10.0L263.9,-10.4L265.0,-11.3L266.8,-11.3L268.0,-12.8L269.0,-13.3L269.8,-14.5L270.8,-14.0L272.4,-13.8L274.7,-14.1L275.9,-15.5L277.8,-16.3L278.2,-16.2ZM239.4,-6.9L240.6,-6.7L241.4,-8.1L241.1,-5.9L241.0,-4.5L240.0,-5.3L239.4,-6.9ZM248.1,-1.4L247.2,-2.2L246.2,-3.0L243.8,-3.7L242.9,-4.7L243.6,-5.6L245.3,-5.4L246.2,-6.2L247.5,-6.7L248.9,-6.9L250.2,-5.6L250.9,-4.3L249.5,-3.1L248.7,-1.6L248.1,-1.4ZM252.6,-3.3L251.6,-4.1L252.7,-4.4L253.8,-4.6L253.1,-3.5L252.6,-3.3ZM237.6,1.0L236.3,0.4L235.4,-0.4L235.0,-1.5L234.6,-2.8L234.8,-4.1L236.3,-3.9L238.2,-1.6L238.8,-0.2L240.0,-0.5L238.7,0.9L237.6,1.0ZM238.7,-1.5L238.4,-2.6L239.6,-3.1L238.7,-1.5ZM245.1,4.8L245.1,3.2L246.3,2.7L246.2,4.1L245.1,4.8ZM215.5,5.3L214.7,4.3L215.3,3.3L215.6,4.4L215.5,5.3ZM250.8,7.1L250.9,5.5L251.8,6.4L250.8,7.1ZM198.7,9.7L198.2,8.5L198.1,7.3L196.9,6.2L199.2,5.7L199.4,7.4L199.1,9.0L198.7,9.7ZM243.2,10.1L243.2,8.8L244.8,5.9L245.2,7.2L245.0,8.5L243.2,10.1ZM210.4,11.6L209.9,10.2L209.2,9.0L209.0,7.4L210.0,8.6L210.9,7.8L211.9,7.0L212.9,7.7L213.7,8.6L212.9,9.5L211.5,10.3L210.4,11.6ZM202.7,14.1L201.8,13.4L201.0,12.2L201.4,10.9L202.3,10.3L202.7,9.1L203.8,9.0L203.8,7.2L204.9,7.6L205.2,8.7L206.4,10.9L205.7,12.2L204.0,12.7L203.8,13.8L202.7,14.1ZM254.7,42.8L255.0,44.3L255.0,45.5L253.9,46.8L252.7,47.2L251.0,47.8L249.6,48.0L248.2,47.1L247.0,48.2L245.8,48.5L244.6,47.5L243.7,48.5L243.2,50.1L242.1,50.7L241.7,51.7L240.2,52.0L238.8,52.9L238.2,53.9L236.7,53.4L235.2,54.0L234.8,52.7L233.6,52.4L232.2,51.2L231.8,50.1L231.1,49.0L230.2,47.9L227.4,49.8L225.7,49.0L224.3,49.5L223.1,49.9L221.1,49.6L220.2,50.4L218.7,50.5L217.3,51.2L216.9,53.2L214.4,54.5L213.5,53.5L212.0,53.2L211.0,54.0L210.1,55.1L209.3,56.0L208.4,56.8L206.3,58.1L205.6,59.1L205.4,60.7L204.2,61.9L202.7,61.9L201.8,62.6L200.6,62.6L199.3,61.3L198.0,60.5L196.2,60.5L195.0,60.2L194.1,59.0L192.7,59.7L191.3,59.3L190.6,58.2L192.4,57.9L193.5,57.4L194.9,54.2L194.6,52.9L195.2,52.0L195.1,49.6L195.2,48.1L194.8,46.8L195.4,45.8L195.8,43.0L196.3,40.9L196.5,39.1L196.6,37.9L196.6,36.7L195.2,35.3L194.6,34.1L193.5,34.0L192.8,32.8L191.5,31.0L189.7,30.3L188.6,29.5L188.1,28.3L187.3,27.4L185.8,27.0L187.5,26.4L188.5,27.1L189.6,27.2L190.8,28.2L192.2,28.5L192.9,29.4L193.5,30.7L194.8,30.3L196.5,31.1L197.7,30.3L199.4,29.1L198.9,30.9L199.3,31.9L199.8,30.5L199.8,31.9L200.5,30.9L202.1,30.5L203.8,30.0L205.3,28.2L206.6,27.2L206.4,25.6L207.0,24.2L207.6,25.5L207.6,24.1L208.9,24.3L210.0,23.4L211.4,23.1L210.1,21.5L212.1,23.0L212.5,21.6L211.3,20.7L212.5,20.1L213.5,21.6L213.6,20.3L215.4,20.0L216.4,19.1L217.8,18.1L217.1,16.2L217.3,15.1L217.0,13.9L219.5,12.8L218.2,14.6L220.2,13.7L220.9,12.8L221.6,13.7L221.5,14.9L220.6,15.7L219.3,15.9L218.4,16.7L218.8,17.9L220.0,17.6L221.2,17.4L222.4,17.6L222.5,16.5L223.4,15.7L224.5,15.6L225.4,14.1L225.5,13.0L225.3,10.9L226.1,9.6L227.5,10.3L229.1,10.3L229.9,8.6L231.1,9.8L231.6,10.8L232.3,9.9L233.7,10.4L233.9,11.6L234.4,12.5L235.0,11.6L236.2,11.8L237.1,12.6L238.2,13.7L239.3,13.6L240.4,13.4L242.4,13.9L243.6,13.9L244.9,14.1L246.0,14.0L245.1,13.4L246.2,13.2L246.7,14.7L247.5,12.6L248.0,14.7L249.3,12.5L249.5,9.3L250.8,10.4L252.3,13.0L252.5,11.3L253.1,10.3L253.4,9.0L252.8,8.0L254.3,7.2L255.8,7.7L257.3,8.5L258.1,10.7L257.3,12.1L257.6,13.7L257.2,15.0L257.2,16.2L258.3,17.8L260.0,17.9L260.6,16.8L260.7,15.4L260.3,13.9L261.3,15.1L262.8,15.3L264.0,14.3L263.4,13.1L263.2,11.5L264.6,14.2L265.4,15.2L266.4,16.1L268.0,14.3L269.2,15.3L269.9,16.2L270.2,18.7L269.4,19.4L268.0,20.4L268.1,21.9L268.8,22.9L269.9,23.9L270.8,23.0L271.6,24.0L272.9,25.0L274.1,25.0L276.6,25.5L278.9,27.7L280.0,28.3L281.3,28.2L283.0,28.4L283.6,27.0L285.3,28.2L286.1,29.7L286.9,30.4L286.8,31.5L287.9,32.7L290.7,34.8L290.9,36.0L289.7,38.2L290.3,40.1L288.5,41.9L287.5,41.2L286.5,40.4L285.4,41.0L284.4,40.1L283.0,39.4L281.7,38.4L280.3,37.9L279.8,39.1L278.3,39.4L276.0,39.1L274.7,40.0L273.3,38.8L271.6,39.1L269.5,38.2L268.5,38.6L266.2,38.6L264.9,38.7L263.4,39.4L262.3,39.3L260.9,39.7L259.8,39.4L258.1,40.1L256.0,40.8L255.3,42.2L254.7,42.8ZM217.3,9.6L216.3,9.1L217.1,7.9L217.3,9.6ZM197.1,10.9L195.9,10.5L196.7,9.6L197.1,10.9L197.1,10.9ZM211.6,13.3L212.2,12.1L213.1,13.1L211.6,13.3ZM193.5,17.0L192.9,14.3L194.6,15.9L194.1,16.9L193.5,17.0ZM200.0,20.7L198.2,18.1L200.3,19.0L200.4,20.5L200.0,20.7ZM193.5,27.8L193.0,26.5L193.9,25.8L193.5,24.4L194.3,23.5L194.7,25.1L196.1,24.9L197.3,24.2L197.4,25.7L195.8,25.5L194.2,26.9L193.5,27.8ZM200.5,26.1L199.4,25.9L200.8,25.6L200.5,26.1ZM182.7,46.6L182.0,45.4L183.6,45.4L183.0,46.5L182.7,46.6Z"/>
         <path class="jm-land" d="M114.4,37.1L113.2,36.8L113.1,35.6L112.4,34.5L113.3,33.5L114.0,32.4L115.1,33.0L115.0,31.9L116.2,32.0L117.6,32.2L118.2,29.9L118.6,28.7L118.3,27.5L116.9,27.0L115.6,27.4L115.6,25.9L117.0,25.9L117.9,25.2L116.9,23.7L118.2,23.0L120.0,21.9L121.9,22.1L123.3,23.3L124.2,25.9L124.6,27.1L125.9,27.5L125.5,29.8L125.5,31.9L126.2,32.9L125.3,33.7L123.2,34.6L122.0,34.3L119.6,34.4L118.5,35.4L117.0,35.9L114.8,36.9L114.4,37.1ZM143.8,30.3L143.2,28.6L143.5,27.6L143.0,26.0L144.2,24.8L144.6,23.7L145.9,22.9L147.0,23.4L147.5,24.7L146.5,26.1L144.2,27.4L144.5,28.7L143.8,30.3ZM140.6,27.8L139.5,26.5L139.2,25.4L139.0,24.2L140.3,24.6L141.4,25.9L141.5,27.3L140.6,27.8ZM135.1,29.9L134.9,28.2L135.1,26.4L136.3,24.6L137.4,24.2L138.3,25.9L138.9,26.9L138.5,28.2L137.4,29.2L135.1,29.9ZM140.9,31.9L140.8,30.4L141.2,28.7L141.9,27.6L142.7,29.1L141.8,30.2L141.6,31.6L140.9,31.9ZM137.4,31.1L137.2,29.9L138.7,29.2L139.8,29.8L138.7,31.0L137.4,31.1ZM132.4,37.1L131.6,36.2L130.7,35.1L129.2,36.8L128.3,35.6L127.7,34.4L126.5,34.9L126.0,33.7L127.2,33.1L126.3,32.0L126.8,30.9L127.9,31.2L129.2,31.3L130.6,30.3L132.0,29.9L132.5,30.9L132.0,32.8L133.1,33.2L134.2,33.5L135.9,32.7L135.7,33.8L133.9,34.7L134.2,35.9L133.0,36.5L132.4,37.1ZM111.3,38.2L110.0,38.1L109.7,36.9L110.1,35.5L111.2,37.6L111.3,38.2ZM151.4,38.3L150.9,36.2L152.0,37.3L151.4,38.3ZM105.1,39.4L104.0,38.3L102.8,37.0L104.0,36.4L105.1,37.0L106.2,36.9L106.4,38.1L105.2,38.6L105.1,39.4ZM123.4,49.0L122.3,48.9L120.7,48.6L121.4,47.5L121.5,46.0L121.5,44.7L122.0,43.2L122.3,41.9L123.3,43.2L124.1,42.5L123.7,41.1L123.3,39.9L122.1,39.3L122.3,37.9L123.2,36.6L125.3,36.8L126.5,37.0L128.2,37.7L128.5,39.4L129.7,40.1L131.0,39.4L132.5,38.9L132.4,40.1L131.5,41.2L130.6,41.8L129.4,42.2L128.7,43.5L127.7,44.6L126.6,45.2L125.5,46.9L124.4,48.2L123.4,49.0ZM129.3,38.4L129.7,36.6L129.8,38.0L129.3,38.4ZM157.1,40.1L156.1,38.8L157.4,38.8L158.4,39.7L157.1,40.1ZM120.2,43.3L118.9,43.1L118.0,42.4L118.9,41.7L119.8,42.4L120.2,43.3ZM63.3,116.3L68.3,114.5L70.9,113.2L72.7,111.7L73.5,110.9L74.6,110.4L76.0,108.9L77.7,107.8L78.9,106.3L80.3,103.0L80.7,101.1L82.7,99.7L83.2,98.7L83.2,96.4L82.7,95.2L82.0,94.0L81.9,92.4L81.7,91.0L82.9,91.6L82.1,90.5L82.3,89.3L82.2,87.8L83.2,87.4L83.6,85.6L84.7,85.3L84.6,84.0L85.7,83.7L84.7,83.1L84.0,82.1L83.5,80.8L84.3,79.5L84.6,77.7L85.9,78.1L87.0,78.2L89.1,77.9L90.2,76.5L90.2,75.4L90.8,73.5L91.8,70.2L91.8,68.0L92.3,66.1L91.2,64.7L92.6,64.0L94.1,63.1L95.3,63.0L96.4,61.7L97.5,61.0L98.5,60.3L99.7,59.5L100.4,58.4L101.7,57.8L102.2,56.6L103.1,55.9L104.5,56.2L105.8,55.9L107.4,54.7L108.7,55.5L109.7,54.9L109.9,53.6L109.9,52.4L111.0,51.0L110.5,49.0L109.5,48.5L107.9,48.2L106.9,48.5L106.7,47.2L108.0,47.2L109.3,47.3L110.4,47.4L111.3,46.5L111.9,44.9L113.1,45.5L113.6,46.5L114.9,47.4L115.5,49.1L116.0,47.9L116.9,49.2L117.3,50.3L118.5,52.0L118.9,53.0L119.5,54.1L121.1,55.1L122.2,56.9L123.3,57.4L123.6,59.0L124.1,60.5L124.9,62.2L125.5,63.6L126.3,65.1L127.2,66.9L126.9,68.2L128.0,68.9L129.3,70.5L129.8,71.5L130.7,72.3L132.1,71.9L133.4,72.8L132.6,74.4L133.4,75.2L133.5,73.5L134.4,72.8L134.3,74.2L135.2,74.8L137.2,74.4L139.3,73.3L139.7,74.8L139.7,73.1L142.6,72.3L142.9,73.6L143.1,72.2L147.2,71.3L148.2,70.6L149.6,70.7L149.1,69.5L148.9,68.0L149.7,67.2L150.3,69.3L151.6,69.0L152.4,68.3L151.2,67.3L152.5,67.1L153.7,67.1L155.8,66.9L157.1,66.1L158.0,65.3L158.9,66.0L159.2,67.1L159.5,65.6L160.8,66.2L161.8,67.4L163.7,67.1L165.6,66.5L167.2,66.1L168.5,66.4L170.5,66.4L171.7,66.7L173.0,67.0L174.6,67.8L176.5,68.4L177.6,68.8L179.1,68.8L180.0,68.2L181.8,67.8L182.4,66.7L183.8,66.5L184.6,65.6L183.8,64.0L185.1,64.0L186.3,62.9L187.1,62.0L188.1,61.2L189.1,59.5L190.6,58.2L191.3,59.3L192.7,59.7L194.1,59.0L195.0,60.2L196.2,60.5L197.3,60.4L198.7,60.7L200.1,62.0L200.9,63.4L200.6,64.5L199.8,66.8L200.7,67.9L200.7,69.1L201.8,69.9L201.3,71.0L201.9,72.2L201.1,73.1L199.9,74.3L201.1,75.1L201.5,76.4L200.3,77.4L199.8,78.4L200.1,79.6L199.0,80.5L198.1,81.1L196.3,81.2L195.1,81.6L194.2,82.7L192.2,81.6L190.6,81.6L189.6,82.5L188.8,83.4L187.5,83.1L186.4,82.3L185.7,81.3L184.0,81.8L183.2,83.5L182.1,84.1L181.9,85.4L181.1,86.2L179.8,86.9L178.9,88.7L177.3,88.8L175.8,88.2L174.7,88.1L173.6,87.8L171.8,88.2L170.2,87.8L168.9,87.4L167.8,87.8L166.0,89.5L163.7,88.9L161.7,88.1L160.6,89.3L159.0,90.0L158.2,91.0L156.4,90.8L154.3,88.9L153.2,88.5L151.5,89.3L150.5,91.3L149.9,93.9L148.7,94.7L147.5,95.5L145.6,95.9L143.8,93.9L142.3,94.0L141.6,95.9L141.1,97.1L140.5,98.2L138.9,99.3L138.1,100.2L138.2,101.8L136.8,104.1L135.9,105.2L136.5,106.6L135.6,107.2L134.3,107.6L133.6,108.6L133.6,109.9L133.5,111.7L133.1,113.0L132.0,113.5L130.2,113.5L128.5,114.0L128.1,115.2L127.7,116.3L127.5,117.4L127.4,118.8L128.4,119.8L127.8,121.4L125.9,122.4L125.3,123.6L124.8,125.2L126.6,127.1L126.8,129.8L125.7,130.9L123.8,132.2L123.8,133.3L122.8,135.0L120.9,137.3L121.1,138.7L118.9,139.5L116.9,139.9L114.0,140.8L113.0,140.5L110.9,140.4L109.3,140.6L107.4,140.2L105.9,139.9L104.0,140.1L102.9,139.7L101.1,139.0L99.5,139.7L97.9,139.9L97.3,141.1L96.2,141.6L96.6,142.8L98.4,143.7L98.2,145.8L99.4,147.5L99.2,148.9L99.7,150.4L101.0,150.6L102.0,151.4L102.1,153.0L102.7,155.0L104.0,155.4L105.1,155.7L106.8,157.6L107.5,159.1L107.5,160.7L106.8,162.9L105.1,163.7L104.0,163.9L102.0,165.7L100.3,166.4L98.3,167.2L97.1,167.3L95.1,168.3L93.9,169.4L93.2,170.8L92.8,172.0L92.1,173.0L92.3,174.7L91.9,175.7L92.5,178.0L91.4,178.4L89.5,178.6L88.4,178.8L88.4,180.4L87.9,181.4L86.8,183.2L85.6,184.4L84.8,185.4L83.1,187.0L81.9,188.3L80.1,186.0L78.7,185.0L77.1,183.2L75.6,182.0L75.7,180.9L74.2,181.4L73.8,182.5L74.2,184.6L75.2,186.1L75.0,187.8L76.0,188.9L76.9,190.7L77.7,191.6L79.1,192.0L79.5,193.6L79.8,195.2L79.8,197.3L78.4,199.4L79.7,200.9L80.6,201.9L80.6,204.1L80.7,205.4L81.5,207.1L81.3,208.3L81.6,210.1L82.2,211.1L81.8,212.8L81.6,214.8L80.9,215.7L79.5,215.8L78.1,216.1L78.1,218.3L75.6,218.4L74.2,218.9L72.5,219.7L71.3,220.1L71.4,218.9L70.4,218.3L69.9,216.9L70.6,215.9L71.8,215.6L70.5,215.4L69.1,215.7L67.6,215.1L66.3,215.2L65.5,216.3L66.6,216.9L67.8,217.6L66.2,217.1L64.8,216.9L63.8,216.2L63.4,214.9L61.9,214.9L60.2,215.1L60.8,216.2L62.5,217.1L60.6,218.1L59.4,219.0L60.7,219.6L62.6,219.0L61.8,220.3L60.8,221.4L59.3,221.2L58.6,222.2L57.0,221.2L56.7,220.0L56.9,218.9L56.2,217.7L55.2,216.7L56.3,216.2L57.6,216.3L59.0,215.8L59.9,213.9L58.3,213.3L57.0,212.1L58.0,211.1L58.5,210.0L60.2,210.5L59.2,211.0L59.3,212.4L60.5,212.2L61.5,213.2L62.8,213.3L63.9,212.7L65.6,213.7L64.9,212.4L64.1,211.3L62.8,211.6L61.8,211.0L60.6,210.0L59.7,208.6L59.9,207.5L59.3,206.0L57.8,206.1L57.6,204.3L57.5,203.0L57.8,201.3L56.8,200.7L56.1,201.9L56.1,200.6L54.7,201.0L53.7,200.6L53.7,201.9L52.8,200.9L51.6,200.2L50.4,199.7L49.2,199.6L48.5,200.5L48.6,201.7L49.0,203.7L47.8,203.6L47.2,204.6L45.6,205.0L45.7,203.8L47.1,203.6L47.4,202.6L48.1,201.3L47.7,200.1L48.4,198.7L48.6,197.6L49.2,198.5L50.6,198.0L50.7,199.2L52.2,199.6L52.9,198.3L53.4,199.6L54.7,198.9L56.1,198.9L57.1,199.5L58.2,198.2L57.2,197.4L57.0,195.5L56.5,197.1L55.3,196.9L56.0,195.9L54.9,195.2L56.9,194.1L56.1,193.4L56.6,192.3L55.6,191.5L54.8,190.0L53.3,190.1L54.9,189.5L56.3,190.2L57.5,190.5L58.9,190.2L59.8,188.9L59.3,187.8L58.0,188.0L56.9,187.3L55.4,187.7L54.0,187.2L53.9,188.6L52.6,187.9L52.8,186.5L50.6,185.2L51.6,184.5L51.4,183.3L52.5,183.5L53.5,182.5L54.4,183.5L54.5,182.1L53.3,181.2L53.3,180.0L52.4,181.1L52.0,179.6L51.4,178.6L50.2,177.7L48.4,178.2L49.6,177.8L50.8,177.5L51.8,177.9L52.9,178.7L54.2,177.7L54.7,178.8L54.3,179.8L54.9,181.5L56.1,182.3L56.9,181.2L57.0,182.4L57.3,183.6L58.4,183.8L59.1,182.9L58.7,181.3L59.7,181.8L59.7,183.2L61.0,183.2L60.7,181.4L60.1,180.2L59.1,180.0L60.1,179.5L59.5,178.4L61.0,177.1L62.3,176.9L63.5,176.5L64.8,177.0L64.4,175.9L65.9,176.2L65.7,174.6L64.8,173.9L63.5,173.2L62.4,172.5L62.8,171.3L64.3,170.7L64.7,168.8L63.8,169.6L62.6,169.9L61.1,169.6L60.2,170.2L59.9,169.1L58.7,168.9L57.4,168.3L57.2,169.5L56.5,171.0L56.6,169.4L56.6,168.2L57.5,167.4L57.5,166.2L59.3,164.9L60.4,163.9L61.7,163.8L62.9,163.5L62.3,162.5L61.2,162.0L60.1,162.5L59.1,161.9L58.1,161.5L57.2,162.3L55.7,161.9L55.3,163.0L53.9,163.4L52.8,163.0L51.7,162.2L50.7,162.6L50.4,164.0L49.3,163.7L47.7,163.3L46.8,161.8L45.1,161.6L44.0,161.4L44.5,160.4L45.2,159.2L46.6,159.1L46.7,157.9L48.2,158.0L49.7,156.9L49.5,155.8L48.4,156.1L49.5,153.3L48.2,153.8L45.7,155.8L46.3,154.3L45.7,153.0L46.2,151.4L47.2,150.5L46.7,149.4L46.5,148.1L45.3,148.0L46.3,147.2L47.3,146.0L48.3,146.9L48.3,145.6L49.3,144.6L48.0,144.2L46.7,144.4L47.7,143.9L48.7,143.2L49.7,142.3L48.6,142.0L47.4,142.0L46.1,141.8L46.6,140.5L47.7,140.9L47.8,139.8L46.6,139.3L45.2,140.4L45.1,141.7L44.4,140.5L43.3,138.9L41.9,138.3L40.7,138.2L42.1,139.6L40.3,139.6L38.5,139.9L37.9,142.0L36.8,140.8L35.7,139.6L35.0,141.1L34.1,142.0L33.4,143.6L31.6,144.1L30.5,144.4L29.4,145.3L28.3,146.6L27.0,146.7L25.4,147.2L24.2,148.1L21.9,148.5L20.6,149.8L18.3,151.7L18.2,154.1L16.1,154.5L15.4,155.5L14.1,155.4L12.2,155.8L12.3,154.1L13.5,154.3L13.7,152.9L14.1,151.6L11.4,152.1L9.9,153.1L8.7,153.9L7.1,154.5L6.1,155.1L6.0,156.4L4.7,157.2L3.6,157.8L2.3,158.3L3.5,156.7L4.5,155.4L6.3,153.8L7.6,152.9L9.2,152.1L9.9,150.8L11.0,150.2L11.8,149.6L13.2,148.4L14.4,147.5L15.3,148.6L15.9,149.9L16.3,147.5L17.3,147.9L18.1,149.0L19.4,148.7L20.0,147.5L19.1,146.6L17.6,145.6L18.6,144.6L19.5,146.0L20.9,146.4L20.4,143.9L21.9,143.5L23.0,144.2L23.2,142.7L24.9,143.6L26.6,143.9L26.8,142.0L28.4,141.8L29.4,141.1L29.4,142.3L30.8,143.2L31.5,141.9L31.6,140.8L30.8,139.8L32.3,139.3L33.5,138.7L35.2,137.8L36.6,137.8L37.7,137.0L38.8,136.2L40.2,135.5L41.9,134.5L42.9,133.7L44.1,132.9L45.3,132.2L46.5,131.6L47.8,130.5L49.3,129.7L50.7,128.6L51.6,127.6L51.6,126.4L52.5,125.7L53.3,124.4L54.3,123.4L55.1,121.9L56.3,121.0L56.9,120.0L58.4,119.2L59.3,118.3L60.5,117.4L63.3,116.3ZM118.2,48.3L118.3,46.9L118.7,48.2L118.2,48.3ZM141.7,49.6L140.5,49.1L141.7,48.8L141.7,49.6ZM71.6,72.6L70.5,71.6L69.2,69.2L70.2,68.7L72.3,66.3L72.7,65.2L74.2,65.5L74.7,64.4L75.4,63.6L76.8,63.0L76.9,61.8L77.3,63.1L76.4,64.0L76.8,66.1L76.8,67.4L75.5,67.7L75.4,68.8L76.8,70.0L75.5,71.0L74.2,70.6L72.7,71.1L72.0,72.3L71.6,72.6ZM162.4,65.8L161.2,65.0L161.6,63.6L162.7,63.6L163.2,65.3L162.4,65.8ZM64.5,70.0L63.6,68.9L63.9,67.0L64.8,65.6L65.9,65.4L67.4,65.3L66.3,66.9L65.7,68.1L64.5,70.0ZM58.8,69.5L59.6,68.2L59.0,67.1L60.0,66.0L61.6,66.0L61.2,67.9L60.2,68.5L58.8,69.5ZM82.0,69.4L81.4,68.4L82.7,67.8L83.2,69.3L82.0,69.4ZM78.3,71.4L77.4,70.2L78.5,68.8L80.0,68.7L80.4,71.3L79.4,70.6L78.3,71.4ZM63.1,75.0L61.8,74.8L62.2,73.5L63.9,73.9L65.0,73.7L64.0,74.6L63.1,75.0ZM79.8,82.9L78.9,82.1L79.4,80.2L79.6,79.1L78.5,78.4L78.7,77.2L79.8,77.4L81.0,77.1L80.9,75.9L82.1,75.6L83.6,74.8L82.8,75.9L82.6,78.1L81.6,78.5L80.3,78.6L80.6,80.5L82.2,82.1L81.1,82.3L79.9,82.4L79.8,82.9ZM76.5,80.7L76.0,79.4L77.0,80.5L76.5,80.7ZM63.3,86.7L62.8,85.7L61.5,85.5L63.1,85.1L63.3,86.7ZM40.7,153.1L39.9,151.6L40.8,150.9L40.6,152.1L40.7,153.1ZM42.7,154.7L41.6,154.2L42.6,153.3L43.7,153.6L42.7,154.7ZM62.0,176.4L61.1,175.4L61.2,174.2L61.6,173.1L63.0,174.1L63.7,175.2L62.7,175.8L62.0,176.4ZM43.3,180.7L42.5,179.8L42.0,178.3L40.6,178.0L41.9,177.8L43.1,178.0L43.8,177.0L45.0,176.3L45.6,177.6L44.4,177.9L43.3,178.5L43.0,179.7L43.3,180.7ZM47.9,181.1L47.4,180.0L46.3,179.1L47.0,178.1L48.3,178.0L48.5,179.5L49.7,179.4L49.5,180.5L48.1,180.7L47.9,181.1ZM32.0,180.6L31.0,180.3L32.1,180.5L32.0,180.6ZM34.5,184.3L33.4,183.3L31.7,183.5L31.4,181.6L31.9,182.8L33.5,182.3L35.2,181.9L35.3,183.1L34.5,184.3ZM37.1,186.4L35.7,185.7L34.2,184.7L35.3,184.6L36.6,184.3L36.4,185.7L37.5,185.8L37.1,186.4ZM38.2,185.9L40.2,184.5L39.4,185.6L38.2,185.9ZM49.2,193.0L49.5,191.6L49.5,192.8L49.2,193.0ZM37.9,193.0L39.1,192.0L40.1,192.3L38.9,192.8L37.9,193.0ZM52.0,216.2L53.2,215.1L54.5,214.7L54.0,215.8L52.9,216.0L52.0,216.2Z"/>
         <path class="jm-land" d="M188.8,83.4L189.6,82.5L190.6,81.6L192.2,81.6L193.5,82.4L195.1,81.6L196.3,81.2L198.1,81.4L198.5,83.2L199.7,84.1L200.8,84.7L202.2,85.0L202.9,85.9L205.1,86.0L206.5,85.8L207.8,87.1L209.3,87.8L210.8,87.3L211.9,87.0L213.1,87.1L214.4,87.8L216.0,87.6L218.1,86.7L219.3,86.7L220.2,87.8L221.7,89.2L223.1,91.3L224.7,92.4L225.9,92.4L226.9,94.0L228.2,94.3L229.1,93.4L231.0,93.1L232.4,92.1L232.9,90.4L232.8,88.8L233.9,88.1L235.6,87.8L236.7,87.2L237.6,89.3L240.2,89.9L241.4,89.4L242.5,89.0L242.9,90.4L242.5,91.8L243.9,93.1L244.2,94.6L245.2,95.5L245.5,98.8L245.3,100.1L245.7,101.3L246.4,102.5L246.6,103.6L246.9,105.8L246.2,107.6L245.3,108.3L246.6,109.0L247.8,108.8L249.5,108.4L250.6,108.2L252.6,108.0L254.5,108.3L256.2,109.5L258.1,109.1L259.4,109.7L259.4,110.9L259.4,113.0L260.5,114.7L258.5,116.1L257.4,117.0L256.4,117.5L257.0,118.5L257.2,120.0L258.3,120.2L259.4,120.5L258.8,121.5L259.7,122.5L260.6,123.6L260.9,125.0L261.8,126.6L264.1,126.4L265.8,127.4L266.9,128.5L268.0,128.3L269.6,128.2L270.9,128.0L271.8,127.4L274.0,127.9L275.1,128.4L274.6,129.4L273.6,129.9L273.3,131.2L272.4,132.9L270.9,135.5L269.4,138.0L268.0,140.1L267.4,141.3L267.3,142.9L266.6,144.3L265.1,147.5L264.3,149.1L263.6,151.1L264.0,152.7L263.4,154.3L262.8,156.2L262.5,157.2L262.3,159.4L261.8,161.6L261.4,163.7L260.9,165.6L260.5,170.3L260.1,171.8L259.4,172.6L258.8,171.3L258.1,169.4L256.0,166.8L255.1,165.2L253.1,164.8L252.2,165.4L251.6,164.2L251.3,162.3L250.8,160.8L248.5,159.4L246.6,156.6L245.0,154.9L243.7,154.4L242.6,153.4L243.0,151.6L242.8,150.2L242.2,148.6L240.4,147.5L238.2,146.5L236.7,145.7L235.6,145.0L233.7,144.3L232.7,143.3L231.5,141.2L231.9,139.8L230.8,137.9L227.8,136.8L225.2,136.1L223.3,135.5L221.3,135.3L219.2,134.9L217.1,133.8L212.0,133.7L210.5,133.5L209.3,133.1L209.3,131.9L208.4,130.8L206.3,130.5L202.5,130.8L200.6,131.1L193.5,132.6L191.0,133.2L189.0,134.0L187.4,135.5L186.6,134.3L186.8,131.1L187.2,129.9L186.5,128.7L186.1,130.4L186.2,131.7L184.4,132.7L184.8,133.8L186.0,134.8L185.8,135.9L186.9,136.3L188.2,135.8L183.2,138.3L180.0,139.9L178.6,141.0L177.5,141.5L176.4,142.0L174.8,142.7L173.9,143.7L172.6,142.9L171.4,144.8L169.9,144.7L170.0,143.3L168.9,144.1L167.7,143.6L166.4,144.3L167.6,144.7L166.7,145.8L165.5,146.4L164.2,146.2L163.1,146.3L162.3,147.2L161.1,147.8L162.2,148.1L162.7,149.1L163.4,148.0L163.7,146.7L164.3,147.7L165.1,148.7L165.1,147.6L166.2,147.3L167.2,148.2L167.5,146.4L168.3,145.5L169.4,145.0L169.8,146.1L170.8,146.5L171.4,145.6L172.2,144.7L173.4,145.8L173.8,147.5L172.6,147.4L171.8,148.6L170.5,148.1L169.4,149.3L168.4,148.8L167.9,150.2L166.8,149.7L165.1,149.9L164.1,150.3L162.2,150.0L160.6,150.3L160.1,151.3L158.6,152.1L158.9,153.6L158.3,154.9L157.5,156.0L156.5,156.5L156.4,155.2L157.7,155.4L157.6,153.9L157.1,152.8L156.2,153.7L155.0,154.0L153.8,152.9L154.8,152.1L154.5,150.2L154.5,151.3L153.5,152.2L152.4,152.4L152.8,153.6L151.7,154.3L150.4,154.9L150.6,156.9L150.7,158.4L150.0,159.4L149.0,160.6L147.7,159.9L146.8,161.2L148.0,162.0L149.5,162.7L148.9,163.8L147.9,164.8L148.3,166.1L148.2,167.5L149.3,167.8L149.7,168.9L150.0,170.0L149.8,171.3L148.7,172.0L149.2,173.1L149.0,174.2L149.8,175.2L148.7,175.9L147.7,176.6L147.2,178.4L147.9,179.4L146.0,179.7L144.3,181.4L145.1,182.5L146.0,183.2L145.4,184.4L145.8,185.6L144.6,186.3L143.8,184.8L142.1,183.6L141.1,184.4L139.6,186.1L138.8,188.2L138.1,189.5L137.6,190.5L137.0,191.6L136.3,193.4L135.1,194.5L133.8,195.0L132.6,196.2L131.7,197.2L132.2,198.2L131.3,199.0L130.6,201.2L130.4,202.5L130.8,203.8L129.3,203.9L127.9,202.4L126.3,202.4L124.8,202.1L123.2,202.5L120.6,205.4L120.1,207.1L120.1,208.2L119.4,209.2L119.0,210.4L119.2,211.8L118.8,212.8L118.4,214.5L119.2,215.6L118.6,217.0L118.9,218.1L119.6,219.0L120.3,220.2L120.0,221.9L120.3,224.5L119.1,225.6L118.8,226.8L117.7,226.6L116.2,226.9L114.6,227.0L113.5,227.5L113.8,228.7L113.7,230.0L113.7,231.2L114.4,232.3L113.6,234.4L114.3,235.5L115.2,236.3L116.7,237.0L118.5,237.6L119.4,238.7L120.7,241.0L120.9,242.9L121.4,244.3L121.9,246.7L120.8,247.2L119.6,247.4L118.5,246.1L117.4,246.1L116.2,246.0L115.0,245.9L115.6,244.3L115.4,243.1L114.1,242.3L113.9,240.9L115.1,240.0L114.0,239.2L113.7,240.4L112.8,241.2L112.1,240.0L113.0,239.1L112.1,238.4L111.0,238.7L109.7,239.3L108.7,238.0L107.4,238.0L106.0,237.6L104.5,238.0L104.5,239.6L104.0,240.8L103.8,239.6L103.9,238.3L102.8,237.6L101.5,238.3L100.8,239.3L99.6,239.7L99.4,241.0L98.6,241.8L97.2,241.7L97.2,242.9L95.9,243.0L94.7,243.7L93.7,242.4L91.9,241.7L90.9,242.7L89.6,242.0L89.1,240.9L88.2,240.1L87.3,239.2L86.6,238.4L85.5,236.5L84.3,236.9L83.2,236.8L82.0,237.4L83.2,237.9L81.6,238.4L79.8,238.5L78.4,238.9L77.3,239.7L77.6,241.0L76.3,241.2L75.2,241.7L75.9,240.7L75.6,238.6L76.8,238.1L75.3,236.9L76.2,236.0L77.3,236.1L76.4,235.0L76.8,233.3L77.9,232.1L79.0,231.8L78.9,230.4L80.1,230.5L79.2,229.5L78.3,228.6L79.2,227.7L80.1,227.0L80.9,226.2L82.0,225.7L83.0,223.8L84.2,223.6L84.2,225.4L85.1,224.5L85.9,225.3L84.9,223.9L84.0,222.7L85.3,222.9L85.8,221.6L84.8,221.9L85.4,220.7L84.8,219.7L84.4,218.2L83.7,219.1L82.8,218.1L81.9,219.0L80.7,218.2L80.1,219.2L78.7,218.5L78.1,216.9L78.8,215.8L80.4,215.7L81.6,214.8L81.3,213.4L81.9,212.1L81.8,210.8L81.3,208.7L81.5,207.1L80.8,206.2L80.6,204.1L80.8,202.8L79.7,200.9L78.7,199.6L79.4,198.2L79.5,195.9L79.5,193.6L79.1,192.0L77.7,191.6L76.9,190.7L76.4,189.7L75.8,188.5L75.2,186.1L74.2,184.6L73.3,183.3L73.8,181.7L75.7,180.9L75.6,182.0L76.4,182.9L78.7,185.0L80.1,186.0L81.3,187.4L83.0,187.8L84.1,186.1L85.6,184.4L86.8,183.2L87.7,181.6L88.4,180.4L88.4,178.8L89.5,178.6L91.4,178.4L92.5,178.0L92.1,176.6L92.0,175.1L92.1,173.6L92.8,172.0L93.2,170.8L93.9,169.4L94.6,168.3L96.7,167.5L98.3,167.2L99.3,166.7L101.4,166.0L104.0,164.0L105.1,163.7L106.8,162.9L107.3,161.7L107.5,159.9L106.8,157.6L105.9,156.3L104.0,155.4L102.7,155.0L102.1,153.0L101.7,152.0L101.8,150.6L100.4,150.6L99.2,148.9L99.4,147.5L98.3,146.9L98.6,144.6L96.9,142.9L96.2,142.0L96.8,140.9L97.9,140.3L99.0,139.7L100.2,139.6L102.9,139.7L104.0,140.1L105.1,140.0L106.7,140.1L109.3,140.6L110.9,140.4L112.2,140.0L114.0,140.8L116.0,140.3L117.9,139.7L121.1,138.7L120.9,137.3L122.2,135.7L123.8,133.3L123.8,132.2L125.7,130.9L126.6,130.0L126.4,127.7L125.3,125.7L125.2,123.7L125.9,122.4L127.1,121.6L128.4,120.7L127.8,119.5L127.5,117.4L127.7,116.3L128.1,115.2L128.4,114.1L130.2,113.5L131.4,113.4L133.1,113.0L133.5,111.7L133.6,109.9L133.6,108.6L134.3,107.6L135.6,107.2L136.5,106.6L135.9,105.2L136.8,104.1L138.4,102.9L138.1,100.2L138.9,99.3L140.5,98.2L141.1,97.1L141.6,95.9L142.3,94.0L143.8,93.9L145.6,95.9L147.0,95.4L148.6,94.6L149.9,93.9L150.5,92.2L151.1,89.8L152.3,88.6L154.3,88.9L156.4,90.8L158.2,91.0L159.0,90.0L160.6,89.3L161.7,88.1L162.9,88.7L166.0,89.5L167.2,87.8L168.9,87.4L170.0,87.6L171.8,88.2L173.3,87.8L174.7,88.1L175.8,88.2L177.0,88.5L178.6,88.8L179.8,87.9L180.0,86.2L181.9,85.4L182.1,84.1L183.2,83.5L183.6,82.0L185.1,81.3L186.4,82.3L187.4,82.8L188.8,83.4ZM83.0,220.4L82.0,219.3L83.4,219.5L83.0,220.4ZM57.5,236.7L57.8,235.5L59.1,235.5L59.2,236.6L57.5,236.7ZM73.7,241.1L74.9,240.0L74.2,241.0L73.7,241.1ZM64.7,250.2L64.9,248.9L65.3,247.8L63.9,246.5L64.6,245.5L65.1,244.0L64.9,242.9L65.8,243.7L67.4,244.7L67.5,246.5L68.2,248.1L65.9,249.4L64.7,250.2Z"/>
-        <g><circle class="jm-pin" cx="292.9" cy="58.2" r="9"/><text class="jm-pinnum" x="292.9" y="61.6">1</text></g>
-        <g><circle class="jm-pin" cx="82.1" cy="133.7" r="9"/><text class="jm-pinnum" x="82.1" y="137.1">2</text></g>
-        <g><circle class="jm-pin" cx="65.0" cy="134.3" r="9"/><text class="jm-pinnum" x="65.0" y="137.7">3</text></g>
-        <g><circle class="jm-pin" cx="247.3" cy="25.8" r="9"/><text class="jm-pinnum" x="247.3" y="29.2">4</text></g>
-        <g><circle class="jm-pin" cx="189.0" cy="128.0" r="9"/><text class="jm-pinnum" x="189.0" y="131.4">5</text></g>
-        <g><circle class="jm-pin" cx="200.1" cy="118.5" r="9"/><text class="jm-pinnum" x="200.1" y="121.9">6</text></g>
-      </svg>
-    </div>
-    <div class="jm-stops">
-      <h4>💧 滝行スポット</h4>
-      <div class="jm-chips"><a class="jm-chip taki" href="https://www.google.com/maps/search/?api=1&query=%E5%BB%BA%E6%B2%BB%E5%AF%BA%20%E5%BE%B3%E5%B3%B6%E5%B8%82%E5%85%A5%E7%94%B0%E7%94%BA" target="_blank" rel="noopener">1 建治寺</a><a class="jm-chip taki" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%85%E8%91%89%E3%83%B6%E6%BB%9D%20%E5%86%85%E5%AD%90%E7%94%BA%E5%8F%AA%E6%B5%B7" target="_blank" rel="noopener">2 紅葉ヶ滝「御祓の滝打たれ体験」</a></div>
-      <h4>🧘 座禅スポット</h4>
-      <div class="jm-chips"><a class="jm-chip zen" href="https://www.google.com/maps/search/?api=1&query=%E5%A6%82%E6%B3%95%E5%AF%BA%20%E5%A4%A7%E6%B4%B2%E5%B8%82%E6%9F%9A%E6%9C%A8" target="_blank" rel="noopener">3 如法寺</a><a class="jm-chip zen" href="https://www.google.com/maps/search/?api=1&query=%E5%AF%A6%E7%9B%B8%E5%AF%BA%20%E9%AB%98%E6%9D%BE%E5%B8%82%E4%B8%89%E8%B0%B7%E7%94%BA" target="_blank" rel="noopener">4 實相寺</a><a class="jm-chip zen" href="https://www.google.com/maps/search/?api=1&query=%E7%AB%B9%E6%9E%97%E5%AF%BA%20%E9%AB%98%E7%9F%A5%E5%B8%82%E4%BA%94%E5%8F%B0%E5%B1%B1" target="_blank" rel="noopener">5 竹林寺</a><a class="jm-chip zen" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%BA%E9%96%93%E7%A6%85%20%E5%9B%9B%E5%9B%BD%E5%9D%90%E7%A6%85%E9%81%93%E5%A0%B4%20%E5%8D%97%E5%9B%BD%E5%B8%82%E6%A4%8D%E7%94%B0" target="_blank" rel="noopener">6 四国道場</a></div>
+          <g id="sr-pins"></g>
+        </svg>
+      </div>
+      <p class="smap-note">✓＝取得済み ／ 番号＝これから行くスポット</p>
     </div>
   </div>
 </section>
 
-<!-- ===== スタンプラリー ===== -->
-<section class="section" style="padding-top:48px;">
+<!-- マイ スタンプ帳（集約ラリー） -->
+<section class="section" style="padding-bottom:30px;">
   <div id="stamp-rally"></div>
 </section>
+
+<section class="closing">
+  <div class="m">🎏</div>
+  <p>あなたの足あとが、しおりになる。</p>
+  <p class="s">collect your journey</p>
+</section>
+
 <script>
 window.STAMP_RALLY_CONFIG = {
-  "mode": "select",
-  "key": "zen",
-  "tabLabel": "禅と滝",
-  "title": "禅と滝で集める",
-  "subtitle": "pick your spots",
-  "accent": "#7E9A82",
-  "accentDeep": "#2A4D66",
-  "spots": [
-    {
-      "id": "konjiji",
-      "name": "建治寺",
-      "short": "建治寺",
-      "cat": "滝行",
-      "icon": "💧",
-      "lat": 34.0436,
-      "lng": 134.4548
-    },
-    {
-      "id": "momiji",
-      "name": "紅葉ヶ滝（内子）",
-      "short": "紅葉ヶ滝",
-      "cat": "滝行",
-      "icon": "💧",
-      "lat": 33.516,
-      "lng": 132.688
-    },
-    {
-      "id": "nyohoji",
-      "name": "如法寺",
-      "short": "如法寺",
-      "cat": "座禅",
-      "icon": "🧘",
-      "lat": 33.512,
-      "lng": 132.545
-    },
-    {
-      "id": "jissoji",
-      "name": "實相寺",
-      "short": "實相寺",
-      "cat": "座禅",
-      "icon": "🧘",
-      "lat": 34.27,
-      "lng": 134.073
-    },
-    {
-      "id": "chikurinji",
-      "name": "竹林寺",
-      "short": "竹林寺",
-      "cat": "座禅",
-      "icon": "🧘",
-      "lat": 33.556,
-      "lng": 133.584
-    },
-    {
-      "id": "ningenzen",
-      "name": "人間禅 四国道場",
-      "short": "人間禅",
-      "cat": "座禅",
-      "icon": "🧘",
-      "lat": 33.601,
-      "lng": 133.652
-    }
-  ]
+  mode: 'master',
+  title: 'マイ スタンプ帳',
+  subtitle: 'your journey stamps',
+  accent: '#C0584B', accentDeep: '#7E342A',
+  radius: 700,
+  completeTitle: '四国・瀬戸内 満願',
+  shareTitle: 'マイ スタンプ帳',
+  shareText: '四国・瀬戸内の旅、選んだスポット全部まわりました！'
 };
 </script>
 <script src="assets/stamp-rally.js"></script>
-
-<!-- ===== おすすめ ===== -->
-<section class="section container">
-  <div class="section-label">R E C O M M E N D E D</div>
-  <h2 class="section-title">人気スポット<span>spots to visit</span></h2>
-  <div class="reco-banner">
-    <h4>⭐ 20代女子ふたり旅におすすめ 3選</h4>
-    <p>初心者でも安心して参加でき、女性向けの配慮や写真映えもうれしい3スポットを選びました。</p>
-    <ul>
-      <li><b>2. 紅葉ヶ滝（内子）</b>── ほぼ手ぶら＆ガイド付きで、初めての滝行に</li>
-      <li><b>3. 如法寺（大洲）</b>── 作務衣・袴に着替えて坐禅。和の装いが映える</li>
-      <li><b>5. 竹林寺（高知）</b>── 瞑想＋写経を2名から。名勝庭園もセットで</li>
-    </ul>
-  </div>
-      <article class="spot-card">
-        <div class="spot-head">
-          <span class="spot-num">1</span>
-          <div class="spot-headtext">
-            <div class="spot-badges"><span class="spot-type taki">滝行</span></div>
-            <h3 class="spot-name">大瀧山 建治寺</h3>
-            <p class="spot-pref">📍 徳島県徳島市</p>
-          </div>
-        </div>
-        <p class="spot-desc">落差約40mの「建治の滝」で行う本格的な滝行。本堂で祈祷したのち遍路道を下り、白装束に着替えて不動明王に祈願してから滝壺へ。副住職が同行・読経してくれるので初心者でも安心。白衣は寺で用意あり。</p>
-        <dl class="spot-meta">
-          <div><dt>料金</dt><dd>滝行指導料 5,000円</dd></div>
-          <div><dt>予約</dt><dd>要予約／電話 088-644-1232・公式予約フォーム</dd></div>
-          <div><dt>ひとこと</dt><dd>女性は濡れても透けない黒い服の着用が推奨されています。</dd></div>
-        </dl>
-        <div class="spot-links">
-          <a class="spot-link official" href="http://www7b.biglobe.ne.jp/~konjiji/" target="_blank" rel="noopener">公式サイト</a>
-          <a class="spot-link gmap" href="https://www.google.com/maps/search/?api=1&query=%E5%BB%BA%E6%B2%BB%E5%AF%BA%20%E5%BE%B3%E5%B3%B6%E5%B8%82%E5%85%A5%E7%94%B0%E7%94%BA" target="_blank" rel="noopener">地図で見る</a>
-        </div>
-        <div class="spot-sns">
-          <span class="spot-sns-label">SNS・写真で下見</span>
-          <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E6%BB%9D%E8%A1%8C/" target="_blank" rel="noopener">Instagram</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E5%BB%BA%E6%B2%BB%E5%AF%BA%20%E5%BE%B3%E5%B3%B6" target="_blank" rel="noopener">Google写真</a></div>
-        </div>
-      </article>
-      <article class="spot-card is-reco">
-        <div class="spot-head">
-          <span class="spot-num">2</span>
-          <div class="spot-headtext">
-            <div class="spot-badges"><span class="spot-type taki">滝行</span><span class="spot-reco">20代女子に◎</span></div>
-            <h3 class="spot-name">紅葉ヶ滝「御祓の滝打たれ体験」</h3>
-            <p class="spot-pref">📍 愛媛県内子町</p>
-          </div>
-        </div>
-        <p class="spot-desc">落差約17mの紅葉ヶ滝での滝打たれ体験。白装束・タオル・リバーブーツ・保険込みで、インナー以外はほぼ手ぶらでOK。インストラクター2名が同行する初心者向けプログラムで、女子二人旅にいちばん挑戦しやすい一本。</p>
-        <dl class="spot-meta">
-          <div><dt>料金</dt><dd>8,000円（2〜6名催行）</dd></div>
-          <div><dt>予約</dt><dd>要予約（1週間前まで）／ネット予約「うちこあそび」・電話 0893-43-0620</dd></div>
-          <div><dt>ひとこと</dt><dd>例年6月中旬〜10月上旬の期間限定、①9:00／②13:00。インナー（下着）は持参を。</dd></div>
-        </dl>
-        <div class="spot-links">
-          <a class="spot-link official" href="https://www.we-love-uchiko.jp/activity/takigyou/" target="_blank" rel="noopener">公式サイト</a>
-          <a class="spot-link gmap" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%85%E8%91%89%E3%83%B6%E6%BB%9D%20%E5%86%85%E5%AD%90%E7%94%BA%E5%8F%AA%E6%B5%B7" target="_blank" rel="noopener">地図で見る</a>
-        </div>
-        <div class="spot-sns">
-          <span class="spot-sns-label">SNS・写真で下見</span>
-          <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E5%86%85%E5%AD%90/" target="_blank" rel="noopener">#内子</a><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E6%BB%9D%E8%A1%8C/" target="_blank" rel="noopener">#滝行</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%85%E8%91%89%E3%83%B6%E6%BB%9D%20%E5%86%85%E5%AD%90" target="_blank" rel="noopener">Google写真</a></div>
-        </div>
-      </article>
-      <article class="spot-card is-reco">
-        <div class="spot-head">
-          <span class="spot-num">3</span>
-          <div class="spot-headtext">
-            <div class="spot-badges"><span class="spot-type zen">座禅</span><span class="spot-reco">20代女子に◎</span></div>
-            <h3 class="spot-name">海蔵山 如法寺</h3>
-            <p class="spot-pref">📍 愛媛県大洲市</p>
-          </div>
-        </div>
-        <p class="spot-desc">重要文化財の仏殿をもつ臨済宗の禅寺。作務衣と袴に着替えて坐禅と茶礼を体験できる「The ZEN」プログラムが人気。所要約3時間、3歳から参加可で初心者歓迎。和の装いで過ごす時間は写真映えも◎。</p>
-        <dl class="spot-meta">
-          <div><dt>料金</dt><dd>2,200円（作務衣・袴レンタル込）</dd></div>
-          <div><dt>予約</dt><dd>要事前申込／メール・電話 090-4975-7384（もりあげ隊）</dd></div>
-          <div><dt>ひとこと</dt><dd>少人数希望や開催日は事前に相談を。</dd></div>
-        </dl>
-        <div class="spot-links">
-          <a class="spot-link official" href="https://ozu-the-zen.jimdofree.com/" target="_blank" rel="noopener">公式サイト</a>
-          <a class="spot-link gmap" href="https://www.google.com/maps/search/?api=1&query=%E5%A6%82%E6%B3%95%E5%AF%BA%20%E5%A4%A7%E6%B4%B2%E5%B8%82%E6%9F%9A%E6%9C%A8" target="_blank" rel="noopener">地図で見る</a>
-        </div>
-        <div class="spot-sns">
-          <span class="spot-sns-label">SNS・写真で下見</span>
-          <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E5%A4%A7%E6%B4%B2/" target="_blank" rel="noopener">#大洲</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E5%A6%82%E6%B3%95%E5%AF%BA%20%E5%A4%A7%E6%B4%B2" target="_blank" rel="noopener">Google写真</a></div>
-        </div>
-      </article>
-      <article class="spot-card">
-        <div class="spot-head">
-          <span class="spot-num">4</span>
-          <div class="spot-headtext">
-            <div class="spot-badges"><span class="spot-type zen">座禅</span></div>
-            <h3 class="spot-name">慈眼山 實相寺</h3>
-            <p class="spot-pref">📍 香川県高松市</p>
-          </div>
-        </div>
-        <p class="spot-desc">臨済宗妙心寺派の寺で、毎週日曜の朝に本堂で坐禅会を開催。「お気軽に参加下さい」と初心者・国籍問わず歓迎しており、住職が一から丁寧に教えてくれる。気負わず坐禅デビューしたい人に。</p>
-        <dl class="spot-meta">
-          <div><dt>料金</dt><dd>基本無料（日供講の会費制度あり）</dd></div>
-          <div><dt>予約</dt><dd>電話 087-889-3838（参加前に確認を）</dd></div>
-          <div><dt>ひとこと</dt><dd>開催は日曜の朝。最新の日程は公式サイト・SNSで確認を。</dd></div>
-        </dl>
-        <div class="spot-links">
-          <a class="spot-link official" href="https://www.jissouji.net/" target="_blank" rel="noopener">公式サイト</a>
-          <a class="spot-link gmap" href="https://www.google.com/maps/search/?api=1&query=%E5%AF%A6%E7%9B%B8%E5%AF%BA%20%E9%AB%98%E6%9D%BE%E5%B8%82%E4%B8%89%E8%B0%B7%E7%94%BA" target="_blank" rel="noopener">地図で見る</a>
-        </div>
-        <div class="spot-sns">
-          <span class="spot-sns-label">SNS・写真で下見</span>
-          <div class="explore-links"><a class="explore-link fb" href="https://www.facebook.com/jissouji.net" target="_blank" rel="noopener">Facebook</a><a class="explore-link x" href="https://twitter.com/jissouji" target="_blank" rel="noopener">X (旧Twitter)</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E5%AF%A6%E7%9B%B8%E5%AF%BA%20%E9%AB%98%E6%9D%BE" target="_blank" rel="noopener">Google写真</a></div>
-        </div>
-      </article>
-      <article class="spot-card is-reco">
-        <div class="spot-head">
-          <span class="spot-num">5</span>
-          <div class="spot-headtext">
-            <div class="spot-badges"><span class="spot-type zen">座禅・写経</span><span class="spot-reco">20代女子に◎</span></div>
-            <h3 class="spot-name">五台山 竹林寺</h3>
-            <p class="spot-pref">📍 高知県高知市</p>
-          </div>
-        </div>
-        <p class="spot-desc">四国八十八ヶ所第31番札所。書院で密教瞑想「数息観」と写経を体験できる。所要約120分、2名から催行で女子二人にぴったり。国の名勝庭園や五重塔など境内の見どころも多く、観光とセットで楽しめる。</p>
-        <dl class="spot-meta">
-          <div><dt>料金</dt><dd>瞑想＋写経 5,000円／写経のみ 2,000円</dd></div>
-          <div><dt>予約</dt><dd>電話 088-882-3085（8:30〜17:00）</dd></div>
-          <div><dt>ひとこと</dt><dd>最少催行2名。1名参加希望は電話で相談を。</dd></div>
-        </dl>
-        <div class="spot-links">
-          <a class="spot-link official" href="http://www.chikurinji.com/" target="_blank" rel="noopener">公式サイト</a>
-          <a class="spot-link gmap" href="https://www.google.com/maps/search/?api=1&query=%E7%AB%B9%E6%9E%97%E5%AF%BA%20%E9%AB%98%E7%9F%A5%E5%B8%82%E4%BA%94%E5%8F%B0%E5%B1%B1" target="_blank" rel="noopener">地図で見る</a>
-        </div>
-        <div class="spot-sns">
-          <span class="spot-sns-label">SNS・写真で下見</span>
-          <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E7%AB%B9%E6%9E%97%E5%AF%BA/" target="_blank" rel="noopener">#竹林寺</a><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E4%BA%94%E5%8F%B0%E5%B1%B1/" target="_blank" rel="noopener">#五台山</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E7%AB%B9%E6%9E%97%E5%AF%BA%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">Google写真</a></div>
-        </div>
-      </article>
-      <article class="spot-card">
-        <div class="spot-head">
-          <span class="spot-num">6</span>
-          <div class="spot-headtext">
-            <div class="spot-badges"><span class="spot-type zen">座禅</span></div>
-            <h3 class="spot-name">人間禅 四国道場</h3>
-            <p class="spot-pref">📍 高知県南国市</p>
-          </div>
-        </div>
-        <p class="spot-desc">山あいの静かな道場で行う本格的な坐禅会。初心者にも丁寧に指導してくれ、老若男女問わず参加できる。土曜20:00〜・日曜5:30〜の定例坐禅会があり、参加費は良心的。じっくり禅と向き合いたい人へ。</p>
-        <dl class="spot-meta">
-          <div><dt>料金</dt><dd>参加費 300円</dd></div>
-          <div><dt>予約</dt><dd>直接参加可／問い合わせ 090-8287-1663（江渕）</dd></div>
-          <div><dt>ひとこと</dt><dd>定例会の日時・摂心会は公式ページで確認を。</dd></div>
-        </dl>
-        <div class="spot-links">
-          <a class="spot-link official" href="https://ningenzen.org/free/kochi" target="_blank" rel="noopener">公式サイト</a>
-          <a class="spot-link gmap" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%BA%E9%96%93%E7%A6%85%20%E5%9B%9B%E5%9B%BD%E5%9D%90%E7%A6%85%E9%81%93%E5%A0%B4%20%E5%8D%97%E5%9B%BD%E5%B8%82%E6%A4%8D%E7%94%B0" target="_blank" rel="noopener">地図で見る</a>
-        </div>
-        <div class="spot-sns">
-          <span class="spot-sns-label">SNS・写真で下見</span>
-          <div class="explore-links"><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%BA%E9%96%93%E7%A6%85%20%E5%9B%9B%E5%9B%BD%E9%81%93%E5%A0%B4%20%E5%8D%97%E5%9B%BD" target="_blank" rel="noopener">Google写真</a></div>
-        </div>
-      </article>
-</section>
-
-<!-- ===== 持ち物 ===== -->
-<section class="section container">
-  <div class="section-label">C H E C K L I S T</div>
-  <h2 class="section-title">持ち物リスト<span>don't forget</span></h2>
-  <p class="section-lead">タップでチェック ✓　※多くの体験で白装束や作務衣はレンタルできます。予約時に確認を。</p>
-  <div class="check-block taki">
-    <h4>💧 滝行に行くなら</h4>
-          <label class="check-item"><input type="checkbox"><span>透け防止インナー or 水着（白装束は濡れると透けます）</span></label>
-          <label class="check-item"><input type="checkbox"><span>替えの下着・着替え一式</span></label>
-          <label class="check-item"><input type="checkbox"><span>バスタオル／フェイスタオル</span></label>
-          <label class="check-item"><input type="checkbox"><span>マリンシューズ（用意がない施設の場合）</span></label>
-          <label class="check-item"><input type="checkbox"><span>温かい飲み物・防寒対策（水温は通年低め）</span></label>
-          <label class="check-item"><input type="checkbox"><span>スキンケア・ヘアブラシ・鏡（女性は特に）</span></label>
-  </div>
-  <div class="check-block zen">
-    <h4>🧘 座禅に行くなら</h4>
-          <label class="check-item"><input type="checkbox"><span>動きやすく上品な服装（露出は控えめに）</span></label>
-          <label class="check-item"><input type="checkbox"><span>締め付けない靴下＋予備</span></label>
-          <label class="check-item"><input type="checkbox"><span>タオル・飲み物</span></label>
-          <label class="check-item"><input type="checkbox"><span>寺指定の座布団（指定がある場合）</span></label>
-  </div>
-</section>
-
-<!-- ===== 注意事項 ===== -->
-<section class="section container">
-  <div class="section-label">B E F O R E &nbsp; Y O U &nbsp; G O</div>
-  <h2 class="section-title">注意事項<span>stay safe &amp; respectful</span></h2>
-  <p class="section-lead" style="margin-bottom:18px;">寺社は信仰の場。安全とマナーを守って、気持ちよく体験を。</p>
-      <div class="caution-card"><div class="caution-icon">🩺</div><div class="caution-text"><h5>体調・安全第一</h5><p>飲酒後や体調不良時は参加不可。滝の水温は通年低く、心臓疾患・高血圧のある方は事前に相談を。無理は禁物です。</p></div></div>
-      <div class="caution-card"><div class="caution-icon">🥾</div><div class="caution-text"><h5>足元と単独行動</h5><p>滝場へは遍路道や山道を歩くことが多め。滑りにくい靴で。必ず僧侶・インストラクターの指示に従い、単独行動はしないこと。</p></div></div>
-      <div class="caution-card"><div class="caution-icon">👩</div><div class="caution-text"><h5>女性は透け対策を</h5><p>白装束は濡れると透けるため、透け防止インナーや水着の着用が必須。生理中の参加可否は施設ごとに異なるので事前相談を。更衣室・シャワー・トイレの有無も予約時に確認。</p></div></div>
-      <div class="caution-card"><div class="caution-icon">🧘</div><div class="caution-text"><h5>お寺でのマナー</h5><p>スマホは電源OFF（坐禅中の通知音は厳禁）。アクセサリーや時計は外す。露出の多い服・派手な柄・破れたジーンズ・短パンは避けて。撮影可否は現地の指示に従い、静粛に。</p></div></div>
-      <div class="caution-card"><div class="caution-icon">📅</div><div class="caution-text"><h5>予約と季節</h5><p>滝行は夏〜秋限定の施設が多め。料金・開催日・人数制限は変動するので、必ず公式サイトや電話で最終確認を。遅刻は厳禁です。</p></div></div>
-</section>
-
-<!-- ===== もっと探す（SNS） ===== -->
-<section class="explore-section">
-  <h2 class="explore-title">SNS・写真でもっと探す</h2>
-  <p class="explore-lead">行く前にビジュアルで下見を。</p>
-  <div class="explore-card">
-    <div class="explore-name">1. 大瀧山 建治寺</div>
-    <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E6%BB%9D%E8%A1%8C/" target="_blank" rel="noopener">Instagram</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E5%BB%BA%E6%B2%BB%E5%AF%BA%20%E5%BE%B3%E5%B3%B6" target="_blank" rel="noopener">Google写真</a></div>
-  </div>
-  <div class="explore-card">
-    <div class="explore-name">2. 紅葉ヶ滝「御祓の滝打たれ体験」</div>
-    <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E5%86%85%E5%AD%90/" target="_blank" rel="noopener">#内子</a><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E6%BB%9D%E8%A1%8C/" target="_blank" rel="noopener">#滝行</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E7%B4%85%E8%91%89%E3%83%B6%E6%BB%9D%20%E5%86%85%E5%AD%90" target="_blank" rel="noopener">Google写真</a></div>
-  </div>
-  <div class="explore-card">
-    <div class="explore-name">3. 海蔵山 如法寺</div>
-    <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E5%A4%A7%E6%B4%B2/" target="_blank" rel="noopener">#大洲</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E5%A6%82%E6%B3%95%E5%AF%BA%20%E5%A4%A7%E6%B4%B2" target="_blank" rel="noopener">Google写真</a></div>
-  </div>
-  <div class="explore-card">
-    <div class="explore-name">4. 慈眼山 實相寺</div>
-    <div class="explore-links"><a class="explore-link fb" href="https://www.facebook.com/jissouji.net" target="_blank" rel="noopener">Facebook</a><a class="explore-link x" href="https://twitter.com/jissouji" target="_blank" rel="noopener">X (旧Twitter)</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E5%AF%A6%E7%9B%B8%E5%AF%BA%20%E9%AB%98%E6%9D%BE" target="_blank" rel="noopener">Google写真</a></div>
-  </div>
-  <div class="explore-card">
-    <div class="explore-name">5. 五台山 竹林寺</div>
-    <div class="explore-links"><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E7%AB%B9%E6%9E%97%E5%AF%BA/" target="_blank" rel="noopener">#竹林寺</a><a class="explore-link insta" href="https://www.instagram.com/explore/tags/%E4%BA%94%E5%8F%B0%E5%B1%B1/" target="_blank" rel="noopener">#五台山</a><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E7%AB%B9%E6%9E%97%E5%AF%BA%20%E9%AB%98%E7%9F%A5" target="_blank" rel="noopener">Google写真</a></div>
-  </div>
-  <div class="explore-card">
-    <div class="explore-name">6. 人間禅 四国道場</div>
-    <div class="explore-links"><a class="explore-link gmap-photo" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%BA%E9%96%93%E7%A6%85%20%E5%9B%9B%E5%9B%BD%E9%81%93%E5%A0%B4%20%E5%8D%97%E5%9B%BD" target="_blank" rel="noopener">Google写真</a></div>
-  </div>
-</section>
-
-<!-- ===== closing ===== -->
-<section class="closing">
-  <div class="closing-mark">〇</div>
-  <p class="closing-text">深呼吸して、整える旅へ。</p>
-  <p class="closing-sub">a quiet trip for two</p>
-  <p class="disclaimer">※料金・開催日・予約可否・期間（滝行は夏〜秋限定が多い）は変動します。お出かけ前に各公式サイト・電話で必ず最新情報をご確認ください。地図のピン位置はおおよその目安です。</p>
-</section>
 
 </body>
 </html>

@@ -29,9 +29,15 @@
     box-shadow: 0 2px 16px rgba(61, 48, 39, 0.05);
     padding-top: env(safe-area-inset-top);
     z-index: 100;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .tabbar::-webkit-scrollbar { display: none; }
   .tab {
-    flex: 1;
+    flex: 1 0 auto;
+    min-width: 58px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,11 +49,11 @@
     color: #B5A698;
     transition: color 0.25s ease;
     position: relative;
-    padding: 0 4px;
+    padding: 0 2px;
   }
   .tab svg {
-    width: 21px;
-    height: 21px;
+    width: 20px;
+    height: 20px;
     display: block;
   }
   .tab svg path,
@@ -62,14 +68,14 @@
     transition: stroke 0.25s ease;
   }
   .tab .label {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     white-space: nowrap;
     line-height: 1.2;
   }
   .tab .sub {
-    font-size: 8.5px;
+    font-size: 8px;
     font-weight: 600;
     letter-spacing: 0.02em;
     white-space: nowrap;
@@ -208,16 +214,26 @@
     <span class="label">禅と滝</span>
     <span class="sub">座禅・滝行</span>
   </button>
+  <button class="tab" data-tab="6">
+    <!-- スタンプ：マイ スタンプ帳 -->
+    <svg viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="16" rx="3"/>
+      <path d="M8 12.5 L11 15.5 L16 9"/>
+    </svg>
+    <span class="label">スタンプ</span>
+    <span class="sub">マイ帳</span>
+  </button>
 </nav>
 
 <div class="viewport">
   <div class="loader" id="loader">しおりを読み込んでいます…</div>
-  <iframe class="active" data-tab="0" src="shikoku_shiori_isshu2.html" title="四国一周 2泊3日 ぐるり旅"></iframe>
-  <iframe data-tab="1" src="shikoku_shiori_isshu.html" title="四国一周 温泉 & グルメの旅" loading="lazy"></iframe>
-  <iframe data-tab="2" src="shikoku_shiori.html" title="松山・道後 梅雨の女子旅" loading="lazy"></iframe>
-  <iframe data-tab="3" src="shikoku_shiori_kochi.html" title="高知 仁淀ブルー & 食の旅" loading="lazy"></iframe>
-  <iframe data-tab="4" src="shikoku_shiori_shodoshima.html" title="瀬戸内 アート & オリーブ Trip" loading="lazy"></iframe>
-  <iframe data-tab="5" src="shikoku_shiori_zen.html" title="四国 禅と滝のしおり 座禅・滝行" loading="lazy"></iframe>
+  <iframe allow="geolocation" class="active" data-tab="0" src="shikoku_shiori_isshu2.html" title="四国一周 2泊3日 ぐるり旅"></iframe>
+  <iframe allow="geolocation" data-tab="1" src="shikoku_shiori_isshu.html" title="四国一周 温泉 & グルメの旅" loading="lazy"></iframe>
+  <iframe allow="geolocation" data-tab="2" src="shikoku_shiori.html" title="松山・道後 梅雨の女子旅" loading="lazy"></iframe>
+  <iframe allow="geolocation" data-tab="3" src="shikoku_shiori_kochi.html" title="高知 仁淀ブルー & 食の旅" loading="lazy"></iframe>
+  <iframe allow="geolocation" data-tab="4" src="shikoku_shiori_shodoshima.html" title="瀬戸内 アート & オリーブ Trip" loading="lazy"></iframe>
+  <iframe allow="geolocation" data-tab="5" src="shikoku_shiori_zen.html" title="四国 禅と滝のしおり 座禅・滝行" loading="lazy"></iframe>
+  <iframe allow="geolocation" data-tab="6" src="shikoku_shiori_stamp.html" title="マイ スタンプ帳" loading="lazy"></iframe>
 </div>
 
 <a class="cardlink" href="card.html" target="_blank" rel="noopener" title="QR名刺カード">
@@ -242,7 +258,20 @@
       frames.forEach(function (f) { f.classList.remove('active'); });
       tab.classList.add('active');
       document.querySelector('.viewport iframe[data-tab="' + idx + '"]').classList.add('active');
+      try { tab.scrollIntoView({ inline: 'nearest', block: 'nearest' }); } catch (x) {}
     });
+  });
+
+  // 旅程タブの「マイスタンプ帳を見る」からの遷移要求を受けてタブ切替
+  window.addEventListener('message', function (e) {
+    var d = e.data || {};
+    if (d && d.type === 'sr-goto' && d.target === 'stamp') {
+      var f = document.querySelector('.viewport iframe[src*="shikoku_shiori_stamp"]');
+      if (f) {
+        var b = document.querySelector('.tab[data-tab="' + f.getAttribute('data-tab') + '"]');
+        if (b) { b.click(); try { b.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch (x) {} }
+      }
+    }
   });
 
   var first = document.querySelector('.viewport iframe[data-tab="0"]');
