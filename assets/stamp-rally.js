@@ -32,6 +32,7 @@
     var a = Math.sin(dla / 2) * Math.sin(dla / 2) + Math.cos(la1 * t) * Math.cos(la2 * t) * Math.sin(dlo / 2) * Math.sin(dlo / 2);
     return 2 * R * Math.asin(Math.sqrt(a));
   }
+  function vibe(p) { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} }
   /* Shikoku-only map projection (matches shikoku_shiori_stamp.html の SVG viewBox 0 0 340 257.7) */
   function projX(lng) { return Math.max(8, Math.min(332, (lng - 132.0) * 119.30)); }
   function projY(lat) { return Math.max(8, Math.min(250, (34.45 - lat) * 143.13)); }
@@ -63,7 +64,8 @@
       '.sr-stamp{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:#F1EEE7;color:#B9B4A8;border:2px dashed #CFC9BC;filter:grayscale(1);opacity:.6;transition:transform .35s cubic-bezier(.3,1.4,.5,1),filter .3s,opacity .3s;}',
       '.sr-tile{opacity:.92;}',
       '.sr-tile.on{border:1.5px solid var(--sr-a);opacity:1;background:#fff;}',
-      '.sr-tile.on .sr-stamp{background:var(--sr-a);color:#fff;border:2px solid #fff;box-shadow:0 0 0 2px var(--sr-a);filter:none;opacity:1;}',
+      '.sr-tile.on .sr-stamp{filter:none;opacity:1;background:#fff;border:2.5px solid var(--sr-a);box-shadow:0 0 0 2px var(--sr-a);transform:rotate(-7deg);}',
+      '.sr-got{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:var(--sr-a);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.22);}',
       '.sr-tile.ready{border:1.5px solid var(--sr-a);opacity:1;background:#fff;animation:srready 1.3s ease-in-out infinite;}',
       '@keyframes srready{0%,100%{box-shadow:0 2px 10px rgba(40,55,50,.06);}50%{box-shadow:0 0 0 3px var(--sr-a),0 4px 14px rgba(40,55,50,.14);}}',
       '.sr-tile.ready .sr-stamp{filter:none;opacity:1;background:#fff;border:2px solid var(--sr-a);color:var(--sr-a);}',
@@ -209,8 +211,8 @@
     var s = (cfg.spots || []).filter(function (x) { return x.id === id; })[0];
     if (!s) return;
     var key = gid(tab, id);
-    if (sel[key]) { delete sel[key]; toast('「' + s.name + '」を外しました'); }
-    else { sel[key] = { tab: tab, tabLabel: tabLabel, id: id, name: s.name, short: s.short || s.name, icon: s.icon || '📍', cat: s.cat || '', lat: s.lat, lng: s.lng }; toast('🗺 「' + s.name + '」をマイスタンプ帳に追加！'); }
+    if (sel[key]) { delete sel[key]; vibe(12); toast('「' + s.name + '」を外しました'); }
+    else { sel[key] = { tab: tab, tabLabel: tabLabel, id: id, name: s.name, short: s.short || s.name, icon: s.icon || '📍', cat: s.cat || '', lat: s.lat, lng: s.lng }; vibe(18); toast('🗺 「' + s.name + '」をマイスタンプ帳に追加！'); }
     wr(SEL, sel); renderSelect();
   }
 
@@ -248,7 +250,8 @@
         var on = !!got[s.gid], rdy = !on && !!unlock[s.gid];
         h += '<button class="sr-tile' + (on ? ' on' : (rdy ? ' ready' : '')) + '" data-gid="' + s.gid + '">'
           + (s.cat ? '<span class="sr-cat">' + s.cat + '</span>' : '')
-          + '<span class="sr-stamp">' + (on ? '✓' : (s.icon || '📍')) + '</span>'
+          + (on ? '<span class="sr-got">✓</span>' : '')
+          + '<span class="sr-stamp">' + (s.icon || '📍') + '</span>'
           + '<span class="sr-name">' + (s.short || s.name) + '</span>'
           + '<span class="sr-sub">' + (on ? fmtDate(got[s.gid]) : (rdy ? '✨ 押せる！' : '🔒 近くで解放')) + '</span></button>';
       });
@@ -292,8 +295,8 @@
     var tile = mount.querySelector('.sr-tile[data-gid="' + g + '"]'); if (tile) tile.classList.add('pop');
     var list = selectedList();
     var complete = gotCount(list, rd(GOT)) === list.length && list.length > 0;
-    if (complete) { burst(window.innerWidth / 2, window.innerHeight * 0.46); } // 直後にメガ満願演出が来るので軽め
-    else { celebrateStamp(g); }                                               // 各スタンプもド派手
+    if (complete) { burst(window.innerWidth / 2, window.innerHeight * 0.46); vibe([0, 50, 40, 90]); } // 直後にメガ満願演出が来るので軽め
+    else { celebrateStamp(g); vibe([0, 40, 30, 80]); }                                                // 各スタンプもド派手＋トン・トンッと振動
     var sel = rd(SEL); toast('🌸 「' + (sel[g] ? sel[g].name : '') + '」GET！おつかれさま✨');
     return true;
   }
@@ -387,6 +390,7 @@
   function restoreGeo() { var b = mount.querySelector('[data-act="geoall"]'); if (b) { b.disabled = false; b.textContent = '📍 いまの場所でスタンプを解放する'; } }
   /* 解放された瞬間の小さな演出（「押せるよ！」の合図） */
   function readyFx(gids) {
+    if (gids.length) vibe(25); // 解放のコツッという合図
     gids.forEach(function (g) {
       var tile = mount.querySelector('.sr-tile[data-gid="' + g + '"]');
       if (!tile) return;
@@ -455,6 +459,7 @@
   function showComplete() {
     // 満タンプ＝最上級ド派手: 大フラッシュ → シェイク → 花火連発 → 紙吹雪＆花吹雪 → 後光＋称号
     flash(); shake(); fireworks(22); confetti(240);
+    vibe([0, 70, 50, 70, 50, 160]); // 満願のファンファーレ振動
     var ov = document.createElement('div'); ov.className = 'sr-ov center';
     ov.style.setProperty('--sr-a', ACCENT); ov.style.setProperty('--sr-d', ACCENT_DEEP);
     var total = selectedList().length;
@@ -546,9 +551,15 @@
     list.slice(0, 16).forEach(function (s, i) {
       var col = i % cols, row = Math.floor(i / cols), x = startX + col * cellW, y = gy0 + row * cellH;
       g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2);
-      if (got[s.gid]) { g.fillStyle = ACCENT; g.fill(); g.fillStyle = '#fff'; g.font = '34px sans-serif'; g.fillText('✓', x, y + 12); }
-      else { g.fillStyle = '#E5E0D4'; g.fill(); g.fillStyle = '#fff'; g.font = '28px sans-serif'; g.fillText(s.icon || '?', x, y + 10); }
-      g.fillStyle = '#5a5850'; g.font = '600 14px sans-serif'; g.fillText((s.short || s.name).slice(0, 6), x, y + r + 22);
+      if (got[s.gid]) {
+        g.fillStyle = '#fff'; g.fill();
+        g.lineWidth = 5; g.strokeStyle = ACCENT; g.stroke();
+        g.font = '34px sans-serif'; g.fillText(s.icon || '✓', x, y + 12);  // 取得済みは各スポットのアイコン
+      } else {
+        g.fillStyle = '#E7E2D6'; g.fill();
+        g.save(); g.globalAlpha = 0.45; g.font = '28px sans-serif'; g.fillText(s.icon || '?', x, y + 10); g.restore();
+      }
+      g.fillStyle = got[s.gid] ? '#5a5850' : '#a8a49a'; g.font = '600 14px sans-serif'; g.fillText((s.short || s.name).slice(0, 6), x, y + r + 22);
     });
     g.fillStyle = ACCENT_DEEP; g.font = '600 20px "Shippori Mincho",serif';
     if (done) g.fillText('👑 ' + (cfg.completeTitle || ''), S / 2, S - 60);
@@ -596,8 +607,10 @@
      これにより、master で「マイスタンプ帳から外す」と sr_sel が変わり、
      旅程タブ(select)も storage イベントで再描画 → 選択が外れ、再登録できる。 */
   var rerender = (MODE === 'master') ? renderMaster : renderSelect;
+  // 他タブ(他iframe)での変更は storage イベントで反映（同一ドキュメントには飛ばない）。
+  // ※ window 'focus' での再描画は入れない：最初のタップで focus→再描画が走り、
+  //   ボタンがクリック確定前に作り直されて「1度目が反応しない」不具合になるため。
   window.addEventListener('storage', function (e) { if (e.key === SEL || e.key === GOT || e.key === UNLK || e.key === null) rerender(); });
-  window.addEventListener('focus', function () { rerender(); });
-  window.addEventListener('pageshow', function () { rerender(); });
+  window.addEventListener('pageshow', function (e) { if (e.persisted) rerender(); });
   rerender();
 })();
