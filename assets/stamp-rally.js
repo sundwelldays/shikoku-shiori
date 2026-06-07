@@ -19,7 +19,7 @@
   var ACCENT = cfg.accent || '#7E9A82';
   var ACCENT_DEEP = cfg.accentDeep || '#2A4D66';
   var RADIUS = cfg.radius || 700;
-  var SEL = 'sr_sel', GOT = 'sr_got';
+  var SEL = 'sr_sel', GOT = 'sr_got', UNLK = 'sr_unlock';
 
   function rd(k) { try { return JSON.parse(localStorage.getItem(k)) || {}; } catch (e) { return {}; } }
   function wr(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -64,6 +64,12 @@
       '.sr-tile{opacity:.92;}',
       '.sr-tile.on{border:1.5px solid var(--sr-a);opacity:1;background:#fff;}',
       '.sr-tile.on .sr-stamp{background:var(--sr-a);color:#fff;border:2px solid #fff;box-shadow:0 0 0 2px var(--sr-a);filter:none;opacity:1;}',
+      '.sr-tile.ready{border:1.5px solid var(--sr-a);opacity:1;background:#fff;animation:srready 1.3s ease-in-out infinite;}',
+      '@keyframes srready{0%,100%{box-shadow:0 2px 10px rgba(40,55,50,.06);}50%{box-shadow:0 0 0 3px var(--sr-a),0 4px 14px rgba(40,55,50,.14);}}',
+      '.sr-tile.ready .sr-stamp{filter:none;opacity:1;background:#fff;border:2px solid var(--sr-a);color:var(--sr-a);}',
+      '.sr-tile.ready .sr-sub{color:var(--sr-a);font-weight:700;}',
+      '#sr-pins .rdy{animation:srpinpulse 1.3s ease-in-out infinite;}',
+      '@keyframes srpinpulse{0%,100%{opacity:1;}50%{opacity:.45;}}',
       '.sr-tile.pop .sr-stamp{animation:srpop .5s cubic-bezier(.3,1.4,.5,1);}',
       '@keyframes srpop{0%{transform:scale(0) rotate(-25deg);}60%{transform:scale(1.25) rotate(8deg);}100%{transform:scale(1) rotate(0);}}',
       '.sr-name{font-size:11px;font-weight:600;color:#3c3c36;line-height:1.3;text-align:center;}',
@@ -102,7 +108,7 @@
       '.sr-sheet .b.sub{background:#F1EEE7;color:#4a4a44;}',
       '.sr-sheet .b.danger{background:#fff;color:#c0584b;border:1px solid #e6c2bd;}',
       '.sr-sheet .b.ghost,.sr-card .b.ghost{background:none;color:#a8a49a;font-weight:600;}',
-      '.sr-card{background:linear-gradient(160deg,#fff 0%,#FBF7EC 100%);width:100%;max-width:380px;border-radius:24px;padding:30px 24px;text-align:center;transform:scale(.85);transition:transform .3s cubic-bezier(.3,1.4,.5,1);border:2px solid var(--sr-a);box-shadow:0 20px 60px rgba(0,0,0,.3);}',
+      '.sr-card{position:relative;z-index:2;background:linear-gradient(160deg,#fff 0%,#FBF7EC 100%);width:100%;max-width:380px;border-radius:24px;padding:34px 24px 28px;text-align:center;transform:scale(.85);transition:transform .3s cubic-bezier(.3,1.4,.5,1);border:2px solid var(--sr-a);box-shadow:0 20px 60px rgba(0,0,0,.3);}',
       '.sr-ov.show .sr-card{transform:scale(1);}',
       '.sr-card .crown{font-size:40px;}',
       '.sr-card .ttl{font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:3px;color:var(--sr-a);margin:8px 0 4px;}',
@@ -116,7 +122,29 @@
       /* スタンプ押下時の花吹雪バースト */
       '.sr-burst{position:fixed;inset:0;z-index:10001;pointer-events:none;overflow:hidden;}',
       '.sr-burst i{position:absolute;font-style:normal;line-height:1;will-change:transform,opacity;animation:srburst cubic-bezier(.15,.6,.3,1) forwards;}',
-      '@keyframes srburst{0%{transform:translate(-50%,-50%) scale(.3) rotate(0);opacity:0;}12%{opacity:1;}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot));opacity:0;}}'
+      '@keyframes srburst{0%{transform:translate(-50%,-50%) scale(.3) rotate(0);opacity:0;}12%{opacity:1;}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot));opacity:0;}}',
+      /* ===== 満願 ド派手 演出 ===== */
+      '.sr-flash{position:fixed;inset:0;z-index:9997;pointer-events:none;background:radial-gradient(circle at 50% 42%,rgba(255,231,160,.95),rgba(255,201,92,.45) 38%,transparent 72%);animation:srflash 1.1s ease-out forwards;}',
+      '@keyframes srflash{0%{opacity:0;}14%{opacity:1;}100%{opacity:0;}}',
+      '.sr-fw{position:fixed;inset:0;z-index:10000;pointer-events:none;overflow:hidden;}',
+      '.sr-fw i{position:absolute;width:7px;height:7px;border-radius:50%;will-change:transform,opacity;animation:srfw ease-out forwards;box-shadow:0 0 7px currentColor;}',
+      '@keyframes srfw{0%{transform:translate(-50%,-50%) scale(1.25);opacity:1;}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.3);opacity:0;}}',
+      '.sr-shake{animation:srshake .62s ease-in-out;}',
+      '@keyframes srshake{0%,100%{transform:translate(0,0) rotate(0);}12%{transform:translate(-7px,4px) rotate(-.5deg);}28%{transform:translate(8px,-6px) rotate(.6deg);}44%{transform:translate(-6px,7px) rotate(-.4deg);}60%{transform:translate(7px,4px) rotate(.5deg);}78%{transform:translate(-4px,-5px) rotate(-.3deg);}}',
+      '.sr-rays{position:absolute;left:50%;top:50%;width:760px;height:760px;transform:translate(-50%,-50%);z-index:0;pointer-events:none;background:repeating-conic-gradient(from 0deg,rgba(255,214,120,0) 0deg 9deg,rgba(255,214,120,.42) 9deg 18deg);border-radius:50%;animation:srspin 11s linear infinite;-webkit-mask:radial-gradient(circle,transparent 86px,#000 104px,#000 320px,transparent 360px);mask:radial-gradient(circle,transparent 86px,#000 104px,#000 320px,transparent 360px);}',
+      '@keyframes srspin{to{transform:translate(-50%,-50%) rotate(360deg);}}',
+      '.sr-card.mega{animation:srcardin .6s cubic-bezier(.2,1.5,.4,1) both,srglow 1.4s .6s ease-in-out infinite alternate;}',
+      '@keyframes srcardin{0%{transform:scale(.3) rotate(-6deg);opacity:0;}65%{transform:scale(1.08) rotate(2deg);opacity:1;}100%{transform:scale(1) rotate(0);opacity:1;}}',
+      '@keyframes srglow{from{box-shadow:0 0 22px 2px rgba(196,160,80,.30),0 20px 60px rgba(0,0,0,.3);}to{box-shadow:0 0 46px 10px rgba(214,170,70,.62),0 20px 60px rgba(0,0,0,.3);}}',
+      '.sr-card .crown{font-size:54px;animation:srcrownpop .7s .15s cubic-bezier(.2,1.6,.4,1) both;}',
+      '@keyframes srcrownpop{0%{transform:scale(0) rotate(-30deg);}70%{transform:scale(1.3) rotate(10deg);}100%{transform:scale(1) rotate(0);}}',
+      '.sr-seal{position:absolute;top:-24px;right:-10px;width:78px;height:78px;border:3px solid #F2B6CB;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;background:#fff;box-shadow:0 6px 18px rgba(229,115,154,.28);animation:srseal .5s .35s cubic-bezier(.2,1.7,.4,1) both;}',
+      '@keyframes srseal{0%{transform:scale(2.6) rotate(-13deg);opacity:0;}55%{transform:scale(.82) rotate(-13deg);opacity:1;}100%{transform:scale(1) rotate(-13deg);opacity:1;}}',
+      '.sr-card .sr-yay{font-family:"Caveat",cursive;font-size:30px;font-weight:700;color:#E5739A;line-height:1.1;margin:2px 0 0;letter-spacing:.01em;white-space:nowrap;}',
+      '.sr-card .ttl{color:#E5739A;}',
+      '.sr-card .msg b{color:var(--sr-d);}',
+      '.sr-tw{position:absolute;z-index:3;pointer-events:none;font-size:20px;animation:srtw 1.2s ease-in-out infinite;}',
+      '@keyframes srtw{0%,100%{transform:scale(.55) rotate(-10deg);opacity:.45;}50%{transform:scale(1.2) rotate(15deg);opacity:1;}}'
     ].join('');
     document.head.appendChild(st);
   }
@@ -178,7 +206,7 @@
   function gotCount(list, got) { return list.filter(function (s) { return got[s.gid]; }).length; }
 
   function renderMaster() {
-    var list = selectedList(), got = rd(GOT);
+    var list = selectedList(), got = rd(GOT), unlock = rd(UNLK);
     var n = gotCount(list, got), total = list.length;
     var mapWrap = document.getElementById('sr-map-wrap');
     var h = '';
@@ -194,20 +222,20 @@
     h += '<div class="sr-progress"><div class="sr-ring" style="--p:' + pct + '"><i>' + n + '/' + total + '</i></div>'
       + '<div class="sr-pinfo"><b>' + n + ' スタンプ</b><span class="sub">/ 選択 ' + total + '</span>'
       + '<div class="sr-bar"><i style="width:' + pct + '%"></i></div></div></div>';
-    h += '<button class="sr-btn" data-act="geoall">📍 現在地でスタンプを集める</button>';
-    h += '<div class="sr-hint">スポットの近く（約' + (RADIUS >= 1000 ? RADIUS / 1000 + 'km' : RADIUS + 'm') + '以内）でGET。<br>うまくいかない時はマスをタップして手動でもOK。</div>';
+    h += '<button class="sr-btn" data-act="geoall">📍 いまの場所でスタンプを解放する</button>';
+    h += '<div class="sr-hint">スポットの近く（約' + (RADIUS >= 1000 ? RADIUS / 1000 + 'km' : RADIUS + 'm') + '以内）で「解放」すると <b>✨押せるように</b>。<br>あとは好きなタイミングでタップして押そう！🎉</div>';
     // group by tabLabel
     var order = [], groups = {};
     list.forEach(function (s) { if (!groups[s.tabLabel]) { groups[s.tabLabel] = []; order.push(s.tabLabel); } groups[s.tabLabel].push(s); });
     order.forEach(function (lab) {
       h += '<div class="sr-group"><h4>' + lab + ' <span class="ln"></span></h4><div class="sr-grid">';
       groups[lab].forEach(function (s) {
-        var on = !!got[s.gid];
-        h += '<button class="sr-tile' + (on ? ' on' : '') + '" data-gid="' + s.gid + '">'
+        var on = !!got[s.gid], rdy = !on && !!unlock[s.gid];
+        h += '<button class="sr-tile' + (on ? ' on' : (rdy ? ' ready' : '')) + '" data-gid="' + s.gid + '">'
           + (s.cat ? '<span class="sr-cat">' + s.cat + '</span>' : '')
           + '<span class="sr-stamp">' + (on ? '✓' : (s.icon || '📍')) + '</span>'
           + '<span class="sr-name">' + (s.short || s.name) + '</span>'
-          + '<span class="sr-sub">' + (on ? fmtDate(got[s.gid]) : '未取得') + '</span></button>';
+          + '<span class="sr-sub">' + (on ? fmtDate(got[s.gid]) : (rdy ? '✨ 押せる！' : '🔒 近くで解放')) + '</span></button>';
       });
       h += '</div></div>';
     });
@@ -221,17 +249,22 @@
     h += '<div class="sr-foot"><button class="sr-share" data-act="share">🎉 結果をシェア</button>'
       + '<button class="sr-reset" data-act="reset">記録リセット</button></div>';
     mount.innerHTML = h;
-    drawPins(list, got);
+    drawPins(list, got, unlock);
   }
 
-  function drawPins(list, got) {
+  function drawPins(list, got, unlock) {
     var g = document.getElementById('sr-pins'); if (!g) return;
     var s = '';
     list.forEach(function (sp, i) {
       if (sp.lat == null) return;
-      var x = projX(sp.lng), y = projY(sp.lat), on = !!got[sp.gid];
-      s += '<g><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="8.5" fill="' + (on ? ACCENT : '#fff') + '" stroke="' + ACCENT_DEEP + '" stroke-width="' + (on ? 1.5 : 2) + '"/>'
-        + '<text x="' + x.toFixed(1) + '" y="' + (y + 3.2).toFixed(1) + '" text-anchor="middle" font-size="10" font-weight="700" fill="' + (on ? '#fff' : ACCENT_DEEP) + '" font-family="serif">' + (on ? '✓' : (i + 1)) + '</text></g>';
+      var x = projX(sp.lng), y = projY(sp.lat);
+      var on = !!got[sp.gid], rdy = !on && !!(unlock && unlock[sp.gid]);
+      var fill = on ? ACCENT : '#fff';
+      var stroke = on ? ACCENT_DEEP : (rdy ? ACCENT : '#B6AB94');
+      var sw = on ? 1.5 : (rdy ? 2.6 : 2);
+      var tcol = on ? '#fff' : (rdy ? ACCENT : '#B6AB94');
+      s += '<g' + (rdy ? ' class="rdy"' : '') + '><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="8.5" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>'
+        + '<text x="' + x.toFixed(1) + '" y="' + (y + 3.2).toFixed(1) + '" text-anchor="middle" font-size="10" font-weight="700" fill="' + tcol + '" font-family="serif">' + (on ? '✓' : (i + 1)) + '</text></g>';
     });
     g.innerHTML = s;
   }
@@ -249,14 +282,14 @@
       if (cx < 10 || cx > window.innerWidth - 10 || cy < 10 || cy > window.innerHeight - 10) { cx = window.innerWidth / 2; cy = window.innerHeight / 2; }
       burst(cx, cy);
     } else { burst(window.innerWidth / 2, window.innerHeight / 2); }
-    if (!silent) { var sel = rd(SEL); toast('🎯 「' + (sel[g] ? sel[g].name : '') + '」のスタンプGET！'); }
+    if (!silent) { var sel = rd(SEL); toast('🌸 「' + (sel[g] ? sel[g].name : '') + '」GET！おつかれさま✨'); }
     return true;
   }
   /* 花吹雪バースト（スタンプ押下時） */
   function burst(x, y) {
     var box = document.createElement('div'); box.className = 'sr-burst';
-    var petals = ['🌸', '🌸', '💮', '🌸', '❀', '✿'];
-    var n = 24;
+    var petals = ['🌸', '💕', '✨', '🌸', '🌟', '💮', '🎀', '✨'];
+    var n = 26;
     for (var i = 0; i < n; i++) {
       var p = document.createElement('i');
       var ang = (i / n) * Math.PI * 2 + Math.random() * 0.5;
@@ -268,7 +301,7 @@
       p.style.fontSize = (13 + Math.random() * 12).toFixed(0) + 'px';
       p.style.animationDelay = (Math.random() * 0.08).toFixed(2) + 's';
       p.style.animationDuration = (1.1 + Math.random() * 0.9).toFixed(2) + 's';
-      if (i % 5 === 0) { p.textContent = ''; p.style.width = '8px'; p.style.height = '12px'; p.style.borderRadius = '2px'; p.style.background = [ACCENT, '#E4C04A', '#E08AA0'][i % 3]; }
+      if (i % 5 === 0) { p.textContent = ''; p.style.width = '8px'; p.style.height = '12px'; p.style.borderRadius = '2px'; p.style.background = ['#FF9EC4', '#FFD66B', '#8FE3C8', '#C3A6E8'][i % 4]; }
       else p.textContent = petals[i % petals.length];
       box.appendChild(p);
     }
@@ -286,19 +319,26 @@
     toast(m, 3600);
   }
   function geoAll(btn) {
-    if (!navigator.geolocation) { toast('この端末では位置情報が使えません。手動でどうぞ。'); return; }
+    if (!navigator.geolocation) { toast('この端末では位置情報が使えません。マスをタップして手動で解放してね。'); return; }
     if (btn) { btn.disabled = true; btn.textContent = '📡 現在地を確認中…'; }
     navigator.geolocation.getCurrentPosition(function (pos) {
       var la = pos.coords.latitude, lo = pos.coords.longitude;
-      var list = selectedList(), got = rd(GOT), names = [], near = null, nd = Infinity;
+      var list = selectedList(), got = rd(GOT), unlock = rd(UNLK), newly = [], nearReady = false, near = null, nd = Infinity;
       list.forEach(function (s) {
         if (s.lat == null) return;
         var d = dist(la, lo, s.lat, s.lng);
         if (d < nd) { nd = d; near = s; }
-        if (d <= RADIUS && !got[s.gid]) { collect(s.gid, true); names.push(s.name); }
+        if (d <= RADIUS && !got[s.gid] && !unlock[s.gid]) { unlock[s.gid] = new Date().toISOString(); newly.push(s.gid); }
+        else if (d <= RADIUS && (unlock[s.gid] || got[s.gid])) nearReady = true;
       });
-      if (names.length) { toast('🎯 ' + names.length + '個GET！<br>' + names.join('・')); checkComplete(); }
-      else if (near) toast('近くに対象がありません。<br>最寄り「' + near.name + '」まで約' + fmtKm(nd) + '。');
+      wr(UNLK, unlock); renderMaster();
+      if (newly.length) {
+        readyFx(newly);
+        var sel = rd(SEL), nm = newly.map(function (g) { return sel[g] ? sel[g].name : ''; });
+        toast('✨ ' + newly.length + 'スポットが押せるように！<br>' + nm.join('・') + '<br>スタンプをタップして押そう♡', 3800);
+      }
+      else if (nearReady) toast('近くのスタンプはもう解放ずみ！<br>✨ 光ってるスタンプをタップしてね');
+      else if (near) toast('近くに対象がないみたい。<br>最寄り「' + near.name + '」まで約' + fmtKm(nd) + '。');
       else toast('対象スポットが見つかりませんでした。');
       restoreGeo();
     }, function (e) { geoErr(e); restoreGeo(); }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 30000 });
@@ -308,22 +348,60 @@
     toast('📡 現在地を確認中…', 8000);
     navigator.geolocation.getCurrentPosition(function (pos) {
       var d = dist(pos.coords.latitude, pos.coords.longitude, s.lat, s.lng);
-      if (d <= RADIUS) { collect(s.gid); checkComplete(); }
-      else toast('まだ「' + s.name + '」の近くにいないようです（約' + fmtKm(d) + '）。', 3600);
+      if (d <= RADIUS) {
+        var u = rd(UNLK); if (!u[s.gid]) { u[s.gid] = new Date().toISOString(); wr(UNLK, u); }
+        renderMaster(); readyFx([s.gid]);
+        toast('✨「' + s.name + '」が押せるように！<br>スタンプをタップして押そう♡', 3400);
+      } else toast('まだ「' + s.name + '」の近くにいないみたい（約' + fmtKm(d) + '）。', 3400);
     }, geoErr, { enableHighAccuracy: true, timeout: 12000, maximumAge: 30000 });
   }
-  function restoreGeo() { var b = mount.querySelector('[data-act="geoall"]'); if (b) { b.disabled = false; b.textContent = '📍 現在地でスタンプを集める'; } }
+  function restoreGeo() { var b = mount.querySelector('[data-act="geoall"]'); if (b) { b.disabled = false; b.textContent = '📍 いまの場所でスタンプを解放する'; } }
+  /* 解放された瞬間の小さな演出（「押せるよ！」の合図） */
+  function readyFx(gids) {
+    gids.forEach(function (g) {
+      var tile = mount.querySelector('.sr-tile[data-gid="' + g + '"]');
+      if (!tile) return;
+      tile.classList.add('pop');
+      var r = tile.getBoundingClientRect();
+      sparkle(r.left + r.width / 2, r.top + r.height / 2);
+    });
+  }
+  function sparkle(x, y) {
+    var box = document.createElement('div'); box.className = 'sr-burst';
+    var em = ['✨', '💫', '⭐', '✨', '🌟'];
+    for (var i = 0; i < 12; i++) {
+      var p = document.createElement('i');
+      var a = (i / 12) * Math.PI * 2 + Math.random() * 0.4, d = 22 + Math.random() * 48;
+      p.style.left = x + 'px'; p.style.top = y + 'px';
+      p.style.setProperty('--dx', (Math.cos(a) * d).toFixed(0) + 'px');
+      p.style.setProperty('--dy', (Math.sin(a) * d - 16).toFixed(0) + 'px');
+      p.style.setProperty('--rot', (Math.random() * 360 - 180).toFixed(0) + 'deg');
+      p.style.fontSize = (11 + Math.random() * 8).toFixed(0) + 'px';
+      p.style.animationDuration = (0.7 + Math.random() * 0.5).toFixed(2) + 's';
+      p.textContent = em[i % em.length];
+      box.appendChild(p);
+    }
+    document.body.appendChild(box); setTimeout(function () { box.remove(); }, 1400);
+  }
 
-  function openSheet(s) {
-    var got = rd(GOT), on = !!got[s.gid];
+  function openSheet(s, state) {
     var ov = document.createElement('div'); ov.className = 'sr-ov';
     ov.style.setProperty('--sr-a', ACCENT); ov.style.setProperty('--sr-d', ACCENT_DEEP);
-    ov.innerHTML = '<div class="sr-sheet"><h3>' + s.name + '</h3>'
-      + '<p>' + (on ? '取得済み（' + fmtDate(got[s.gid]) + '）' : '現地にいますか？ GPSで確認すると確実です。電波が悪い時は手動でも押せます。') + '</p>'
-      + (on ? '' : '<button class="b primary" data-s="gps">📍 現在地で確認してGET</button><button class="b sub" data-s="manual">✋ 手動で押す</button>')
-      + (s.lat != null ? '<button class="b sub" data-s="map">🗺 地図でこの場所を見る</button>' : '')
-      + '<button class="b danger" data-s="remove">マイスタンプ帳から外す</button>'
-      + '<button class="b ghost" data-s="cancel">とじる</button></div>';
+    var body;
+    if (state === 'got') {
+      body = '<h3>' + s.name + '</h3><p>✓ 取得済み（' + fmtDate(rd(GOT)[s.gid]) + '）おつかれさま✨</p>'
+        + (s.lat != null ? '<button class="b sub" data-s="map">🗺 地図で見る</button>' : '')
+        + '<button class="b danger" data-s="remove">マイスタンプ帳から外す</button>'
+        + '<button class="b ghost" data-s="cancel">とじる</button>';
+    } else {
+      body = '<h3>' + s.name + '</h3><p>近くに行くとスタンプが<b>✨押せるように</b>なります。現地に着いたら「確認」してね。</p>'
+        + '<button class="b primary" data-s="gps">📍 いま近くにいるか確認する</button>'
+        + (s.lat != null ? '<button class="b sub" data-s="map">🗺 地図で見る</button>' : '')
+        + '<button class="b sub" data-s="manualunlock">✋ 手動で解放（GPSが使えない時）</button>'
+        + '<button class="b danger" data-s="remove">マイスタンプ帳から外す</button>'
+        + '<button class="b ghost" data-s="cancel">とじる</button>';
+    }
+    ov.innerHTML = '<div class="sr-sheet">' + body + '</div>';
     document.body.appendChild(ov);
     requestAnimationFrame(function () { ov.classList.add('show'); });
     function close() { ov.classList.remove('show'); setTimeout(function () { ov.remove(); }, 280); }
@@ -331,40 +409,81 @@
       if (e.target === ov) return close();
       var a = e.target.getAttribute('data-s'); if (!a) return;
       if (a === 'gps') { close(); geoOne(s); }
-      else if (a === 'manual') { close(); collect(s.gid); checkComplete(); }
+      else if (a === 'manualunlock') { close(); var u = rd(UNLK); if (!u[s.gid]) { u[s.gid] = new Date().toISOString(); wr(UNLK, u); } renderMaster(); readyFx([s.gid]); toast('✨ 解放！スタンプをタップして押そう♡', 3000); }
       else if (a === 'map') window.open('https://www.google.com/maps/search/?api=1&query=' + s.lat + ',' + s.lng, '_blank');
       else if (a === 'remove') { close(); removeSpot(s.gid); }
       else close();
     });
   }
   function removeSpot(g) {
-    var sel = rd(SEL); if (sel[g]) { var nm = sel[g].name; delete sel[g]; wr(SEL, sel); renderMaster(); toast('「' + nm + '」を外しました'); }
+    var sel = rd(SEL); if (!sel[g]) return; var nm = sel[g].name; delete sel[g]; wr(SEL, sel);
+    var got = rd(GOT); if (got[g]) { delete got[g]; wr(GOT, got); }
+    var u = rd(UNLK); if (u[g]) { delete u[g]; wr(UNLK, u); }
+    renderMaster(); toast('「' + nm + '」を外しました');
   }
 
   /* ---------- completion / confetti / share ---------- */
   function showComplete() {
-    confetti();
+    // ド派手: フラッシュ → 画面シェイク → 花火 → 紙吹雪＆花吹雪 → 後光＋称号モーダル
+    flash(); shake(); fireworks(); confetti(170);
     var ov = document.createElement('div'); ov.className = 'sr-ov center';
     ov.style.setProperty('--sr-a', ACCENT); ov.style.setProperty('--sr-d', ACCENT_DEEP);
     var total = selectedList().length;
-    ov.innerHTML = '<div class="sr-card"><div class="crown">👑</div><div class="ttl">C O M P L E T E</div>'
+    ov.innerHTML = '<div class="sr-rays"></div>'
+      + '<div class="sr-card mega"><div class="sr-seal">🎉</div><div class="crown">🥳</div>'
+      + '<div class="sr-yay">Yay! ✨ おつかれさま♡</div>'
+      + '<div class="ttl">C O N G R A T S</div>'
       + '<div class="title">' + (cfg.completeTitle || 'コンプリート！') + '</div>'
-      + '<div class="msg">選んだ' + total + 'スポット、ぜんぶ制覇！<br>おめでとう、満願達成です。</div>'
-      + '<button class="b primary" data-s="share">🎉 結果をシェアする</button>'
+      + '<div class="msg">選んだ' + total + 'スポット、ぜんぶ制覇！🎉<br><b>最高の女子旅</b>だったね。<br>たくさん歩いたぶん、いい思い出に🫶✨</div>'
+      + '<button class="b primary" data-s="share">📸 結果をシェアする</button>'
       + '<button class="b ghost" data-s="close">とじる</button></div>';
     document.body.appendChild(ov);
     requestAnimationFrame(function () { ov.classList.add('show'); });
+    // カードまわりにキラキラを散らす
+    var tw = ['✨', '💕', '🌟', '⭐', '💖', '✨'];
+    var pos = [[6, 12], [90, 8], [4, 70], [93, 60], [16, 92], [82, 90], [50, 2], [2, 40]];
+    pos.forEach(function (xy, i) {
+      var t = document.createElement('div'); t.className = 'sr-tw';
+      t.textContent = tw[i % tw.length];
+      t.style.left = xy[0] + '%'; t.style.top = xy[1] + '%';
+      t.style.animationDelay = (i * 0.13).toFixed(2) + 's';
+      ov.appendChild(t);
+    });
+    // 追い花火（少し遅らせて二発目）
+    setTimeout(fireworks, 700);
     ov.addEventListener('click', function (e) {
       var a = e.target.getAttribute('data-s');
       if (e.target === ov || a === 'close') { ov.classList.remove('show'); setTimeout(function () { ov.remove(); }, 280); }
       else if (a === 'share') doShare();
     });
   }
-  function confetti() {
+  function flash() { var f = document.createElement('div'); f.className = 'sr-flash'; document.body.appendChild(f); setTimeout(function () { f.remove(); }, 1200); }
+  function shake() { mount.classList.remove('sr-shake'); void mount.offsetWidth; mount.classList.add('sr-shake'); setTimeout(function () { mount.classList.remove('sr-shake'); }, 700); }
+  function fireworks() {
+    var box = document.createElement('div'); box.className = 'sr-fw'; document.body.appendChild(box);
+    var colors = ['#FF9EC4', '#FFD66B', '#8FE3C8', '#C3A6E8', '#8FD0FF', '#FF8FA3', '#ffffff'];
+    var count = 0, max = 14;
+    function shoot() {
+      var ox = 8 + Math.random() * 84, oy = 12 + Math.random() * 46, col = colors[Math.floor(Math.random() * colors.length)];
+      for (var i = 0; i < 26; i++) {
+        var p = document.createElement('i');
+        var a = (i / 26) * Math.PI * 2, d = 55 + Math.random() * 105;
+        p.style.left = ox + 'vw'; p.style.top = oy + 'vh'; p.style.color = col; p.style.background = col;
+        p.style.setProperty('--dx', (Math.cos(a) * d).toFixed(0) + 'px');
+        p.style.setProperty('--dy', (Math.sin(a) * d).toFixed(0) + 'px');
+        p.style.animationDuration = (0.8 + Math.random() * 0.5).toFixed(2) + 's';
+        box.appendChild(p);
+      }
+      count++; if (count < max) setTimeout(shoot, 110 + Math.random() * 170);
+    }
+    shoot(); setTimeout(function () { box.remove(); }, 3600);
+  }
+  function confetti(num) {
     var box = document.createElement('div'); box.className = 'sr-confetti';
-    var colors = [ACCENT, ACCENT_DEEP, '#E4C04A', '#E08A8A', '#fff'];
-    var petals = ['🌸', '💮', '❀', '✿'];
-    for (var i = 0; i < 100; i++) {
+    var colors = ['#FF9EC4', '#FFD66B', '#8FE3C8', '#C3A6E8', '#8FD0FF', '#FF8FA3', '#fff'];
+    var petals = ['🌸', '💕', '✨', '🌟', '🎀', '💖', '💮'];
+    var N = num || 100;
+    for (var i = 0; i < N; i++) {
       var p = document.createElement('i');
       p.style.left = Math.round(Math.random() * 100) + 'vw';
       p.style.animationDuration = (1.8 + Math.random() * 1.8) + 's';
@@ -425,22 +544,24 @@
       if (a === 'all') { var sel = rd(SEL), tab = cfg.key, lab = cfg.tabLabel || cfg.title; (cfg.spots || []).forEach(function (s) { sel[gid(tab, s.id)] = { tab: tab, tabLabel: lab, id: s.id, name: s.name, short: s.short || s.name, icon: s.icon || '📍', cat: s.cat || '', lat: s.lat, lng: s.lng }; }); wr(SEL, sel); renderSelect(); toast('このタブを全部追加しました'); return; }
       if (a === 'geoall') return geoAll(actEl);
       if (a === 'share') return doShare();
-      if (a === 'reset') { if (confirm('取得したスタンプ記録を消しますか？（選択スポットは残ります）')) { wr(GOT, {}); renderMaster(); toast('スタンプ記録をリセットしました。'); } return; }
+      if (a === 'reset') { if (confirm('取得スタンプと解放状態をリセットしますか？（選択スポットは残ります）')) { wr(GOT, {}); wr(UNLK, {}); renderMaster(); toast('リセットしました。'); } return; }
     }
     if (MODE === 'select') { var t = e.target.closest('.sr-tile'); if (t) toggleSelect(t.getAttribute('data-id')); return; }
-    // master
+    // master: 3状態（取得済み / 解放済み＝押せる / 未解放）
     var tile = e.target.closest('.sr-tile'); if (!tile) return;
     var g = tile.getAttribute('data-gid'); var sel = rd(SEL); var s = sel[g]; if (!s) return; s.gid = g;
-    openSheet(s);
+    var got = rd(GOT), unlock = rd(UNLK);
+    if (got[g]) return openSheet(s, 'got');
+    if (unlock[g]) { collect(g); checkComplete(); return; }   // 押せる → タップでド派手演出
+    openSheet(s, 'locked');
   });
 
-  /* ---------- live sync (master reflects selections made in other tabs) ---------- */
-  if (MODE === 'master') {
-    window.addEventListener('storage', function (e) { if (e.key === SEL || e.key === GOT || e.key === null) renderMaster(); });
-    window.addEventListener('focus', function () { renderMaster(); });
-    window.addEventListener('pageshow', function () { renderMaster(); });
-    renderMaster();
-  } else {
-    renderSelect();
-  }
+  /* ---------- live sync (両モードとも他タブ/他iframeの変更を反映) ----------
+     これにより、master で「マイスタンプ帳から外す」と sr_sel が変わり、
+     旅程タブ(select)も storage イベントで再描画 → 選択が外れ、再登録できる。 */
+  var rerender = (MODE === 'master') ? renderMaster : renderSelect;
+  window.addEventListener('storage', function (e) { if (e.key === SEL || e.key === GOT || e.key === UNLK || e.key === null) rerender(); });
+  window.addEventListener('focus', function () { rerender(); });
+  window.addEventListener('pageshow', function () { rerender(); });
+  rerender();
 })();
