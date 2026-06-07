@@ -144,7 +144,13 @@
       '.sr-card .ttl{color:#E5739A;}',
       '.sr-card .msg b{color:var(--sr-d);}',
       '.sr-tw{position:absolute;z-index:3;pointer-events:none;font-size:20px;animation:srtw 1.2s ease-in-out infinite;}',
-      '@keyframes srtw{0%,100%{transform:scale(.55) rotate(-10deg);opacity:.45;}50%{transform:scale(1.2) rotate(15deg);opacity:1;}}'
+      '@keyframes srtw{0%,100%{transform:scale(.55) rotate(-10deg);opacity:.45;}50%{transform:scale(1.2) rotate(15deg);opacity:1;}}',
+      /* 各スタンプ押下のド派手: スラム＋衝撃波＋軽量フラッシュ */
+      '.sr-flash.lite{background:radial-gradient(circle at 50% 46%,rgba(255,236,184,.72),transparent 60%);animation:srflash .75s ease-out forwards;}',
+      '.sr-slam{position:fixed;left:50%;top:46%;transform:translate(-50%,-50%);z-index:10002;pointer-events:none;font-size:96px;text-shadow:0 6px 18px rgba(0,0,0,.18);animation:srslam .95s cubic-bezier(.2,1.2,.3,1) forwards;}',
+      '@keyframes srslam{0%{transform:translate(-50%,-50%) scale(2.7) rotate(-20deg);opacity:0;}26%{transform:translate(-50%,-50%) scale(.8) rotate(7deg);opacity:1;}44%{transform:translate(-50%,-50%) scale(1.05) rotate(-2deg);opacity:1;}78%{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1;}100%{transform:translate(-50%,-54%) scale(1.08);opacity:0;}}',
+      '.sr-ring0{position:fixed;left:50%;top:46%;width:44px;height:44px;border-radius:50%;border:5px solid var(--sr-a);z-index:10001;pointer-events:none;animation:srring .72s ease-out forwards;}',
+      '@keyframes srring{0%{opacity:.85;transform:translate(-50%,-50%) scale(.4);}100%{opacity:0;transform:translate(-50%,-50%) scale(7.5);}}'
     ].join('');
     document.head.appendChild(st);
   }
@@ -270,20 +276,30 @@
   }
 
   /* ---------- collect (master) ---------- */
-  function collect(g, silent) {
+  function collect(g) {
     var got = rd(GOT); if (got[g]) return false;
     got[g] = new Date().toISOString(); wr(GOT, got);
     renderMaster();
-    var tile = mount.querySelector('.sr-tile[data-gid="' + g + '"]');
-    if (tile) {
-      tile.classList.add('pop');
-      var r = tile.getBoundingClientRect();
-      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-      if (cx < 10 || cx > window.innerWidth - 10 || cy < 10 || cy > window.innerHeight - 10) { cx = window.innerWidth / 2; cy = window.innerHeight / 2; }
-      burst(cx, cy);
-    } else { burst(window.innerWidth / 2, window.innerHeight / 2); }
-    if (!silent) { var sel = rd(SEL); toast('🌸 「' + (sel[g] ? sel[g].name : '') + '」GET！おつかれさま✨'); }
+    var tile = mount.querySelector('.sr-tile[data-gid="' + g + '"]'); if (tile) tile.classList.add('pop');
+    var list = selectedList();
+    var complete = gotCount(list, rd(GOT)) === list.length && list.length > 0;
+    if (complete) { burst(window.innerWidth / 2, window.innerHeight * 0.46); } // 直後にメガ満願演出が来るので軽め
+    else { celebrateStamp(g); }                                               // 各スタンプもド派手
+    var sel = rd(SEL); toast('🌸 「' + (sel[g] ? sel[g].name : '') + '」GET！おつかれさま✨');
     return true;
+  }
+  /* 各スタンプ押下のド派手演出 */
+  function celebrateStamp(g) {
+    var sel = rd(SEL), s = sel[g] || {}, icon = s.icon || '🌸';
+    flash(true); shake(); stampSlam(icon);
+    burst(window.innerWidth / 2, window.innerHeight * 0.46);
+    fireworks(5);
+  }
+  function stampSlam(icon) {
+    var el = document.createElement('div'); el.className = 'sr-slam'; el.textContent = icon;
+    document.body.appendChild(el); setTimeout(function () { el.remove(); }, 1000);
+    var ring = document.createElement('div'); ring.className = 'sr-ring0'; ring.style.setProperty('--sr-a', ACCENT);
+    document.body.appendChild(ring); setTimeout(function () { ring.remove(); }, 800);
   }
   /* 花吹雪バースト（スタンプ押下時） */
   function burst(x, y) {
@@ -424,8 +440,8 @@
 
   /* ---------- completion / confetti / share ---------- */
   function showComplete() {
-    // ド派手: フラッシュ → 画面シェイク → 花火 → 紙吹雪＆花吹雪 → 後光＋称号モーダル
-    flash(); shake(); fireworks(); confetti(170);
+    // 満タンプ＝最上級ド派手: 大フラッシュ → シェイク → 花火連発 → 紙吹雪＆花吹雪 → 後光＋称号
+    flash(); shake(); fireworks(22); confetti(240);
     var ov = document.createElement('div'); ov.className = 'sr-ov center';
     ov.style.setProperty('--sr-a', ACCENT); ov.style.setProperty('--sr-d', ACCENT_DEEP);
     var total = selectedList().length;
@@ -449,20 +465,22 @@
       t.style.animationDelay = (i * 0.13).toFixed(2) + 's';
       ov.appendChild(t);
     });
-    // 追い花火（少し遅らせて二発目）
-    setTimeout(fireworks, 700);
+    // 追い花火を連発（escalation）
+    setTimeout(function () { fireworks(18); }, 650);
+    setTimeout(function () { fireworks(16); shake(); }, 1300);
+    setTimeout(function () { fireworks(14); }, 2050);
     ov.addEventListener('click', function (e) {
       var a = e.target.getAttribute('data-s');
       if (e.target === ov || a === 'close') { ov.classList.remove('show'); setTimeout(function () { ov.remove(); }, 280); }
       else if (a === 'share') doShare();
     });
   }
-  function flash() { var f = document.createElement('div'); f.className = 'sr-flash'; document.body.appendChild(f); setTimeout(function () { f.remove(); }, 1200); }
+  function flash(lite) { var f = document.createElement('div'); f.className = 'sr-flash' + (lite ? ' lite' : ''); document.body.appendChild(f); setTimeout(function () { f.remove(); }, lite ? 800 : 1200); }
   function shake() { mount.classList.remove('sr-shake'); void mount.offsetWidth; mount.classList.add('sr-shake'); setTimeout(function () { mount.classList.remove('sr-shake'); }, 700); }
-  function fireworks() {
+  function fireworks(maxN) {
     var box = document.createElement('div'); box.className = 'sr-fw'; document.body.appendChild(box);
     var colors = ['#FF9EC4', '#FFD66B', '#8FE3C8', '#C3A6E8', '#8FD0FF', '#FF8FA3', '#ffffff'];
-    var count = 0, max = 14;
+    var count = 0, max = maxN || 14;
     function shoot() {
       var ox = 8 + Math.random() * 84, oy = 12 + Math.random() * 46, col = colors[Math.floor(Math.random() * colors.length)];
       for (var i = 0; i < 26; i++) {
